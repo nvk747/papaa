@@ -1,0 +1,37 @@
+<tool id="pancancer_copy_burden_merge" name="PAPAA: PanCancer copy burden merge" version="@VERSION@">
+  <description>copy burden merge</description>
+  <macros>
+    <import>macros.xml</import>
+  </macros>
+  <expand macro="requirements"/>
+  <expand macro="stdio"/>
+  <version_command><![CDATA['papaa_copy_burden_merge.py' --version]]></version_command>
+  <command><![CDATA[
+    cp -R '$classifier_folder.extra_files_path' '${output_alt_folder.extra_files_path}'
+    &&
+    papaa_copy_burden_merge.py 
+    --classifier_folder '${output_alt_folder.extra_files_path}'
+    @INPUT_FILENAME_BURDEN@
+    &&
+    @OUTPUT_ALT_FOLDER_HTML@
+    ]]>
+  </command>
+  <inputs>
+    <param argument="--classifier_folder" label="Classifier score data" name="classifier_folder" optional="false" type="data" format="html"/>
+    <expand macro="input_filename_burden" />
+  </inputs>
+  <outputs>
+    <expand macro="output_alt_folder" />
+  </outputs>
+  <help><![CDATA[
+
+      Pancancer_Aberrant_Pathway_Activity_Analysis scripts/copy_burden_merge.py:
+
+        --classifier_folder String of the location of classifier data
+        --filename_burden   Filename of burden
+        
+        Output:
+        - Merge per sample classifier scores with segment based scores and generate "copy_burden_predictions.tsv" file
+
+    ]]></help>
+</tool>

@@ -1,0 +1,63 @@
+<tool id="pancancer_alternative_genes_pathwaymapper" name="PAPAA: PanCancer alternative genes pathwaymapper" version="@VERSION@">
+    <description>alternative genes pathwaymapper</description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+    <version_command><![CDATA['papaa_alternative_genes_pathwaymapper.py' --version]]></version_command>
+    <command><![CDATA[
+        mkdir 'classifier' &&
+        ln -s '${scores}' 'classifier/classifier_decisions.tsv' && 
+        papaa_alternative_genes_pathwaymapper.py
+        --scores 'classifier'
+        #if $genes and str($genes):
+        --genes '$genes'
+        #end if
+        #if $path_genes and str($path_genes):
+        --path_genes '$path_genes'
+        #end if
+        #if $filename_mut and $filename_mut is not None:
+        --filename_mut '$filename_mut'
+        #end if
+        #if $filename_sample and $filename_sample is not None:
+        --filename_sample '$filename_sample'
+        #end if
+        @INPUTS_COPY_NUMBER_FILE_CONDITIONAL@
+        > '${log}'
+        ]]>
+    </command>
+    <inputs>
+        <param argument="--scores" label="pancancer decisions" name="scores" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
+        <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="KRAS,NRAS,HRAS"/>
+        <param argument="--path_genes" label="string of the genes to extract or genelist file" name="path_genes" optional="true" type= "data" format="txt"/>
+        <param argument="--filename_mut" label="Filename mutations" name="filename_mut" optional="true" type="data" format="tabular" help="data/pancan_mutation_freeze.tsv"/>
+        <param argument="--filename_sample" label="Filename of sample" name="filename_sample" optional="true" type="data" format="tabular" help="data/sample_freeze.tsv"/>
+        <expand macro="inputs_copy_number_file_conditional" />
+    </inputs>
+    <outputs>
+        <data format="txt" name="log" label="${tool.name} on ${on_string} (Log)"/>
+        <data format="txt" name="pathway_metrics_pathwaymapper" label="${tool.name} on ${on_string} (pathway_metrics_pathwaymapper.txt)" from_work_dir="classifier/tables/pathway_metrics_pathwaymapper.txt"/>
+        <data format="tabular" name="all_gene_metric_ranks" label="${tool.name} on ${on_string} (all_gene_metric_ranks.tsv)" from_work_dir="classifier/tables/all_gene_metric_ranks.tsv"/>
+    </outputs>
+    <help><![CDATA[
+
+      Pancancer_Aberrant_Pathway_Activity_Analysis scripts/alternative_genes_pathwaymapper.py:
+
+      --genes                               comma separated string of HUGO symbols for target genes or targenes_list.csv file
+      --path_genes                          comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
+      --scores                              String of the location of classifier scores/alt_folder
+      --filename_mut                        Filename of sample/gene mutations to use in model
+      --filename_mut_burden                 Filename of sample mutation burden to use in model
+      --filename_sample                     Filename of patient/samples to use in model
+      --filename_copy_loss                  Filename of copy number loss
+      --filename_copy_gain                  Filename of copy number gain
+
+      Output:
+      - calculate and display metrics for targen classification
+      - calulate and display pathway metrics ("pathway_metrics_pathwaymapper.txt")
+      - Visualize Distribution of AUROC and AUPRC for all genes and Get Metrics for All Genes ("all_gene_metric_ranks.tsv")
+
+
+        ]]></help>
+</tool>
