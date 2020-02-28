@@ -52,7 +52,7 @@ ROC curves, AUROC across diseases, and classifier coefficients
 import os
 import sys
 import warnings
-
+import numpy as np
 import pandas as pd
 import csv
 import argparse
@@ -77,6 +77,9 @@ RASOPATHY_GENES = set(['BRAF', 'CBL', 'HRAS', 'KRAS', 'MAP2K1', 'MAP2K2', 'NF1',
 
 # Load command arguments
 args = get_args()
+
+if args.seed is not None:
+  np.random.seed(int(args.seed))
 
 # if list of the genes provided by file or comma seperated values:
 try:

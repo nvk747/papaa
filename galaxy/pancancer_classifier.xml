@@ -12,6 +12,9 @@
         #if $folds and $folds is not None:
         --folds '$folds'
         #end if
+        #if $seed and $seed is not None:
+        --seed '$seed'
+        #end if
         $drop
         #if $filter_count and $filter_count is not None:
         --filter_count '$filter_count'
@@ -58,6 +61,7 @@
     <inputs>
         <expand macro="inputs_basic_raw" />
         <expand macro="inputs_genes_diseases" />
+        <param argument="--seed" label="option to set seed" name="seed" optional="true" type="integer" value="1234"/>
         <param argument="--folds" label="Number of cross validation folds to perform" name="folds" optional="true" type="integer" value="5"/>
         <param argument="--drop" checked="false" label="Decision to drop input genes from X matrix" name="drop" type="boolean" truevalue="--drop" falsevalue=""/>
         <expand macro="inputs_copy_number_class_file_conditional" />
@@ -99,6 +103,54 @@
         <data format="pdf" name="disease_aupr" label="${tool.name} on ${on_string} (disease_aupr.pdf)" from_work_dir="classifier/disease_aupr.pdf"/>
         <data format="pdf" name="disease_auroc" label="${tool.name} on ${on_string} (disease_auroc.pdf)" from_work_dir="classifier/disease_auroc.pdf"/>
     </outputs>
+    <tests>
+        <test>
+            <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
+            <param name="diseases" value="GBM"/>
+            <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
+            <param name="x_as_raw" value="yes"/>
+            <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
+            <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
+            <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
+            <param name="folds" value="5"/>
+            <param name="drop" value="yes"/>
+            <param name="copy_number" value="yes"/>
+            <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
+            <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
+            <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
+            <param name="filter_count" value="15"/>
+            <param name="filter_prop" value="0.05"/>
+            <param name="num_features" value="8000"/>
+            <param name="alphas" value="0.1,0.13,0.15,0.18,0.2,0.3,0.4,0.6,0.7"/>
+            <param name="l1_ratios" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
+            <param name="alt_genes" value="PTEN,PIK3R1,STK11"/>
+            <param name="alt_diseases" value="GBM"/>
+            <param name="alt_filter_count" value="15"/>
+            <param name="alt_filter_prop" value="0.05"/>
+            <param name="remove_hyper" value="yes"/>
+            <param name="keep_intermediate" value="yes"/>
+            <param name="shuffled" value="yes"/>
+            <param name="shuffled_before_training" value="no"/>
+            <param name="no_mutation" value="no"/>
+            <param name="drop_rasopathy" value="no"/>
+            <param name="drop_expression" value="no"/>
+            <param name="drop_covariates" value="no"/>
+            <output name="log" file="Log"/>
+            <output name="alt_gene_alt_disease_summary" file="alt_gene_alt_disease_summary.tsv"/>
+            <output name="alt_summary_counts" file="alt_summary_counts.csv"/>
+            <output name="classifier_coefficients" file="classifier_coefficients.tsv"/>
+            <output name="classifier_summary" file="classifier_summary.txt"/>
+            <output name="pancan_roc_results" file="pancan_roc_results.tsv"/>
+            <output name="summary_counts" file="summary_counts.csv"/>
+            <output name="cv_heatmap" file="cv_heatmap.pdf" compare="sim_size" delta="30"/>
+            <output name="all_disease_pr" file="all_disease_pr.pdf" compare="sim_size" delta="30" />
+            <output name="all_disease_roc" file="all_disease_roc.pdf" compare="sim_size" delta="30"/>
+            <output name="alt_gene_alt_disease_aupr_bar" file="alt_gene_alt_disease_aupr_bar.pdf" compare="sim_size" delta="30"/>
+            <output name="alt_gene_alt_disease_auroc_bar" file="alt_gene_alt_disease_auroc_bar.pdf" compare="sim_size" delta="30"/>
+            <output name="disease_aupr" file="disease_aupr.pdf" compare="sim_size" delta="30"/>
+            <output name="disease_auroc" file="disease_auroc.pdf" compare="sim_size" delta="30"/>
+        </test>
+    </tests>
     <help><![CDATA[
         Pancancer_Aberrant_Pathway_Activity_Analysis scripts/pancancer_classifier.py:
 

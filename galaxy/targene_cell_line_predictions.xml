@@ -56,7 +56,7 @@
         <param argument="--targenes" label="Comma separated string of HUGO targene symbols" name="targenes" optional="False" type="text" value="KRAS_MUT,NRAS_MUT,HRAS_MUT"/>
         <param argument="--path_genes" label="string of the genes to extract or genelist file" name="path_genes" optional="true" type= "data" format="txt"/>
         <param argument="--ccle_rnaseq" label="Filename ccle rnaseq data" name="ccle_rnaseq" optional="false" type="data" format="tabular" help="data/ccle_rnaseq_genes_rpkm_20180929_mod.tsv"/>
-        <param argument="--ccle_mut" label="Filename ccle mutational data" name="ccle_mut" optional="true" type="data" format="tabular" help="data/CCLE_MUT_CNA_AMP_DEL_binary_Revealer.tsv"/>
+        <param argument="--ccle_mut" label="Filename ccle mutational data" name="ccle_mut" optional="true" type="data" format="txt" help="data/CCLE_MUT_CNA_AMP_DEL_binary_Revealer.gct"/>
         <param argument="--ccle_maf" label="Filename ccle variant data" name="ccle_maf"  optional="true" type="data" format="txt" help="data/CCLE_DepMap_18Q1_maf_20180207.txt" />
         <param argument="--gdsc_rnaseq" label="Filename gdsc rnaseq data" name="gdsc_rnaseq" optional="false" type="data" format="tabular" help="data/GDSC_EXP_CCLE_converted_name.tsv"/>
         <param argument="--gdsc_mut" label="Filename gdsc mutational data" name="gdsc_mut" optional="true" type="data" format="tabular" help="data/GDSC_CCLE_common_mut_cnv_binary.tsv"/>
