@@ -28,6 +28,7 @@ import sys
 import subprocess
 import argparse
 import pandas as pd
+import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'papaa'))
 from tcga_util import add_version_argument
@@ -42,6 +43,10 @@ parser.add_argument('-a', '--alphas', default='0.1,0.15,0.2,0.5,0.8,1',
                     help='the alphas for parameter sweep')
 parser.add_argument('-l', '--l1_ratios', default='0,0.1,0.15,0.18,0.2,0.3',
                     help='the l1 ratios for parameter sweep')
+parser.add_argument('-n', '--num_features', default=8000, type=int,
+                        help='Number of MAD genes to include in classifier')
+parser.add_argument( '-y','--seed', default=None, type=int,
+                        help='option to set seed')
 parser.add_argument('-v', '--remove_hyper', action='store_true',
                     help='Remove hypermutated samples')
 parser.add_argument('-f', '--alt_folder', default='Auto',
@@ -64,6 +69,9 @@ parser.add_argument( '--filename_cancer_gene_classification', default=None,
                     help='Filename of cancer gene classification table')
 
 args = parser.parse_args()
+
+if args.seed is not None:
+  np.random.seed(int(args.seed))
 
 # make it a little easier to pass forward filename args
 args_dict = vars(args)
@@ -102,6 +110,7 @@ folder = args.alt_folder
 alphas = args.alphas
 l1_ratios = args.l1_ratios
 remove_hyper = args.remove_hyper
+num_features_kept = args.num_features
 
 #base_folder = os.path.join('classifiers', 'within_disease',
 #                           genes.replace(',', '_'))
@@ -123,7 +132,8 @@ for acronym in disease_types:
         alt_folder = os.path.join(folder, acronym)
    
     command = ['papaa_pancancer_classifier.py',
-                 '--genes', genes, '--diseases', acronym, '--drop',
+               '--genes', genes, '--diseases', acronym, '--drop', 
+               '--seed', args.seed , '--num_features', num_features_kept,
                '--copy_number', '--alphas', alphas, '--l1_ratios', l1_ratios,
                '--alt_folder', alt_folder, '--shuffled', '--keep_intermediate']
     if remove_hyper:

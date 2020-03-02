@@ -112,6 +112,7 @@
             <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
             <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
             <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
+            <param name="seed" value="1234"/>
             <param name="folds" value="5"/>
             <param name="drop" value="yes"/>
             <param name="copy_number" value="yes"/>
@@ -141,7 +142,7 @@
             <output name="classifier_coefficients" file="classifier_coefficients.tsv"/>
             <output name="classifier_summary" file="classifier_summary.txt"/>
             <output name="pancan_roc_results" file="pancan_roc_results.tsv"/>
-            <output name="summary_counts" file="summary_counts.csv"/>
+            <output name="summary_counts" file="summary_counts.csv" compare="sim_size" delta="30"/>
             <output name="cv_heatmap" file="cv_heatmap.pdf" compare="sim_size" delta="30"/>
             <output name="all_disease_pr" file="all_disease_pr.pdf" compare="sim_size" delta="30" />
             <output name="all_disease_roc" file="all_disease_roc.pdf" compare="sim_size" delta="30"/>

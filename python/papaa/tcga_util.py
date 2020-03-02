@@ -99,7 +99,7 @@ def get_args():
                         help='Filename of copy number gain')
     parser.add_argument( '--filename_cancer_gene_classification', default=None,
                         help='Filename of cancer gene classification table')
-    parser.add_argument( '--seed', default=None,
+    parser.add_argument( '-y','--seed', default=1234, type=int,
                         help='option to set seed')
 
     args = parser.parse_args()
