@@ -133,7 +133,7 @@ for acronym in disease_types:
    
     command = ['papaa_pancancer_classifier.py',
                '--genes', genes, '--diseases', acronym, '--drop', 
-               '--seed', args.seed , '--num_features', num_features_kept,
+               '--seed', str(args.seed) , '--num_features', str(num_features_kept),
                '--copy_number', '--alphas', alphas, '--l1_ratios', l1_ratios,
                '--alt_folder', alt_folder, '--shuffled', '--keep_intermediate']
     if remove_hyper:
