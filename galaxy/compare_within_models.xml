@@ -73,6 +73,25 @@
           <filter>include_alt['include_alt_select'] == 'true' </filter> 
         </data>
     </outputs>
+    <tests>
+        <test>
+            <param name="pancan_summary" value="classifier_summary.txt" ftype="txt"/>
+            <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
+            <param name="pan_within_classifier_summary" value="GBM_100.txt" ftype="txt"/>
+            <param name="pan_within_classifier_coefficients" value="GBM_99.tabular" ftype="tabular"/>
+            <conditional name="include_alt">
+                <param name="alt_pancan_summary" value="alt_pancan_summary.txt" ftype="txt"/>
+                <param name="alt_pancan_classifier_coefficients" value="alt_pancan_classifier_coefficients.tsv" ftype="tabular"/>
+                <param name="alt_pan_within_classifier_summary" value="alt_pan_within_classifier_summary.txt" ftype="txt"/>
+                <param name="alt_pan_within_classifier_coefficients" value="alt_pan_within_classifier_coefficients.tsv" ftype="tabular"/>
+            </conditional>
+            <output name="log" file="compare_within_Log"/>
+            <output name="aupr_comparison" file="aupr_comparison.pdf" compare="sim_size" delta="30"/>
+            <output name="auroc_comparison" file="auroc_comparison.pdf" compare="sim_size" delta="30"/>
+            <output name="alt_gene_aupr_comparison" file="alt_gene_aupr_comparison.pdf" compare="sim_size" delta="30"/>
+            <output name="alt_gene_auroc_comparison" file="alt_gene_auroc_comparison.pdf" compare="sim_size" delta="30"/>
+        </test>
+    </tests>
     <help><![CDATA[
 
       Pancancer_Aberrant_Pathway_Activity_Analysis scripts/compare_within_models.R:

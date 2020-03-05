@@ -35,6 +35,17 @@
         <data format="pdf" name="figure1" label="${tool.name} on ${on_string} (Figure 1)" />
         <data format="pdf" name="figure2" label="${tool.name} on ${on_string} (Figure 2)" />
     </outputs>
+    <tests>
+        <test>
+          <param name="classifier_folder" value="classifier_summary.txt" ftype="txt"/>
+          <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
+          <param name="ex_vlog" value="vlog_trans.csv.gz" ftype="csv"/>
+          <param name="sign" value="sign.txt" ftype="txt"/>
+          <output name="log" file="external_sample_status_prediction_Log"/>
+          <output name="figure1" file="Figure_1.pdf" compare="sim_size" delta="30"/>
+          <output name="figure2" file="Figure_2.pdf" compare="sim_size" delta="30"/>
+        </test>
+    </tests>
     <help><![CDATA[
 
       Pancancer_Aberrant_Pathway_Activity_Analysis scripts/targene_alternative_genes_pathwaymapper.py:

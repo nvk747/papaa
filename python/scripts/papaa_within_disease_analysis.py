@@ -53,7 +53,7 @@ parser.add_argument('-f', '--alt_folder', default='Auto',
                     help='location to save')
 parser.add_argument('-x', '--x_matrix', default=None,
                     help='Filename of features to use in model')
-parser.add_argument('--x_as_raw', action='store_true',
+parser.add_argument('--x_as_raw', default=True, action='store_true',
                         help='Treat x_matrix as "raw"')
 parser.add_argument( '--filename_mut', default=None,
                     help='Filename of sample/gene mutations to use in model')
@@ -71,7 +71,8 @@ parser.add_argument( '--filename_cancer_gene_classification', default=None,
 args = parser.parse_args()
 
 if args.seed is not None:
-  np.random.seed(int(args.seed))
+    se = int(args.seed)
+    np.random.seed(se)
 
 # make it a little easier to pass forward filename args
 args_dict = vars(args)
@@ -132,8 +133,8 @@ for acronym in disease_types:
         alt_folder = os.path.join(folder, acronym)
    
     command = ['papaa_pancancer_classifier.py',
-               '--genes', genes, '--diseases', acronym, '--drop', 
-               '--seed', str(args.seed) , '--num_features', str(num_features_kept),
+               '--genes', genes, '--diseases', acronym, '--drop','--x_as_raw',
+               '--seed', str(se) , '--num_features', str(num_features_kept),
                '--copy_number', '--alphas', alphas, '--l1_ratios', l1_ratios,
                '--alt_folder', alt_folder, '--shuffled', '--keep_intermediate']
     if remove_hyper:
