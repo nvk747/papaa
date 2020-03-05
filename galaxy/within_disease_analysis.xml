@@ -24,7 +24,8 @@
     #end if
     > '${log}'
     && papaa_flatten_classifier_directory.py -i 'classifier' -o 'classifier_within'
-]]></command>
+   ]]>
+  </command>
   <inputs>
     <expand macro="inputs_basic_raw" />
     <expand macro="inputs_genes_diseases" />
@@ -58,45 +59,49 @@
   </outputs>
   <tests>
         <test>
-            <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
-            <param name="diseases" value="GBM"/>
-            <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
-            <param name="x_as_raw" value="yes"/>
-            <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
-            <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
-            <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
-            <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
-            <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
-            <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
-            <param name="alphas" value="0.1,0.13,0.15,0.18,0.2,0.3,0.4,0.6,0.7"/>
-            <param name="l1_ratios" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
-            <param name="seed" value="1234"/>
-            <param name="num_features" value="8000"/>
-            <param name="remove_hyper" value="yes"/>
-            <output name="log" file="within_disease_Log"/>
-            <output_collection name="classifier_coefficients" type="list">
-              <element name="classifier_coefficients" file="GBM_99.tabular" ftype="tabular" compare="sim_size" delta="30" />
-            </output_collection>
-            <output_collection name="classifier_summary" type="list">
-              <element name="classifier_summary" file="GBM_100.txt" ftype="txt" compare="sim_size" delta="30" />
-            </output_collection>
-            <output_collection name="pancan_roc_results" type="list">
-              <element name="pancan_roc_results" file="GBM_92.tabular" ftype="tabular" compare="sim_size" delta="30" />
-            </output_collection>
-            <output_collection name="summary_counts" type="list">
-              <element name="summary_counts" file="GBM_93.csv" ftype="csv" compare="sim_size" delta="30" />
-            </output_collection>
-            <output_collection name="within_disease" type="list:list">
-               <element name="cv_heatmap" file="GBM_cv_heatmap_96.pdf" compare="sim_size" delta="30"/>
-               <element name="all_disease_pr" file="GBM_all_disease_pr_94.pdf" compare="sim_size" delta="30" />
-               <element name="all_disease_roc" file="GBM_all_disease_roc_95.pdf" compare="sim_size" delta="30"/>
-               <element name="disease_aupr" file="GBM_pr_101.pdf" compare="sim_size" delta="30"/>
-               <element name="disease_auroc" file="GBM_roc_102.pdf" compare="sim_size" delta="30"/>
-            </output_collection>
-            <output_collection name="disease_figures" type="list:list">
-               <element name="pr" file="GBM_pr_103.pdf" compare="sim_size" delta="30"/>
-               <element name="roc" file="GBM_roc_104.pdf" compare="sim_size" delta="30"/>
-            </output_collection>
+              <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
+              <param name="diseases" value="GBM"/>
+              <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
+              <param name="x_as_raw" value="yes"/>
+              <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
+              <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
+              <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
+              <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
+              <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
+              <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
+              <param name="alphas" value="0.1,0.13,0.15,0.18,0.2,0.3,0.4,0.6,0.7"/>
+              <param name="l1_ratios" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
+              <param name="seed" value="1234"/>
+              <param name="num_features" value="8000"/>
+              <param name="remove_hyper" value="yes"/>
+              <output name="log" file="within_disease_Log_120"/>
+              <output_collection name="classifier_coefficients" type="list">
+                 <element name="GBM" file="GBM_128.tabular" ftype="tabular" compare="sim_size" delta="30" />
+              </output_collection>
+              <output_collection name="classifier_summary" type="list">
+                 <element name="GBM" file="GBM_129.txt" ftype="txt" compare="sim_size" delta="30" />
+              </output_collection>
+              <output_collection name="pancan_roc_results" type="list">
+                 <element name="GBM" file="GBM_121.tabular" ftype="tabular" compare="sim_size" delta="30" />
+              </output_collection>
+              <output_collection name="summary_counts" type="list">
+                 <element name="GBM" file="GBM_122.csv" ftype="csv" compare="sim_size" delta="30" />
+              </output_collection>
+              <output_collection name="within_disease" type="list:list">
+                <element name="GBM" type="list">
+                  <element name="cv_heatmap" file="GBM_cv_heatmap_125.pdf" compare="sim_size" delta="30"/>
+                  <element name="all_disease_pr" file="GBM_all_disease_pr_123.pdf" compare="sim_size" delta="30" />
+                  <element name="all_disease_roc" file="GBM_all_disease_roc_124.pdf" compare="sim_size" delta="30"/>
+                  <element name="disease_aupr" file="GBM_disease_aupr_126.pdf" compare="sim_size" delta="30"/>
+                  <element name="disease_auroc" file="GBM_disease_auroc_127.pdf" compare="sim_size" delta="30"/>
+                </element>
+              </output_collection>
+              <output_collection name="disease_figures" type="list:list">
+                <element name="GBM" type="list">
+                  <element name="pr" file="GBM_pr_130.pdf" compare="sim_size" delta="30"/>
+                  <element name="roc" file="GBM_roc_131.pdf" compare="sim_size" delta="30"/>
+                </element>
+              </output_collection>
         </test>
     </tests>
   <help><![CDATA[

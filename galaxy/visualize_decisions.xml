@@ -34,15 +34,17 @@
     </collection>
   </outputs>
   <tests>
-        <test>
+      <test>
           <param name="scores" value="classifier_decisions.tsv" ftype="tabular"/>
-             <output name="log" file="visualize_decisions_Log"/>
-             <output name="OV_110" file="OV_110.pdf" compare="sim_size" delta="30"/>
-             <output name="LUAD_109" file="LUAD_109.pdf" compare="sim_size" delta="30"/>
-             <output name="GBM_108" file="GBM_108.pdf" compare="sim_size" delta="30"/>
-             <output name="total_decisions" file="total_decisions.pdf" compare="sim_size" delta="30"/>
-             <output name="hyper_mutated" file="hyper_mutated.pdf" compare="sim_size" delta="30"/>
-         </test>
+          <output_collection name="classifier_decisions_figures" type="list">
+                <element name="OV" file="OV_110.pdf" compare="sim_size" delta="30"/>
+                <element name="LUAD" file="LUAD_109.pdf" compare="sim_size" delta="30"/>
+                <element name="GBM" file="GBM_108.pdf" compare="sim_size" delta="30"/>
+          </output_collection>    
+          <output name="log" file="visualize_decisions_Log"/>
+          <output name="total_decisions" file="total_decisions.pdf" compare="sim_size" delta="30"/>
+          <output name="hyper_mutated" file="hyper_mutated.pdf" compare="sim_size" delta="30"/>
+      </test>
   </tests>
   <help><![CDATA[
     Pancancer_Aberrant_Pathway_Activity_Analysis scripts/visualize_decisions.py:

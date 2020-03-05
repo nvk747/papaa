@@ -96,7 +96,7 @@
           <output name="log" file="cell_line_pred_Log"/>
           <output name="ccle_histogram" file="ccle_histogram.png" compare="sim_size" delta="30"/>
           <output name="ccle_targene_classifier_scores" file="ccle_targene_classifier_scores.tsv" compare="sim_size" delta="30"/>
-          <output name="ccle_targene_WT_MUT_predictions" file="ccle_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="30"/>
+          <output name="ccle_targene_WT_MUT_predictions" file="ccle_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="100"/>
           <output name="updated_data_nucleotide_scores" file="updated_data_nucleotide_scores.csv" compare="sim_size" delta="30"/>
           <output name="updated_data_aminoacid_scores" file="updated_data_aminoacid_scores.csv" compare="sim_size" delta="30"/>
           <output name="gdsc_scores_histogram" file="gdsc_scores_histogram.png" compare="sim_size" delta="30"/>
