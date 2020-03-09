@@ -11,7 +11,7 @@
     @INPUTS_ALPHAS@
     @INPUTS_L1_RATIOS@
     @INPUT_REMOVE_HYPER@
-    @INPUTS_BASIC_RAW@
+    @INPUTS_BASIC@
     @INPUTS_GENES_DISEASES@
     @INPUTS_COPY_NUMBER_CLASS_FILE_PREFIX@
     @INPUTS_COPY_NUMBER_CLASS_FILE@
@@ -27,7 +27,7 @@
    ]]>
   </command>
   <inputs>
-    <expand macro="inputs_basic_raw" />
+    <expand macro="inputs_basic" />
     <expand macro="inputs_genes_diseases" />
     <expand macro="inputs_copy_number_class_file" />
     <expand macro="input_alphas" />
@@ -62,7 +62,6 @@
               <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
               <param name="diseases" value="GBM"/>
               <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
-              <param name="x_as_raw" value="yes"/>
               <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
               <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
               <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
@@ -74,7 +73,7 @@
               <param name="seed" value="1234"/>
               <param name="num_features" value="8000"/>
               <param name="remove_hyper" value="yes"/>
-              <output name="log" file="within_disease_Log_120"/>
+              <output name="log" file="within_disease_Log"/>
               <output_collection name="classifier_coefficients" type="list">
                  <element name="GBM" file="GBM_128.tabular" ftype="tabular" compare="sim_size" delta="30" />
               </output_collection>
@@ -114,7 +113,6 @@
       --remove_hyper                        Remove hypermutated samples
       --alt_folder                          String of location to classification folder extending to individual diseases  
       --x_matrix                            Filename of features to use in model
-      --x_as_raw                            Option to treat x_matrix as raw
       --filename_mut                        Filename of sample/gene mutations to use in model
       --filename_mut_burden                 Filename of sample mutation burden to use in model
       --filename_sample                     Filename of patient/samples to use in model

@@ -123,7 +123,7 @@ if drop_x_genes is not None:
 
 folds = int(args.folds)
 drop = args.drop
-drop_rasopathy = args.drop_rasopathy
+#drop_rasopathy = args.drop_rasopathy
 copy_number = args.copy_number
 filter_count = int(args.filter_count)
 filter_prop = float(args.filter_prop)
@@ -187,13 +187,7 @@ alt_gene_aupr_file = os.path.join(base_folder,
 alt_gene_summary_file = os.path.join(base_folder,
                                      '{}_summary.tsv'.format(alt_gene_base))
 # Load Datasets
-x_as_raw = args.x_as_raw
-if x_matrix == 'raw':
-    expr_file = os.path.join('data', 'pancan_rnaseq_freeze.tsv')
-    x_as_raw = True
-else:
-    expr_file = x_matrix
-
+expr_file = args.x_matrix or os.path.join('data', 'pancan_rnaseq_freeze.tsv')
 mut_file = args.filename_mut or os.path.join('data', 'pancan_mutation_freeze.tsv')
 mut_burden_file = args.filename_mut_burden or os.path.join('data', 'mutation_burden_freeze.tsv')
 sample_freeze_file = args.filename_sample or os.path.join('data', 'sample_freeze.tsv')
@@ -204,27 +198,16 @@ mut_burden = pd.read_table(mut_burden_file)
 
 # Construct data for classifier
 common_genes = set(mutation_df.columns).intersection(genes)
-if x_as_raw:
-    common_genes = list(common_genes.intersection(rnaseq_full_df.columns))
-else:
-    common_genes = list(common_genes)
-
+common_genes = list(common_genes.intersection(rnaseq_full_df.columns))
 y = mutation_df[common_genes]
 missing_genes = set(genes).difference(common_genes)
 
 if len(common_genes) != len(genes):
     warnings.warn('All input genes were not found in data. The missing genes '
                   'are {}'.format(missing_genes), category=Warning)
-
 if drop:
-    if x_as_raw:
-        rnaseq_full_df.drop(common_genes, axis=1, inplace=True)
+    rnaseq_full_df.drop(common_genes, axis=1, inplace=True)
 
-if drop_rasopathy:
-    # Drop rasopathy genes as defined by default
-    drop_x_genes = RASOPATHY_GENES
-else:
-    drop_x_genes = set()
 if args.drop_x_genes:
     drop_x_genes = drop_x_genes.union( set( map( lambda x: x.strip(), args.drop_x_genes.split(',') ) ) )
 if drop_x_genes:
@@ -295,11 +278,11 @@ strat = y_sub.str.cat(y_df.astype(str))
 x_df = rnaseq_df.loc[y_df.index, :]
 
 # Subset x matrix to MAD genes and scale
-if x_as_raw:
-    med_dev = pd.DataFrame(mad(x_df), index=x_df.columns)
-    mad_genes = med_dev.sort_values(by=0, ascending=False)\
-                       .iloc[0:num_features_kept].index.tolist()
-    x_df = x_df.loc[:, mad_genes]
+#if x_as_raw:
+med_dev = pd.DataFrame(mad(x_df), index=x_df.columns)
+mad_genes = med_dev.sort_values(by=0, ascending=False)\
+                     .iloc[0:num_features_kept].index.tolist()
+x_df = x_df.loc[:, mad_genes]
 
 fitted_scaler = StandardScaler().fit(x_df)
 x_df_update = pd.DataFrame(fitted_scaler.transform(x_df),
@@ -721,10 +704,9 @@ if alt_genes is not None:
     y_alt_df = y_alt_df.loc[y_alt_sub.index]
 
     # Process alternative x matrix
+    #if x_as_raw:
     x_alt_df = rnaseq_alt_df.loc[y_alt_df.index, :]
-    if x_as_raw:
-        x_alt_df = x_alt_df.loc[:, mad_genes]
-
+    x_alt_df = x_alt_df.loc[:, mad_genes]
     x_alt_df_update = pd.DataFrame(fitted_scaler.transform(x_alt_df),
                                    columns=x_alt_df.columns)
     x_alt_df_update.index = x_alt_df.index

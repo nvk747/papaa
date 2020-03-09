@@ -21,12 +21,6 @@
         <param argument="--filename_sample" label="Filename of sample" name="filename_sample" optional="true" type="data" format="tabular" help="data/sample_freeze.tsv"/>
     </xml>
 
-    <xml name="inputs_basic_raw">
-        <expand macro="inputs_basic">
-            <param argument="--x_as_raw" checked="false" label="Treat X matrix as 'raw'" name="x_as_raw" type="boolean" truevalue="--x_as_raw" falsevalue=""/>
-        </expand>
-    </xml>
-
     <token name="@INPUTS_BASIC@"><![CDATA[
         #if $x_matrix and $x_matrix is not None:
         --x_matrix '$x_matrix'
@@ -64,8 +58,8 @@
     </token>
 
     <xml name="inputs_genes_diseases">
-        <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="KRAS,NRAS,HRAS"/>
-        <param argument="--diseases" label="Comma sep string of TCGA disease acronyms. If no arguments are passed, filtering will default to options given in --filter_count and --filter_prop." name="diseases" optional="true" type="text" value="BLCA,CESC,COAD,ESCA,HNSC,LUAD,LUSC,OV,PAAD,PCPG,READ,SKCM,STAD,TGCT,THCA,UCEC"/>
+        <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="ERBB2,PIK3CA,KRAS,AKT1"/>
+        <param argument="--diseases" label="Comma sep string of TCGA disease acronyms. If no arguments are passed, filtering will default to options given in --filter_count and --filter_prop." name="diseases" optional="true" type="text" value="BLCA,BRCA,CESC,COAD,ESCA,LUAD,LUSC,OV,PRAD,READ,STAD,UCEC,UCS"/>
     </xml>
 
     <token name="@INPUTS_GENES_DISEASES@"><![CDATA[

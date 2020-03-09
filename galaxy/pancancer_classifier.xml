@@ -42,13 +42,12 @@
         --alt_folder 'classifier'
         @INPUT_REMOVE_HYPER@
         $keep_intermediate
-        @INPUTS_BASIC_RAW@
+        @INPUTS_BASIC@
         @INPUTS_GENES_DISEASES@
         $drop
         $shuffled
         $shuffled_before_training
         $no_mutation
-        $drop_rasopathy
         #if str($drop_x_genes)
         --drop_x_genes '$drop_x_genes'
         #end if
@@ -59,7 +58,7 @@
         ]]>
     </command>
     <inputs>
-        <expand macro="inputs_basic_raw" />
+        <expand macro="inputs_basic" />
         <expand macro="inputs_genes_diseases" />
         <param argument="--seed" label="option to set seed" name="seed" optional="true" type="integer" value="1234"/>
         <param argument="--folds" label="Number of cross validation folds to perform" name="folds" optional="true" type="integer" value="5"/>
@@ -79,7 +78,6 @@
         <param argument="--shuffled" checked="false" label="Shuffle the input gene exprs matrix alongside" name="shuffled" type="boolean" truevalue="--shuffled" falsevalue=""/>
         <param argument="--shuffled_before_training" checked="false" label="Shuffle the gene exprs matrix before training" name="shuffled_before_training" type="boolean" truevalue="--shuffled_before_training" falsevalue=""/>
         <param argument="--no_mutation" checked="false" label="Remove mutation data from y matrix" name="no_mutation" type="boolean" truevalue="--no_mutation" falsevalue=""/>
-        <param argument="--drop_rasopathy" checked="false" label="Decision to drop rasopathy genes from X matrix" name="drop_rasopathy" type="boolean" truevalue="--drop_rasopathy" falsevalue="" help="drop: BRAF,CBL,HRAS,KRAS,MAP2K1,MAP2K2,NF1,NRAS,PTPN11,RAF1,SHOC2,SOS1,SPRED1,RIT1"/>
         <param argument="--drop_x_genes" label="Comma separated list of genes to be dropped from X matrix" name="drop_x_genes" optional="true" type="text" value=""/>
         <param argument="--drop_expression" checked="false" label="Decision to drop gene expression values from X" name="drop_expression" type="boolean" truevalue="--drop_expression" falsevalue=""/>
         <param argument="--drop_covariates" checked="false" label="Decision to drop covariate information from X" name="drop_covariates" type="boolean" truevalue="--drop_covariates" falsevalue=""/>
@@ -133,7 +131,6 @@
             <param name="shuffled" value="yes"/>
             <param name="shuffled_before_training" value="no"/>
             <param name="no_mutation" value="no"/>
-            <param name="drop_rasopathy" value="no"/>
             <param name="drop_expression" value="no"/>
             <param name="drop_covariates" value="no"/>
             <output name="log" file="Log"/>

@@ -30,10 +30,10 @@ def get_args():
     parser = argparse.ArgumentParser()
 
     add_version_argument(parser)
-    parser.add_argument('-g', '--genes', default= 'KRAS,NRAS,HRAS',
+    parser.add_argument('-g', '--genes', default= 'ERBB2,PIK3CA,KRAS,AKT1',
                         help='string of the genes to extract or genelist file')
     
-    parser.add_argument('-t', '--diseases',default='BLCA,CESC,COAD,ESCA,HNSC,LUAD,LUSC,OV,PAAD,PCPG,READ,SKCM,STAD,TGCT,THCA,UCEC', 
+    parser.add_argument('-t', '--diseases',default='BLCA,BRCA,CESC,COAD,ESCA,LUAD,LUSC,OV,PRAD,READ,STAD,UCEC,UCS', 
                         help='Comma sep string of TCGA disease acronyms. '
                              'diseases_list_file'
                              'If no arguments are passed, filtering will '
@@ -55,7 +55,7 @@ def get_args():
                         help='the alphas for parameter sweep')
     parser.add_argument('-l', '--l1_ratios', default='0,0.1,0.15,0.18,0.2,0.3',
                         help='the l1 ratios for parameter sweep')
-    parser.add_argument('-b', '--alt_genes', default=None,
+    parser.add_argument('-b', '--alt_genes', default='PTEN,PIK3R1,STK11',
                         help='string of the alt_genes to extract or alt_genelist file to test performance')
     parser.add_argument('-s', '--alt_diseases', default="Auto",
                         help='The alternative diseases to test performance')
@@ -71,8 +71,6 @@ def get_args():
                         help='Keep intermediate ROC values for plotting')
     parser.add_argument('-x', '--x_matrix', default='raw',
                         help='Filename of features to use in model')
-    parser.add_argument('--x_as_raw', action='store_true',
-                        help='Treat x_matrix as "raw"')
     parser.add_argument('-e', '--shuffled', action='store_true',
                         help='Shuffle the input gene exprs matrix alongside')
     parser.add_argument('--shuffled_before_training', action='store_true',

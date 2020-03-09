@@ -53,7 +53,7 @@
         <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
         <param label="nucleotide mutation scores" name="nucleotide_mutation_scores" optional="false" type="data" format="tabular" help="nucleotide_mutation_scores.tsv"/>
         <param label="amino acid mutation scores" name="amino_acid_mutation_scores" optional="false" type="data" format="tabular" help="amino_acid_mutation_scores.tsv"/>
-        <param argument="--targenes" label="Comma separated string of HUGO targene symbols" name="targenes" optional="False" type="text" value="KRAS_MUT,NRAS_MUT,HRAS_MUT"/>
+        <param argument="--targenes" label="Comma separated string of HUGO targene symbols" name="targenes" optional="False" type="text" value="ERBB2_MUT,PIK3CA_MUT,KRAS_MUT,AKT1_MUT"/>
         <param argument="--path_genes" label="string of the genes to extract or genelist file" name="path_genes" optional="true" type= "data" format="txt"/>
         <param argument="--ccle_rnaseq" label="Filename ccle rnaseq data" name="ccle_rnaseq" optional="false" type="data" format="tabular" help="data/ccle_rnaseq_genes_rpkm_20180929_mod.tsv"/>
         <param argument="--ccle_mut" label="Filename ccle mutational data" name="ccle_mut" optional="true" type="data" format="txt" help="data/CCLE_MUT_CNA_AMP_DEL_binary_Revealer.gct"/>

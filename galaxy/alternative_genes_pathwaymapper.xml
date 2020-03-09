@@ -29,7 +29,7 @@
     </command>
     <inputs>
         <param argument="--scores" label="pancancer decisions" name="scores" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
-        <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="KRAS,NRAS,HRAS"/>
+        <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="ERBB2,PIK3CA,KRAS,AKT1"/>
         <param argument="--path_genes" label="string of the genes to extract or genelist file" name="path_genes" optional="true" type= "data" format="txt"/>
         <param argument="--filename_mut" label="Filename mutations" name="filename_mut" optional="true" type="data" format="tabular" help="data/pancan_mutation_freeze.tsv"/>
         <param argument="--filename_sample" label="Filename of sample" name="filename_sample" optional="true" type="data" format="tabular" help="data/sample_freeze.tsv"/>
