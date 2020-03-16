@@ -9,15 +9,15 @@
     <command><![CDATA[
         mkdir 'classifier' &&
         mkdir -p 'classifier/figures' &&
-        ln -s '${classifier}' 'classifier/classifier_summary.txt' &&
+        ln -s '${classifier_summary}' 'classifier/classifier_summary.txt' &&
         ln -s '${pancan_classifier_coefficients}' 'classifier/classifier_coefficients.tsv' &&
         papaa_external_sample_pred_targene_classifier.py
-        --classifier 'classifier'
+        --classifier_summary 'classifier'
         #if $ex_vlog and str($ex_vlog):
-        --ex_vlog '$ex_vlog'
+        --expression_file '$ex_vlog'
         #end if
         #if $sign and str($sign):
-        --sign '$sign'
+        --status_sign '$sign'
         #end if
         --figure1 '${figure1}'
         --figure2 '${figure2}'
@@ -25,10 +25,10 @@
         ]]>
     </command>
     <inputs>
-        <param argument="--classifier" label="Classifier data" name="classifier" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+        <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
         <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
-        <param argument="--ex_vlog" label="external sample gene expression data" name="ex_vlog" optional="false" type="data" format="csv" help="data/vlog_trans.csv" />
-        <param argument="--sign" label="given mutational status" name="sign" optional="false" type="data" format="txt" help="data/sign.txt" />
+        <param argument="--expression_file" label="external sample gene expression data" name="ex_vlog" optional="false" type="data" format="csv" help="data/vlog_trans.csv" />
+        <param argument="--status_sign" label="given mutational status" name="sign" optional="false" type="data" format="txt" help="data/sign.txt" />
     </inputs>
     <outputs>
         <data format="txt" name="log" label="${tool.name} on ${on_string} (Log)" />
@@ -37,7 +37,7 @@
     </outputs>
     <tests>
         <test>
-          <param name="classifier_folder" value="classifier_summary.txt" ftype="txt"/>
+          <param name="classifier_summary" value="classifier_summary.txt" ftype="txt"/>
           <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
           <param name="ex_vlog" value="vlog_trans.csv.gz" ftype="csv"/>
           <param name="sign" value="sign.txt" ftype="txt"/>
@@ -51,8 +51,8 @@
       Pancancer_Aberrant_Pathway_Activity_Analysis scripts/targene_alternative_genes_pathwaymapper.py:
 
       --classifier          String of the location of classifier scores/alt_folder
-      --ex_vlog             File path for external sample expression data file[fpkm/rlog/vlog values]
-      --sign                assigned tumor [1] or normal [-1] sample mutational status
+      --expression_file     File path for external sample expression data file[fpkm/rpkm/rlog/vlog/nlog values]
+      --status_sign         Provide sign for tumor/mutant [1] or normal/WT [-1] along with sorted sample names. 
       
       Output:
       - compare and perform t-test significance calculation of perdicted scores between external normal and tumor samples ("targene_external_sample_predictions.pdf and targene_external_sample_predictions_1.pdf")

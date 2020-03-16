@@ -37,26 +37,6 @@
         ]]>
     </token>
 
-    <token name="@INPUTS_BASIC_RAW@"><![CDATA[
-        ##@INPUTS_BASIC@
-        ##stupid copy from above
-        #if $x_matrix and $x_matrix is not None:
-        --x_matrix '$x_matrix'
-        #end if
-        #if $filename_mut and $filename_mut is not None:
-        --filename_mut '$filename_mut'
-        #end if
-        #if $filename_mut_burden and $filename_mut_burden is not None:
-        --filename_mut_burden '$filename_mut_burden'
-        #end if
-        #if $filename_sample and $filename_sample is not None:
-        --filename_sample '$filename_sample'
-        #end if
-        ##end copy
-        $x_as_raw
-        ]]>
-    </token>
-
     <xml name="inputs_genes_diseases">
         <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="ERBB2,PIK3CA,KRAS,AKT1"/>
         <param argument="--diseases" label="Comma sep string of TCGA disease acronyms. If no arguments are passed, filtering will default to options given in --filter_count and --filter_prop." name="diseases" optional="true" type="text" value="BLCA,BRCA,CESC,COAD,ESCA,LUAD,LUSC,OV,PRAD,READ,STAD,UCEC,UCS"/>
@@ -215,80 +195,10 @@
     <xml name="input_remove_hyper">
         <param argument="--remove_hyper" checked="false" label="Remove hypermutated samples" name="remove_hyper" type="boolean" truevalue="--remove_hyper" falsevalue=""/>
     </xml>
-
     <token name="@INPUT_REMOVE_HYPER@"><![CDATA[$remove_hyper]]></token>
-
-    <xml name="input_alt_folder">
-        <param argument="--alt_folder" label="Classifier data" name="input_alt_folder" optional="true" type="data" format="papaa" help="To optionally Extend existing classifer"/>
-    </xml>
-
-    <xml name="input_alt_folder_within">
-        <param argument="--alt_folder" label="Classifier data" name="input_alt_folder" optional="true" type="data" format="papaa_with" help="To optionally Extend existing classifer"/>
-    </xml>
-
-    <xml name="input_alt_folder_weighted">
-        <param argument="--alt_folder" label="Classifier data" name="input_alt_folder" optional="true" type="data" format="papaa_weighted" help="To optionally Extend existing classifer"/>
-    </xml>
-
-    <xml name="input_alt_folder_map">
-        <param argument="--alt_folder" label="Classifier data" name="input_alt_folder" optional="true" type="data" format="papaa_map" help="To optionally Extend existing classifer"/>
-    </xml>
-
-    <xml name="input_alt_folder_sum">
-        <param argument="--alt_folder" label="Classifier data" name="input_alt_folder" optional="true" type="data" format="papaa_sum" help="To optionally Extend existing classifer"/>
-    </xml>
-
-    <xml name="input_alt_folder_cell">
-        <param argument="--alt_folder" label="Classifier data" name="input_alt_folder" optional="true" type="data" format="papaa_cell" help="To optionally Extend existing classifer"/>
-    </xml>
-
-
-    <token name="@INPUT_ALT_FOLDER_TO_OUTPUT_ALT_FOLDER@"><![CDATA[
-        #if $input_alt_folder and $input_alt_folder is not None:
-        cp -R '$input_alt_folder.extra_files_path' '${output_alt_folder.extra_files_path}'
-        #end if
-        ]]>
-    </token>
-
-    <xml name="output_alt_folder">
-        <data format="papaa" name="output_alt_folder" label="${tool.name} on ${on_string} (papaa)" />
-    </xml>
-
-    <xml name="output_alt_folder_within">
-        <data format="papaa_within" name="output_alt_folder" label="${tool.name} on ${on_string} (papaa within)"/>
-    </xml>
-
-    <xml name="output_alt_folder_weighted">
-        <data format="papaa_weighted" name="output_alt_folder" label="${tool.name} on ${on_string} (papaa_weighted)"/>
-    </xml>
-
-    <xml name="output_alt_folder_map">
-        <data format="papaa_map" name="output_alt_folder" label="${tool.name} on ${on_string} (papaa_map)"/>
-    </xml>
-
-    <xml name="output_alt_folder_sum">
-        <data format="papaa_sum" name="output_alt_folder" label="${tool.name} on ${on_string} (papaa_sum)"/>
-    </xml>
-
-    <xml name="output_alt_folder_cell">
-        <data format="papaa_cell" name="output_alt_folder" label="${tool.name} on ${on_string} (papaa_cell)"/>
-    </xml>
-
-    <xml name="output_alt_folder_input">
-        <data format_source="input_alt_folder" name="output_alt_folder"/>
-    </xml>
-
-    <xml name="output_alt_folder_scores">
-        <data format_source="scores" name="output_alt_folder"/>
-    </xml>
-
-
-    <token name="@OUTPUT_ALT_FOLDER_HTML@"><![CDATA[tree -H '.'  --noreport --charset utf-8 '${output_alt_folder.extra_files_path}' > '${output_alt_folder}']]></token>
-    <token name="@OUTPUT_ALT_FOLDER@"><![CDATA[--alt_folder '${output_alt_folder.extra_files_path}']]></token>
-    <token name="@OUTPUT_ALT_FOLDER_WITHIN_DISEASE@"><![CDATA[--alt_folder '${output_alt_folder.extra_files_path}/within_disease']]></token>
-    
+       
     <xml name="input_alphas">
-        <param argument="--alphas" label="the alphas for parameter sweep" name="alphas" optional="true" type="text" value="0.1,0.13,0.15,0.18,0.2,0.25,0.3"/>
+        <param argument="--alphas" label="the alphas for parameter sweep" name="alphas" optional="true" type="text" value="0.1,0.13,0.15,0.18,0.2,0.3,0.4,0.6,0.7"/>
     </xml>
 
     <token name="@INPUTS_ALPHAS@"><![CDATA[
@@ -299,7 +209,7 @@
     </token>
 
     <xml name="input_l1_ratios">
-        <param argument="--l1_ratios" label="the l1 ratios for parameter sweep" name="l1_ratios" optional="true" type="text" value="0.15,0.155,0.16,0.2,0.25,0.3,0.4"/>
+        <param argument="--l1_ratios" label="the l1 ratios for parameter sweep" name="l1_ratios" optional="true" type="text" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
     </xml>
 
     <token name="@INPUTS_L1_RATIOS@"><![CDATA[

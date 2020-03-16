@@ -10,20 +10,24 @@
     mkdir 'classifier' &&
     mkdir -p 'classifier/figures' && 
     mkdir -p 'classifier/tables' &&
-        ln -s '${classifier_folder}' 'classifier/classifier_summary.txt' &&
+        ln -s '${classifier_summary}' 'classifier/classifier_summary.txt' &&
         ln -s '${pancan_classifier_coefficients}' 'classifier/classifier_coefficients.tsv' &&
         ln -s '${summary_counts}' 'classifier/summary_counts.csv' &&
         ln -s '${mutation_classification_scores}' 'classifier/tables/mutation_classification_scores.tsv' &&
         ln -s '${path_events_per_sample}' 'classifier/tables/path_events_per_sample.tsv' &&
         ln -s '${all_gene_metric_ranks}' 'classifier/tables/all_gene_metric_ranks.tsv' &&
     papaa_targene_summary_figures.R
-    --classifier_folder 'classifier'
+    --classifier_summary 'classifier'
+    #if $seed and $seed is not None:
+    --seed '$seed'
+    #end if
     > '${log}'
     ]]>
   </command>
   <inputs>
-    <param argument="--classifier_folder" label="Classifier data" name="classifier_folder" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+    <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
     <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
+    <param argument="--seed" label="option to set seed" name="seed" optional="true" type="integer" value="123"/>
     <param label="summary counts" name="summary_counts" optional="false" type="data" format="csv" help="summary_counts.csv"/>
     <param label="mutation classification scores" name="mutation_classification_scores" optional="false" type="data" format="tabular" help="mutation_classification_scores.tsv"/>
     <param label="path events per sample" name="path_events_per_sample" optional="false" type="data" format="tabular" help="path_events_per_sample.tsv"/>
@@ -45,7 +49,7 @@
   </outputs>
   <tests>
         <test>
-          <param name="classifier_folder" value="classifier_summary.txt" ftype="txt"/>
+          <param name="classifier_summary" value="classifier_summary.txt" ftype="txt"/>
           <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
           <param name="summary_counts" value="summary_counts.csv" ftype="csv"/>
           <param name="all_gene_metric_ranks" value="all_gene_metric_ranks.tsv" ftype="tabular"/>
@@ -69,7 +73,7 @@
   <help><![CDATA[
     Pancancer_Aberrant_Pathway_Activity_Analysis scripts/viz/targene_pharmacology.R:
 
-      --classifier_folder   String of the location of classifier data
+      --classifier_summary   String of the location of classifier data
       
       Output:
       - Heatmaps of the distribution of aberrant events across tumors ("targene_heatmap.pdf" and "all_targene_heatmap.pdf")

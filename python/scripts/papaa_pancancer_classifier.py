@@ -68,12 +68,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from statsmodels.robust.scale import mad
 
+
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'papaa'))
 from tcga_util import get_args, get_threshold_metrics, integrate_copy_number
 from tcga_util import shuffle_columns
-
-RASOPATHY_GENES = set(['BRAF', 'CBL', 'HRAS', 'KRAS', 'MAP2K1', 'MAP2K2', 'NF1',
-                      'NRAS', 'PTPN11', 'RAF1', 'SHOC2', 'SOS1', 'SPRED1', 'RIT1'])
 
 # Load command arguments
 args = get_args()
@@ -123,7 +121,6 @@ if drop_x_genes is not None:
 
 folds = int(args.folds)
 drop = args.drop
-#drop_rasopathy = args.drop_rasopathy
 copy_number = args.copy_number
 filter_count = int(args.filter_count)
 filter_prop = float(args.filter_prop)
@@ -132,7 +129,7 @@ alphas = [float(x) for x in args.alphas.split(',')]
 l1_ratios = [float(x) for x in args.l1_ratios.split(',')]
 alt_filter_count = int(args.alt_filter_count)
 alt_filter_prop = float(args.alt_filter_prop)
-alt_folder = args.alt_folder
+classifier_results = args.classifier_results
 remove_hyper = args.remove_hyper
 keep_inter = args.keep_intermediate
 x_matrix = args.x_matrix
@@ -145,11 +142,14 @@ drop_covariates = args.drop_covariates
 warnings.filterwarnings('ignore',
                         message='Changing the shape of non-C contiguous array')
 
-genes_folder  = genes[0]+"_others"
+genes_folder = args.genes.replace(',', '_')
 base_folder = os.path.join('classifiers', genes_folder)
 
-if alt_folder != 'Auto':
-    base_folder = alt_folder
+#if alt_folder != 'Auto':
+#    base_folder = alt_folder
+
+if classifier_results != 'Auto':
+    base_folder = classifier_results
 
 if not os.path.exists(base_folder):
     os.makedirs(base_folder)
@@ -187,10 +187,10 @@ alt_gene_aupr_file = os.path.join(base_folder,
 alt_gene_summary_file = os.path.join(base_folder,
                                      '{}_summary.tsv'.format(alt_gene_base))
 # Load Datasets
-expr_file = args.x_matrix or os.path.join('data', 'pancan_rnaseq_freeze.tsv')
-mut_file = args.filename_mut or os.path.join('data', 'pancan_mutation_freeze.tsv')
-mut_burden_file = args.filename_mut_burden or os.path.join('data', 'mutation_burden_freeze.tsv')
-sample_freeze_file = args.filename_sample or os.path.join('data', 'sample_freeze.tsv')
+expr_file = args.x_matrix 
+mut_file = args.filename_mut 
+mut_burden_file = args.filename_mut_burden 
+sample_freeze_file = args.filename_sample 
 rnaseq_full_df = pd.read_table(expr_file, index_col=0)
 mutation_df = pd.read_table(mut_file, index_col=0)
 sample_freeze = pd.read_table(sample_freeze_file, index_col=0)
@@ -217,14 +217,14 @@ if drop_x_genes:
 # Incorporate copy number for gene activation/inactivation
 if copy_number:
     # Load copy number matrices
-    copy_loss_file = args.filename_copy_loss or os.path.join('data', 'copy_number_loss_status.tsv.gz') 
+    copy_loss_file = args.filename_copy_loss  
     copy_loss_df = pd.read_table(copy_loss_file, index_col=0)
 
-    copy_gain_file = args.filename_copy_gain or os.path.join('data', 'copy_number_gain_status.tsv.gz')
+    copy_gain_file = args.filename_copy_gain 
     copy_gain_df = pd.read_table(copy_gain_file, index_col=0)
 
     # Load cancer gene classification table
-    vogel_file = args.filename_cancer_gene_classification or os.path.join('data', 'vogelstein_cancergenes.tsv')
+    vogel_file = args.filename_cancer_gene_classification 
     cancer_genes = pd.read_table(vogel_file)
 
     y = integrate_copy_number(y=y, cancer_genes_df=cancer_genes,

@@ -16,7 +16,7 @@
         ln -s '${gdsc1_ccle_targene_pharmacology_predictions}' 'classifier/tables/gdsc1_ccle_targene_pharmacology_predictions.tsv' &&
         ln -s '${gdsc2_ccle_targene_pharmacology_predictions}' 'classifier/tables/gdsc2_ccle_targene_pharmacology_predictions.tsv' &&
         papaa_targene_pharmacology.R
-        --classifier 'classifier'
+        --classifier_results 'classifier'
         #if $compound and str($compound):
         --compound '$compound'
         #end if
@@ -54,8 +54,8 @@
     <help><![CDATA[
       Pancancer_Aberrant_Pathway_Activity_Analysis scripts/viz/targene_pharmacology.R:
 
-      --classifier    String of the location of classifier folder
-      --compound      Filename of list of pharmocological compounds for evaluation
+      --classifier_results    String of the location of classifier results folder
+      --compound              Filename of list of GDSC pharmocological compounds for evaluation
 
       Output:
       - Scatter plots with visualizing drug response compared to GDSC targene classifier scores for GDSC1 pharmacological dataset (GDSC1_targene_all_drug_response.pdf)  

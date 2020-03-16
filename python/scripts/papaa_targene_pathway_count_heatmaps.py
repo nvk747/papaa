@@ -15,12 +15,12 @@ from tcga_util import add_version_argument
 
 parser = argparse.ArgumentParser()
 add_version_argument(parser)
-parser.add_argument('-g', '--genes', default= 'KRAS,NRAS,HRAS',
+parser.add_argument('-g', '--genes', default= 'ERBB2,PIK3CA,KRAS,AKT1',
                     help='string of the genes to extract or gene list file')
 parser.add_argument('-p', '--path_genes',
                     help='pathway gene list file')
-parser.add_argument('-s', '--scores',
-                    help='string of the location of classifier scores/alt_folder')
+parser.add_argument('-s', '--classifier_decisions',
+                    help='string of the location of classifier decisions file with predictions/scores')
 parser.add_argument('-x', '--x_matrix', default=None,
                     help='Filename of features to use in model')
 parser.add_argument( '--filename_mut', default=None,
@@ -40,14 +40,14 @@ args = parser.parse_args()
 
 # Load Constants
 
-alt_folder = args.scores
-rnaseq_file = args.x_matrix or os.path.join('data', 'pancan_rnaseq_freeze.tsv')
-mut_file = args.filename_mut or os.path.join('data', 'pancan_mutation_freeze.tsv')
-sample_freeze_file = args.filename_sample or os.path.join('data', 'sample_freeze.tsv')
-cancer_gene_file = args.filename_cancer_gene_classification or os.path.join('data', 'vogelstein_cancergenes.tsv')
-copy_loss_file = args.filename_copy_loss or os.path.join('data', 'copy_number_loss_status.tsv')
-copy_gain_file = args.filename_copy_gain or os.path.join('data', 'copy_number_gain_status.tsv')
-mutation_burden_file = args.filename_mut_burden or os.path.join('data', 'mutation_burden_freeze.tsv')
+alt_folder = args.classifier_decisions
+rnaseq_file = args.x_matrix
+mut_file = args.filename_mut
+sample_freeze_file = args.filename_sample
+cancer_gene_file = args.filename_cancer_gene_classification
+copy_loss_file = args.filename_copy_loss
+copy_gain_file = args.filename_copy_gain
+mutation_burden_file = args.filename_mut_burden
 
 
 mutation_df = pd.read_table(mut_file, index_col=0)

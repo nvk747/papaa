@@ -28,11 +28,11 @@ aa = IUPACData.protein_letters_1to3_extended
 
 parser = argparse.ArgumentParser()
 add_version_argument(parser)
-parser.add_argument('-c', '--classifier', default= None,
+parser.add_argument('-c', '--classifier_summary', default= None,
                     help='location of classifier_summary file')
-parser.add_argument('-e', '--ex_vlog',default= None,
+parser.add_argument('-e', '--expression_file',default= None,
                     help='path for external sample expression data file[fpkm/rlog/vlog')
-parser.add_argument('-s', '--sign',
+parser.add_argument('-s', '--status_sign',
                     help='assigned tumor [1] or normal sample status[-1]')
 parser.add_argument('--figure1', default=None,
                     help='Path to save to figure 1')
@@ -42,7 +42,7 @@ args = parser.parse_args()
 
 # load targene classifier summary file
 
-classifier = args.classifier
+classifier = args.classifier_summary
 classifier_file = os.path.join( classifier , "classifier_summary.txt")
 all_coef_df = pd.read_table(os.path.join( classifier , "classifier_coefficients.tsv"), index_col=0)
 # with open(classifier_file) as class_fh:
@@ -55,7 +55,7 @@ all_coef_df = pd.read_table(os.path.join( classifier , "classifier_coefficients.
 coef_df = all_coef_df[all_coef_df['abs'] > 0]
 
 # load external sample gene expression data: vlog or rlog or fpkm values
-vlog_file = args.ex_vlog
+vlog_file = args.expression_file
 vlog_df = pd.read_csv(vlog_file, index_col= 0)
 
 # Determine the extent of coefficient overlap
@@ -90,11 +90,11 @@ result2 = result.T.sort_values(by='weight')
 
 result = result2.assign(name=result2.index)
 result = result.sort_values(by='name')
-print(result) # printing the result table
+
 
 # load status of the external-sample tumors :+1 normal : -1
 from csv import reader
-opened_file = open(args.sign)
+opened_file = open(args.status_sign)
 s = reader(opened_file)
 status = list(s)
 f_status = []
@@ -104,14 +104,15 @@ for i in status:
 f_status[0]
 
 # Tumor or normal status from RNAseq
-output = result.assign(mut_status = f_status)
+output = result.assign(status_sign = f_status)
 output = output.assign(sample_name = output.index)
 output = output.assign(dummy_y = 0)
 output
+print(output) # printing the result table
 
 # Perform a t-test to determine if weights are significantly different
-targene_geo_mutant = output[output['mut_status'] == 1]
-targene_geo_wt = output[output['mut_status'] == -1]
+targene_geo_mutant = output[output['status_sign'] == 1]
+targene_geo_wt = output[output['status_sign'] == -1]
 
 # Output t-test results
 t_results_geo_targene = ttest_ind(a = targene_geo_mutant['weight'],
@@ -121,7 +122,7 @@ print('Statistic = {:.2f}, p = {:.2E}'.format(t_results_geo_targene[0],
 
 # graphical output for predictions
 p = (gg.ggplot(output,
-               gg.aes(x='weight', y='dummy_y', color='factor(mut_status)')) +
+               gg.aes(x='weight', y='dummy_y', color='factor(status_sign)')) +
      gg.geom_hline(gg.aes(yintercept=0), linetype='solid') +
      gg.geom_point(size=4) +
      gg.scale_color_manual(values=["#377eb8", "#ff7f00"], labels=['WT', 'Mutant']) +

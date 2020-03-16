@@ -9,11 +9,11 @@
     <command><![CDATA[
         mkdir 'classifier' &&
         mkdir -p 'classifier/tables' &&
-        ln -s '${scores}' 'classifier/classifier_decisions.tsv' &&
+        ln -s '${classifier_decisions}' 'classifier/classifier_decisions.tsv' &&
         ln -s '${pathway_metrics}' 'classifier/tables/pathway_metrics_pathwaymapper.txt' &&
         ln -s '${all_gene_metric_ranks}' 'classifier/tables/all_gene_metric_ranks.tsv' &&
         papaa_targene_pathway_count_heatmaps.py
-        --scores 'classifier'
+        --classifier_decisions 'classifier'
         #if $genes and str($genes):
         --genes '$genes'
         #end if
@@ -34,7 +34,7 @@
         ]]>
     </command>
     <inputs>
-        <param argument="--scores" label="pancancer decisions" name="scores" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
+        <param argument="--classifier_decisions" label="pancancer decisions" name="classifier_decisions" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
         <param label="pancancer metrics pathwaymapper" name="pathway_metrics" optional="false" type="data" format="txt" help="pathway_metrics_pathwaymapper.txt"/>
         <param label="all gene metric ranks" name="all_gene_metric_ranks" optional="false" type="data" format="tabular" help="all_gene_metric_ranks.tsv"/>
         <param argument="--genes" label="Comma separated string of HUGO gene symbols" name="genes" optional="False" type="text" value="ERBB2,PIK3CA,KRAS,AKT1"/>
@@ -56,7 +56,7 @@
     </outputs>
     <tests>
         <test>
-          <param name="scores" value="classifier_decisions.tsv" ftype="tabular"/>
+          <param name="classifier_decisions" value="classifier_decisions.tsv" ftype="tabular"/>
           <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
           <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
           <param name="path_genes" value="path_genes.txt" ftype="txt"/>
@@ -82,7 +82,7 @@
 
       --genes                               comma separated string of HUGO symbols for target genes or targenes_list.csv file
       --path_genes                          comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
-      --scores                              String of the location of classifier scores/alt_folder
+      --classifier_decisions                String of the location of classifier scores/alt_folder
       --x_matrix                            Filename of features to use in model
       --filename_mut                        Filename of sample/gene mutations to use in model
       --filename_mut_burden                 Filename of sample mutation burden to use in model

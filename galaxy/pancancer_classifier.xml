@@ -39,7 +39,7 @@
         #if $alt_filter_prop and $alt_filter_prop is not None:
         --alt_filter_prop '$alt_filter_prop'
         #end if
-        --alt_folder 'classifier'
+        --classifier_results 'classifier'
         @INPUT_REMOVE_HYPER@
         $keep_intermediate
         @INPUTS_BASIC@
@@ -87,10 +87,10 @@
         <data format="tabular" name="alt_gene_alt_disease_summary" label="${tool.name} on ${on_string} (alt_gene_alt_disease_summary.tsv)" from_work_dir="classifier/alt_gene_alt_disease_summary.tsv"/>
         <data format="csv" name="alt_summary_counts" label="${tool.name} on ${on_string} (alt_summary_counts.csv" from_work_dir="classifier/alt_summary_counts.csv"/>
         <data format="tabular" name="classifier_coefficients" label="${tool.name} on ${on_string} (classifier_coefficients.tsv)" from_work_dir="classifier/classifier_coefficients.tsv"/>
-        <data format="txt" name="classifier_summary" label="${tool.name} on ${on_string} (classifier_summary.txt)" from_work_dir="classifier/classifier_summary.txt"/>
-        <data format="tabular" name="pancan_roc_results" label="${tool.name} on ${on_string} (pancan_roc_results.tsv)" from_work_dir="classifier/pancan_roc_results.tsv"/>
+        <data format="txt" name="classifier_summary.txt" label="${tool.name} on ${on_string} (classifier_summary.txt)" from_work_dir="classifier/classifier_summary.txt"/>
+        <data format="tabular" name="pancan_roc_results.tsv" label="${tool.name} on ${on_string} (pancan_roc_results.tsv)" from_work_dir="classifier/pancan_roc_results.tsv"/>
         <data format="csv" name="summary_counts" label="${tool.name} on ${on_string} (summary_counts.csv)" from_work_dir="classifier/summary_counts.csv"/>
-        <data format="pdf" name="cv_heatmap" label="${tool.name} on ${on_string} (cv_heatmap.pdf)" from_work_dir="classifier/cv_heatmap.pdf"/>
+        <data format="pdf" name="cv_heatmap" label="${tool.name} on ${on_string} (cv_heatmap.pdf)" from_work_dir="classifiers/classifier/cv_heatmap.pdf"/>
         <collection name="disease_figures" type="list:list" label="Disease classifier figures">
           <discover_datasets pattern="classifier_(?P&lt;identifier_1&gt;.+)__pred_(?P&lt;identifier_0&gt;.+)\.pdf" format="pdf" directory="classifier/disease" visible="false" />
         </collection>
@@ -152,47 +152,47 @@
     <help><![CDATA[
         Pancancer_Aberrant_Pathway_Activity_Analysis scripts/pancancer_classifier.py:
 
-        --genes             comma separated string of HUGO symbols for target genes or targenes_list.csv file
-        --diseases          comma separated string of disease types/TCGA acronyms for classifier
-                            default: Auto (will pick diseases from filter args)
-        --folds             number of cross validation folds
-                            default: 5
-        --drop              drop the input genes from the X matrix
-                            default: False if flag omitted
-        --copy_number       optional flag to supplement copy number to define Y
-                            default: False if flag omitted
-        --filter_count      int of low count of mutation to include disease
-                            default: 15
-        --filter_prop       float of low proportion of mutated samples per disease
-                            default: 0.05
-        --num_features      int of number of genes to include in classifier
-                            default: 8000
-        --alphas            comma separated string of alphas to test in pipeline
-                            default: '0.1,0.15,0.2,0.5,0.8,1'
-        --l1_ratios         comma separated string of l1 parameters to test
-                            default: '0,0.1,0.15,0.18,0.2,0.3'
-        --alt_genes         comma separated string of alternative genes to test
-                            default: None
-        --alt_diseases      comma separated string of alternative diseases to test
-                            default: Auto 
-        --alt_filter_count  int of low count of mutations to include alt_diseases
-                            default: 15
-        -alt_filter_prop    float of low proportion of mutated samples alt_disease
-                            default: 0.05
-        --alt_folder        string of where to save the classifier figures
-                            default: Auto
-        --remove_hyper      store_true: remove hypermutated samples
-                            default: False if flag omitted
-        --keep_intermediate store_true: keep intermediate roc curve items
-                            default: False if flag omitted
-        --x_matrix          string of which feature matrix to use
-                            default: raw
-        --classifier_folder String of the location of classifier data
-                            default: Auto
-        --remove_hyper      store_true: remove hypermutated samples
-                            default: False if flag omitted
-        --keep_intermediate store_true: keep intermediate roc curve items
-                            default: False if flag omitted
+        --genes                 comma separated string of HUGO symbols for target genes or targenes_list.csv file
+        --diseases              comma separated string of disease types/TCGA acronyms for classifier
+                                default: Auto (will pick diseases from filter args)
+        --folds                 number of cross validation folds
+                                default: 5
+        --drop                  drop the input genes from the X matrix
+                                default: False if flag omitted
+        --copy_number           optional flag to supplement copy number to define Y
+                                default: False if flag omitted
+        --filter_count          int of low count of mutation to include disease
+                                default: 15
+        --filter_prop           float of low proportion of mutated samples per disease
+                                default: 0.05
+        --num_features          int of number of genes to include in classifier
+                                default: 8000
+        --alphas                comma separated string of alphas to test in pipeline
+                                default: '0.1,0.15,0.2,0.5,0.8,1'
+        --l1_ratios             comma separated string of l1 parameters to test
+                                default: '0,0.1,0.15,0.18,0.2,0.3'
+        --alt_genes             comma separated string of alternative genes to test
+                                default: None
+        --alt_diseases          comma separated string of alternative diseases to test
+                                default: Auto 
+        --alt_filter_count      int of low count of mutations to include alt_diseases
+                                default: 15
+        -alt_filter_prop        float of low proportion of mutated samples alt_disease
+                                default: 0.05
+        --classifier_results    string of where to save the classifier figures
+                                default: Auto
+        --remove_hyper          store_true: remove hypermutated samples
+                                default: False if flag omitted
+        --keep_intermediate     store_true: keep intermediate roc curve items
+                                default: False if flag omitted
+        --x_matrix              string of which feature matrix to use
+                                default: raw
+        --classifier_folder     String of the location of classifier data
+                                default: Auto
+        --remove_hyper          store_true: remove hypermutated samples
+                                default: False if flag omitted
+        --keep_intermediate     store_true: keep intermediate roc curve items
+                                default: False if flag omitted
         
         Output:
         ROC curves, AUROC across diseases, and classifier coefficients]]>

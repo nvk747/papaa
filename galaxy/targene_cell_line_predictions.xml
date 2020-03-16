@@ -12,12 +12,12 @@
         mkdir -p 'classifier/figures/cell_line' &&  
         mkdir -p 'classifier/tables' &&
         mkdir -p 'classifier/results' &&
-        ln -s '${classifier}' 'classifier/classifier_summary.txt' &&
+        ln -s '${classifier_summary}' 'classifier/classifier_summary.txt' &&
         ln -s '${pancan_classifier_coefficients}' 'classifier/classifier_coefficients.tsv' &&
         ln -s '${nucleotide_mutation_scores}' 'classifier/tables/nucleotide_mutation_scores.tsv' &&
         ln -s '${amino_acid_mutation_scores}' 'classifier/tables/amino_acid_mutation_scores.tsv' &&
         papaa_targene_cell_line_predictions.py
-        --classifier 'classifier'
+        --classifier_summary 'classifier'
         #if $targenes and str($targenes):
         --targenes '$targenes'
         #end if
@@ -49,7 +49,7 @@
         ]]>
     </command>
     <inputs>
-        <param argument="--classifier" label="Classifier data" name="classifier" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+        <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
         <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
         <param label="nucleotide mutation scores" name="nucleotide_mutation_scores" optional="false" type="data" format="tabular" help="nucleotide_mutation_scores.tsv"/>
         <param label="amino acid mutation scores" name="amino_acid_mutation_scores" optional="false" type="data" format="tabular" help="amino_acid_mutation_scores.tsv"/>
@@ -80,7 +80,7 @@
     </outputs>
     <tests>
         <test>
-          <param name="classifier" value="classifier_summary.txt" ftype="txt"/>
+          <param name="classifier_summary" value="classifier_summary.txt" ftype="txt"/>
           <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
           <param name="nucleotide_mutation_scores" value="nucleotide_mutation_scores.tsv" ftype="tabular"/>
           <param name="amino_acid_mutation_scores" value="amino_acid_mutation_scores.tsv" ftype="tabular"/>
@@ -111,16 +111,16 @@
     <help><![CDATA[
       Pancancer_Aberrant_Pathway_Activity_Analysis scripts/viz/targene_cell_line_predictions_mod.py:
 
-      --targenes        comma separated string of HUGO symbols for target genes or targenes_list.csv file
-      --path_genes      comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
-      --classifier      String of the location of classifier_summary file
-      --ccle_rnaseq     Filename of CCLE gene expression data file
-      --ccle_mut        Filename of CCLE cell lines/gene mutations data file
-      --ccle_maf        Filename of CCLE mutational variant level data file
-      --gdsc_rnaseq     Filename of GDSC gene expression data file
-      --gdsc_mut        Filename of GDSC cell lines/gene mutations data file
-      --gdsc1_phar      Filename of GDSC1 pharmocological response data
-      --gdsc2_phar      Filename of GDSC2 pharmocological response data
+      --targenes            comma separated string of HUGO symbols for target genes or targenes_list.csv file
+      --path_genes          comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
+      --classifier_summary  String of the location of classifier_summary file
+      --ccle_rnaseq         Filename of CCLE gene expression data file
+      --ccle_mut            Filename of CCLE cell lines/gene mutations data file
+      --ccle_maf            Filename of CCLE mutational variant level data file
+      --gdsc_rnaseq         Filename of GDSC gene expression data file
+      --gdsc_mut            Filename of GDSC cell lines/gene mutations data file
+      --gdsc1_phar          Filename of GDSC1 pharmocological response data
+      --gdsc2_phar          Filename of GDSC2 pharmocological response data
 
       Output:
       - Generate predictions for CCLE data using targene classifier(ccle_histogram.png)

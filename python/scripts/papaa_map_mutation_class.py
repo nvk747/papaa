@@ -11,7 +11,7 @@ Usage: Run in command line:
 
 with required command arguments:
 
-    --scores     string indicating the location of all sample predictions
+    --classifier_decisions     string indicating the location of all sample predictions
     --genes      comma separated string of gene symbols or file name
 
 and optional command argument:
@@ -33,8 +33,8 @@ from tcga_util import add_version_argument
 
 parser = argparse.ArgumentParser()
 add_version_argument(parser)
-parser.add_argument('-s', '--scores',
-                    help='string of the location of classifier scores')
+parser.add_argument('-s', '--classifier_decisions',
+                    help='string of the location of classifier decision file with predictions or scores')
 parser.add_argument('-p', '--path_genes',
                     help='pathway gene list file')
 parser.add_argument('-c', '--copy_number', action='store_true',
@@ -49,7 +49,7 @@ parser.add_argument( '--filename_raw_mut', default=None,
 
 args = parser.parse_args()
 
-scores = args.scores
+scores = args.classifier_decisions
 path_genes = args.path_genes
 copy_number = args.copy_number
 
@@ -69,7 +69,7 @@ if not os.path.exists(out_dir):
     os.makedirs(out_dir)
 
 out_file = os.path.join(out_dir, 'mutation_classification_scores.tsv')
-raw_mut_file = args.filename_raw_mut or os.path.join('data', 'raw', 'mc3.v0.2.8.PUBLIC.maf')
+raw_mut_file = args.filename_raw_mut
 
 pred_df = pd.read_table(prediction_file, index_col=0)
 mut_df = pd.read_table(raw_mut_file)
@@ -87,8 +87,8 @@ map_df['Variant_Classification'] = map_df['Variant_Classification']\
                                          .fillna('Wild-Type')
 if copy_number:
     # Load Copy Number info
-    copy_loss_file = args.filename_copy_loss or os.path.join('data', 'copy_number_loss_status.tsv')
-    copy_gain_file = args.filename_copy_gain or os.path.join('data', 'copy_number_gain_status.tsv')
+    copy_loss_file = args.filename_copy_loss
+    copy_gain_file = args.filename_copy_gain
 
     copy_loss_df = pd.read_table(copy_loss_file, index_col=0)
     copy_gain_df = pd.read_table(copy_gain_file, index_col=0)

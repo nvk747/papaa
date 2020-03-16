@@ -20,7 +20,7 @@ get_script_path <- function() {
 } 
 source(file.path(dirname(get_script_path()), '..', "papaa", "pancancer_util.R"))
 
-option_list <- list(optparse::make_option(c("-c", "--classifier"),
+option_list <- list(optparse::make_option(c("-c", "--classifier_results"),
                                           type = "character",
                                           help = "Location of classifier"),
                     optparse::make_option(c("-p", "--compound"),
@@ -33,7 +33,7 @@ opt <- optparse::parse_args(opt_parser)
 
 do_papaa_version_option(opt)
 
-classifier <- opt$classifier
+classifier <- opt$classifier_results
 
 gdsc1_pharm_file <- file.path(classifier,"tables", "gdsc1_targene_pharmacology_predictions.tsv")
 gdsc1_pharm_full_df <- readr::read_tsv(gdsc1_pharm_file)

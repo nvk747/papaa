@@ -15,7 +15,7 @@
     @INPUTS_GENES_DISEASES@
     @INPUTS_COPY_NUMBER_CLASS_FILE_PREFIX@
     @INPUTS_COPY_NUMBER_CLASS_FILE@
-    --alt_folder 'classifier'
+    --classifier_results 'classifier'
     #if $seed and $seed is not None:
     --seed '$seed'
     #end if
@@ -111,7 +111,7 @@
       --alphas                              The alphas for parameter sweep
       --l1_ratios                           The l1 ratios for parameter sweep
       --remove_hyper                        Remove hypermutated samples
-      --alt_folder                          String of location to classification folder extending to individual diseases  
+      --classifier_results                  String of location to classification folder extending to individual diseases  
       --x_matrix                            Filename of features to use in model
       --filename_mut                        Filename of sample/gene mutations to use in model
       --filename_mut_burden                 Filename of sample mutation burden to use in model

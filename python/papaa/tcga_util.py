@@ -32,7 +32,7 @@ def get_args():
     add_version_argument(parser)
     parser.add_argument('-g', '--genes', default= 'ERBB2,PIK3CA,KRAS,AKT1',
                         help='string of the genes to extract or genelist file')
-    
+
     parser.add_argument('-t', '--diseases',default='BLCA,BRCA,CESC,COAD,ESCA,LUAD,LUSC,OV,PRAD,READ,STAD,UCEC,UCS', 
                         help='Comma sep string of TCGA disease acronyms. '
                              'diseases_list_file'
@@ -55,7 +55,7 @@ def get_args():
                         help='the alphas for parameter sweep')
     parser.add_argument('-l', '--l1_ratios', default='0,0.1,0.15,0.18,0.2,0.3',
                         help='the l1 ratios for parameter sweep')
-    parser.add_argument('-b', '--alt_genes', default='PTEN,PIK3R1,STK11',
+    parser.add_argument('-b', '--alt_genes', default=None,
                         help='string of the alt_genes to extract or alt_genelist file to test performance')
     parser.add_argument('-s', '--alt_diseases', default="Auto",
                         help='The alternative diseases to test performance')
@@ -63,8 +63,8 @@ def get_args():
                         help='Min number of mutations in disease to include')
     parser.add_argument('-r', '--alt_filter_prop', default=0.05, type=float,
                         help='Min proportion of positives to include disease')
-    parser.add_argument('-o', '--alt_folder', default='Auto',
-                        help='Provide an alternative folder to save results')
+    parser.add_argument('-o', '--classifier_results', default='Auto',
+                        help='Location to save classifier outputs')
     parser.add_argument('-v', '--remove_hyper', action='store_true',
                         help='Remove hypermutated samples')
     parser.add_argument('-k', '--keep_intermediate', action='store_true',
@@ -77,8 +77,6 @@ def get_args():
                         help='Shuffle the gene exprs matrix before training')
     parser.add_argument('-m', '--no_mutation', action='store_false',
                         help='Remove mutation data from y matrix')
-    parser.add_argument('-z', '--drop_rasopathy', action='store_true',
-                        help='Decision to drop rasopathy genes from X matrix')
     parser.add_argument( '--drop_x_genes', default=None,
                         help='Comma separated list of genes to be dropped from X matrix, x_genelist file ')
     parser.add_argument('-q', '--drop_expression', action='store_true',

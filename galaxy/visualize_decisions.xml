@@ -8,9 +8,9 @@
   <version_command><![CDATA['papaa_visualize_decisions.py' --version]]></version_command>
   <command><![CDATA[
     mkdir 'classifier' &&
-    ln -s '${scores}' 'classifier/classifier_decisions.tsv' &&
+    ln -s '${classifier_decisions}' 'classifier/classifier_decisions.tsv' &&
     papaa_visualize_decisions.py
-    --scores 'classifier'
+    --classifier_decisions 'classifier'
     #if str($custom):
     --custom '$custom'
     #end if
@@ -18,7 +18,7 @@
     ]]>
   </command>
   <inputs>
-    <param argument="--scores" label="pancancer decisions" name="scores" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
+    <param argument="--classifier_decisions" label="pancancer decisions" name="classifier_decisions" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
     <param area="false" argument="--custom" label="comma separated list of columns to plot" name="custom" optional="true" type="text"/>
   </inputs>
   <outputs>
@@ -35,7 +35,7 @@
   </outputs>
   <tests>
       <test>
-          <param name="scores" value="classifier_decisions.tsv" ftype="tabular"/>
+          <param name="classifier_decisions" value="classifier_decisions.tsv" ftype="tabular"/>
           <output_collection name="classifier_decisions_figures" type="list">
                 <element name="OV" file="OV_110.pdf" compare="sim_size" delta="30"/>
                 <element name="LUAD" file="LUAD_109.pdf" compare="sim_size" delta="30"/>
@@ -49,7 +49,7 @@
   <help><![CDATA[
     Pancancer_Aberrant_Pathway_Activity_Analysis scripts/visualize_decisions.py:
 
-        --scores  String of the folder location of classifier_decisions.tsv
+        --classifier_decisions  String of the folder location of classifier_decisions.tsv
         --custom  comma separated list of columns to plot
                   (optional: True)
       

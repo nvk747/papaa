@@ -6,7 +6,7 @@ scripts/visualize_decisions.py
 
 Usage: Run in command line with required command argument:
 
-        python visualize_decisions.py --scores $prediction_file
+        python visualize_decisions.py --classifier_decisions $prediction_file
 
 Where prediction_file is a string pointing to the location of sample scores
 
@@ -57,15 +57,15 @@ def plot_decision_function(subset_df, filename, title):
 
 parser = argparse.ArgumentParser()
 add_version_argument(parser)
-parser.add_argument('-s', '--scores',
-                    help='folder location of classifier scores')
+parser.add_argument('-d', '--classifier_decisions',
+                    help='folder location of classifier decision file')
 parser.add_argument('-c', '--custom',
                     help='comma separated list of columns to plot',
                     default=None)
 args = parser.parse_args()
 
 # Load command arguments
-prediction_file = os.path.join(args.scores, 'classifier_decisions.tsv')
+prediction_file = os.path.join(args.classifier_decisions, 'classifier_decisions.tsv')
 if args.custom:
     custom_columns = args.custom.split(',')
 

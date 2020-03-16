@@ -8,10 +8,10 @@
   <version_command><![CDATA['papaa_apply_weights.py' --version]]></version_command>
   <command><![CDATA[
   mkdir 'classifier' &&
-  ln -s '${classifier}' 'classifier/classifier_summary.txt' &&
+  ln -s '${pancan_classifier_summary}' 'classifier/classifier_summary.txt' &&
   ln -s '${pancan_classifier_coefficients}' 'classifier/classifier_coefficients.tsv' &&
   papaa_apply_weights.py 
-  --classifier 'classifier'
+  --classifier_summary 'classifier'
   @INPUTS_BASIC@
   @INPUTS_COPY_NUMBER_CLASS_FILE_CONDITIONAL@
   > '${log}'
@@ -19,7 +19,7 @@
   <inputs>
     <expand macro="inputs_basic"/>
     <expand macro="inputs_copy_number_class_file_conditional"/>
-    <param argument="--classifier" label="pancancer classifier summary" name="classifier" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+    <param argument="--classifier_summary" label="pancancer classifier summary" name="pancan_classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
     <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
   </inputs>
   <outputs>
@@ -36,7 +36,7 @@
             <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
             <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
             <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
-            <param name="classifier" value="classifier_summary.txt" ftype="txt"/>
+            <param name="pancan_classifier_summary" value="classifier_summary.txt" ftype="txt"/>
             <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
             <output name="log" file="apply_weights_Log"/>
             <output name="classifier_decisions" file="classifier_decisions.tsv" compare="sim_size" delta="30"/>

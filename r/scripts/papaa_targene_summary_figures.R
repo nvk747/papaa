@@ -34,16 +34,22 @@ get_script_path <- function() {
     NULL  
 } 
 source(file.path(dirname(get_script_path()), '..', "papaa", "pancancer_util.R"))
-set.seed(123) # FIXME: set seed by argument
 
 # parse options
 option_list = list(
   make_option(
-    c("--classifier_folder"),
+    c("--classifier_summary"),
     action = "store",
     default = NA,
     type = 'character',
     help = "Classifier base folder"
+  ),
+  make_option(
+    c("--seed"),
+    action = "store",
+    default = 123,
+    type = 'integer',
+    help = "set seed option"
   ),
   make_papaa_version_option()
 )
@@ -52,8 +58,8 @@ opt <-parse_args(OptionParser(option_list = option_list))
 
 do_papaa_version_option(opt)
 
-
-results_folder <- opt$classifier_folder
+set.seed(opt$seed) 
+results_folder <- opt$classifier_summary
 results <- parse_summary(file.path(results_folder, "classifier_summary.txt"))
 dir.create("figures")
 
