@@ -90,7 +90,7 @@
         <data format="txt" name="classifier_summary.txt" label="${tool.name} on ${on_string} (classifier_summary.txt)" from_work_dir="classifier/classifier_summary.txt"/>
         <data format="tabular" name="pancan_roc_results.tsv" label="${tool.name} on ${on_string} (pancan_roc_results.tsv)" from_work_dir="classifier/pancan_roc_results.tsv"/>
         <data format="csv" name="summary_counts" label="${tool.name} on ${on_string} (summary_counts.csv)" from_work_dir="classifier/summary_counts.csv"/>
-        <data format="pdf" name="cv_heatmap" label="${tool.name} on ${on_string} (cv_heatmap.pdf)" from_work_dir="classifiers/classifier/cv_heatmap.pdf"/>
+        <data format="pdf" name="cv_heatmap" label="${tool.name} on ${on_string} (cv_heatmap.pdf)" from_work_dir="classifier/cv_heatmap.pdf"/>
         <collection name="disease_figures" type="list:list" label="Disease classifier figures">
           <discover_datasets pattern="classifier_(?P&lt;identifier_1&gt;.+)__pred_(?P&lt;identifier_0&gt;.+)\.pdf" format="pdf" directory="classifier/disease" visible="false" />
         </collection>
@@ -139,14 +139,14 @@
             <output name="classifier_coefficients" file="classifier_coefficients.tsv"/>
             <output name="classifier_summary" file="classifier_summary.txt"/>
             <output name="pancan_roc_results" file="pancan_roc_results.tsv"/>
-            <output name="summary_counts" file="summary_counts.csv" compare="sim_size" delta="30"/>
-            <output name="cv_heatmap" file="cv_heatmap.pdf" compare="sim_size" delta="30"/>
-            <output name="all_disease_pr" file="all_disease_pr.pdf" compare="sim_size" delta="30" />
-            <output name="all_disease_roc" file="all_disease_roc.pdf" compare="sim_size" delta="30"/>
-            <output name="alt_gene_alt_disease_aupr_bar" file="alt_gene_alt_disease_aupr_bar.pdf" compare="sim_size" delta="30"/>
-            <output name="alt_gene_alt_disease_auroc_bar" file="alt_gene_alt_disease_auroc_bar.pdf" compare="sim_size" delta="30"/>
-            <output name="disease_aupr" file="disease_aupr.pdf" compare="sim_size" delta="30"/>
-            <output name="disease_auroc" file="disease_auroc.pdf" compare="sim_size" delta="30"/>
+            <output name="summary_counts" file="summary_counts.csv" compare="sim_size" delta="50"/>
+            <output name="cv_heatmap" file="cv_heatmap.pdf" compare="sim_size" delta="50"/>
+            <output name="all_disease_pr" file="all_disease_pr.pdf" compare="sim_size" delta="50" />
+            <output name="all_disease_roc" file="all_disease_roc.pdf" compare="sim_size" delta="50"/>
+            <output name="alt_gene_alt_disease_aupr_bar" file="alt_gene_alt_disease_aupr_bar.pdf" compare="sim_size" delta="50"/>
+            <output name="alt_gene_alt_disease_auroc_bar" file="alt_gene_alt_disease_auroc_bar.pdf" compare="sim_size" delta="50"/>
+            <output name="disease_aupr" file="disease_aupr.pdf" compare="sim_size" delta="50"/>
+            <output name="disease_auroc" file="disease_auroc.pdf" compare="sim_size" delta="50"/>
         </test>
     </tests>
     <help><![CDATA[
