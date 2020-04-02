@@ -138,7 +138,7 @@
             <output name="alt_summary_counts" file="alt_summary_counts.csv"/>
             <output name="classifier_coefficients" file="classifier_coefficients.tsv"/>
             <output name="classifier_summary" file="classifier_summary.txt"/>
-            <output name="pancan_roc_results" file="pancan_roc_results.tsv"/>
+            <output name="pancan_roc_results" file="pancan_roc_results.tsv" compare="sim_size" delta="50" />
             <output name="summary_counts" file="summary_counts.csv" compare="sim_size" delta="50"/>
             <output name="cv_heatmap" file="cv_heatmap.pdf" compare="sim_size" delta="50"/>
             <output name="all_disease_pr" file="all_disease_pr.pdf" compare="sim_size" delta="50" />

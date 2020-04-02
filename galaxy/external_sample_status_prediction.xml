@@ -41,9 +41,9 @@
           <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
           <param name="ex_vlog" value="vlog_trans.csv.gz" ftype="csv"/>
           <param name="sign" value="sign.txt" ftype="txt"/>
-          <output name="log" file="external_sample_status_prediction_Log"/>
-          <output name="figure1" file="Figure_1.pdf" compare="sim_size" delta="30"/>
-          <output name="figure2" file="Figure_2.pdf" compare="sim_size" delta="30"/>
+          <output name="log" file="external_sample_status_prediction_Log" compare="sim_size" delta="50" />
+          <output name="figure1" file="Figure_1.pdf" compare="sim_size" delta="50"/>
+          <output name="figure2" file="Figure_2.pdf" compare="sim_size" delta="50"/>
         </test>
     </tests>
     <help><![CDATA[
