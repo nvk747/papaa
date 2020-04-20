@@ -38,7 +38,6 @@ test:
     - papaa_map_mutation_class.py --version
     - papaa_apply_weights.py --version
     - papaa_pancancer_classifier.py --version
-    - papaa_copy_burden_merge.py --version
     - papaa_targene_cell_line_predictions.py --version
     - papaa_targene_pathway_count_heatmaps.py --version
     - papaa_visualize_decisions.py --version
