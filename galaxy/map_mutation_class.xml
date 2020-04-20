@@ -38,7 +38,7 @@
           <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
           <param name="filename_raw_mut" value="mc3.v0.2.8.PUBLIC_t1p.maf.gz" ftype="tabular"/>
           <output name="log" file="map_mutation_Log"/>
-          <output name="mutation_classification_scores" file="mutation_classification_scores.tsv" compare="sim_size" delta="30"/>
+          <output name="mutation_classification_scores" file="mutation_classification_scores.tsv" />
         </test>
   </tests>
   <help><![CDATA[

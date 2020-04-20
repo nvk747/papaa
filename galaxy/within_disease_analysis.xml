@@ -59,7 +59,7 @@
   </outputs>
   <tests>
         <test>
-              <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
+              <param name="genes" value="ERBB2,KRAS,PIK3CA,AKT1"/>
               <param name="diseases" value="GBM"/>
               <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
               <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
@@ -72,19 +72,19 @@
               <param name="l1_ratios" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
               <param name="seed" value="1234"/>
               <param name="num_features" value="8000"/>
-              <param name="remove_hyper" value="yes"/>
-              <output name="log" file="within_disease_Log" compare="sim_size" delta="50"/>
+              <param name="remove_hyper" value="true"/>
+              <output name="log" file="within_disease_Log" />
               <output_collection name="classifier_coefficients" type="list">
-                 <element name="GBM" file="GBM_128.tabular" ftype="tabular" compare="sim_size" delta="50" />
+                 <element name="GBM" file="GBM_128.tabular" ftype="tabular" />
               </output_collection>
               <output_collection name="classifier_summary" type="list">
-                 <element name="GBM" file="GBM_129.txt" ftype="txt" compare="sim_size" delta="50" />
+                 <element name="GBM" file="GBM_129.txt" ftype="txt" />
               </output_collection>
               <output_collection name="pancan_roc_results" type="list">
-                 <element name="GBM" file="GBM_121.tabular" ftype="tabular" compare="sim_size" delta="50" />
+                 <element name="GBM" file="GBM_121.tabular" ftype="tabular" />
               </output_collection>
               <output_collection name="summary_counts" type="list">
-                 <element name="GBM" file="GBM_122.csv" ftype="csv" compare="sim_size" delta="50" />
+                 <element name="GBM" file="GBM_122.csv" ftype="csv" />
               </output_collection>
               <output_collection name="within_disease" type="list:list">
                 <element name="GBM" type="list">

@@ -43,7 +43,7 @@
     <tests>
         <test>
           <param name="classifier_decisions" value="classifier_decisions.tsv" ftype="tabular"/>
-          <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
+          <param name="genes" value="ERBB2,KRAS,PIK3CA,AKT1"/>
           <param name="path_genes" value="path_genes.txt" ftype="txt"/>
           <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
           <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
@@ -52,8 +52,8 @@
           <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
           <param name="filename_raw_mut" value="mc3.v0.2.8.PUBLIC_t1p.maf.gz" ftype="tabular"/>
           <output name="log" file="alt_gene_pathwaymapper_Log"/>
-          <output name="pathway_metrics_pathwaymapper" file="pathway_metrics_pathwaymapper.txt" compare="sim_size" delta="30"/>
-          <output name="all_gene_metric_ranks" file="all_gene_metric_ranks.tsv" compare="sim_size" delta="30"/>
+          <output name="pathway_metrics_pathwaymapper" file="pathway_metrics_pathwaymapper.txt" />
+          <output name="all_gene_metric_ranks" file="all_gene_metric_ranks.tsv" />
         </test>
     </tests>
     <help><![CDATA[

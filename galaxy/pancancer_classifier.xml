@@ -106,14 +106,13 @@
             <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
             <param name="diseases" value="GBM"/>
             <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
-            <param name="x_as_raw" value="yes"/>
             <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
             <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
             <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
             <param name="seed" value="1234"/>
             <param name="folds" value="5"/>
-            <param name="drop" value="yes"/>
-            <param name="copy_number" value="yes"/>
+            <param name="drop" value="true"/>
+            <param name="copy_number" value="true"/>
             <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
             <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
             <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
@@ -126,13 +125,13 @@
             <param name="alt_diseases" value="GBM"/>
             <param name="alt_filter_count" value="15"/>
             <param name="alt_filter_prop" value="0.05"/>
-            <param name="remove_hyper" value="yes"/>
-            <param name="keep_intermediate" value="yes"/>
-            <param name="shuffled" value="yes"/>
-            <param name="shuffled_before_training" value="no"/>
-            <param name="no_mutation" value="no"/>
-            <param name="drop_expression" value="no"/>
-            <param name="drop_covariates" value="no"/>
+            <param name="remove_hyper" value="true"/>
+            <param name="keep_intermediate" value="true"/>
+            <param name="shuffled" value="true"/>
+            <param name="shuffled_before_training" value="false"/>
+            <param name="no_mutation" value="false"/>
+            <param name="drop_expression" value="false"/>
+            <param name="drop_covariates" value="false"/>
             <output name="log" file="Log"/>
             <output name="alt_gene_alt_disease_summary" file="alt_gene_alt_disease_summary.tsv"/>
             <output name="alt_summary_counts" file="alt_summary_counts.csv"/>

@@ -97,8 +97,8 @@
             </conditional>
             -->
             <output name="log" file="compare_within_Log"/>
-            <output name="aupr_comparison" file="aupr_comparison.pdf" compare="sim_size" delta="30"/>
-            <output name="auroc_comparison" file="auroc_comparison.pdf" compare="sim_size" delta="30"/>
+            <output name="aupr_comparison" file="aupr_comparison.pdf" compare="sim_size" delta="50"/>
+            <output name="auroc_comparison" file="auroc_comparison.pdf" compare="sim_size" delta="50"/>
 
         </test>
     </tests>

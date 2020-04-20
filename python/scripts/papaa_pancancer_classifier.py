@@ -236,11 +236,11 @@ y = y.assign(total_status=y.max(axis=1))
 y = y.reset_index().merge(sample_freeze,
                           how='left').set_index('SAMPLE_BARCODE')
 count_df = y.groupby('DISEASE').sum()
-prop_df = count_df.divide(y['DISEASE'].value_counts(sort=False).sort_index(),
-                          axis=0)
+prop_df = count_df.divide(y['DISEASE'].value_counts(sort=False),
+                          axis=0).sort_index()
 
 count_table = count_df.merge(prop_df, left_index=True, right_index=True,
-                             suffixes=('_count', '_proportion'))
+                             suffixes=('_count', '_proportion')).sort_index()
 count_table.to_csv(count_table_file)
 
 # Filter diseases

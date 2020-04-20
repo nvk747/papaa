@@ -39,7 +39,7 @@
             <param name="pancan_classifier_summary" value="classifier_summary.txt" ftype="txt"/>
             <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
             <output name="log" file="apply_weights_Log"/>
-            <output name="classifier_decisions" file="classifier_decisions.tsv" compare="sim_size" delta="30"/>
+            <output name="classifier_decisions" file="classifier_decisions.tsv" />
         </test>
     </tests>
   <help><![CDATA[
