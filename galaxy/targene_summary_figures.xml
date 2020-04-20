@@ -57,17 +57,17 @@
           <param name="path_events_per_sample" value="path_events_per_sample.tsv" ftype="tabular"/>
           <param name="all_gene_metric_ranks" value="all_gene_metric_ranks.tsv" ftype="tabular"/>
           <output name="log" file="summary_fig_Log"/>
-          <output name="targene_heatmap" file="targene_heatmap.pdf" compare="sim_size" delta="30"/>
-          <output name="all_targene_heatmap" file="all_targene_heatmap.pdf" compare="sim_size" delta="30"/>
-          <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="30"/>
-          <output name="variant_gain_fill_map" file="variant_gain_fill_map.pdf" compare="sim_size" delta="30"/>
-          <output name="aupr_distribution" file="aupr_distribution.pdf" compare="sim_size" delta="30"/>
-          <output name="variant_loss_fill_map" file="variant_loss_fill_map.pdf" compare="sim_size" delta="30"/>
-          <output name="auroc_distribution" file="auroc_distribution.pdf" compare="sim_size" delta="30"/>
-          <output name="targene_pathway_events_counts" file="targene_pathway_events_counts.pdf" compare="sim_size" delta="30"/>
-          <output name="targene_pathway_variant_AUPR_ttest" file="targene_pathway_variant_AUPR_ttest.txt" compare="sim_size" delta="30"/>
-          <output name="amino_acid_mutation_scores" file="amino_acid_mutation_scores.tsv" compare="sim_size" delta="30"/>
-          <output name="nucleotide_mutation_scores" file="nucleotide_mutation_scores.tsv" compare="sim_size" delta="30"/>
+          <output name="targene_heatmap" file="targene_heatmap.pdf" compare="sim_size" delta="50"/>
+          <output name="all_targene_heatmap" file="all_targene_heatmap.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="50"/>
+          <output name="variant_gain_fill_map" file="variant_gain_fill_map.pdf" compare="sim_size" delta="50"/>
+          <output name="aupr_distribution" file="aupr_distribution.pdf" compare="sim_size" delta="50"/>
+          <output name="variant_loss_fill_map" file="variant_loss_fill_map.pdf" compare="sim_size" delta="50"/>
+          <output name="auroc_distribution" file="auroc_distribution.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_pathway_events_counts" file="targene_pathway_events_counts.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_pathway_variant_AUPR_ttest" file="targene_pathway_variant_AUPR_ttest.txt" compare="sim_size" delta="50"/>
+          <output name="amino_acid_mutation_scores" file="amino_acid_mutation_scores.tsv" compare="sim_size" delta="50"/>
+          <output name="nucleotide_mutation_scores" file="nucleotide_mutation_scores.tsv" compare="sim_size" delta="50"/>
         </test>
     </tests>
   <help><![CDATA[

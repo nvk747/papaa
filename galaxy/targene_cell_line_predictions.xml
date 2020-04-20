@@ -84,7 +84,7 @@
           <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
           <param name="nucleotide_mutation_scores" value="nucleotide_mutation_scores.tsv" ftype="tabular"/>
           <param name="amino_acid_mutation_scores" value="amino_acid_mutation_scores.tsv" ftype="tabular"/>
-          <param name="targenes" value="ERBB2_MUT,PIK3CA_MUT,KRAS_MUT,AKT1_MUT"/>
+          <param name="targenes" value="ERBB2_MUT,KRAS_MUT,PIK3CA_MUT,AKT1_MUT"/>
           <param name="path_genes" value="path_genes.txt" ftype="txt"/>
           <param name="ccle_rnaseq" value="ccle_rnaseq_genes_rpkm_20180929_mod_t5p.tsv.gz" ftype="tabular"/>
           <param name="ccle_mut" value="CCLE_MUT_CNA_AMP_DEL_binary_Revealer.gct.gz" ftype="tabular"/>
@@ -94,18 +94,18 @@
           <param name="gdsc1_phar" value="gdsc1_ccle_pharm_fitted_dose_data_t10p.txt.gz" ftype="txt"/>
           <param name="gdsc2_phar" value="gdsc2_ccle_pharm_fitted_dose_data_t10p.txt.gz" ftype="txt"/>
           <output name="log" file="cell_line_pred_Log"/>
-          <output name="ccle_histogram" file="ccle_histogram.png" compare="sim_size" delta="30"/>
-          <output name="ccle_targene_classifier_scores" file="ccle_targene_classifier_scores.tsv" compare="sim_size" delta="30"/>
+          <output name="ccle_histogram" file="ccle_histogram.png" compare="sim_size" delta="50"/>
+          <output name="ccle_targene_classifier_scores" file="ccle_targene_classifier_scores.tsv" />
           <output name="ccle_targene_WT_MUT_predictions" file="ccle_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="100"/>
-          <output name="updated_data_nucleotide_scores" file="updated_data_nucleotide_scores.csv" compare="sim_size" delta="30"/>
-          <output name="updated_data_aminoacid_scores" file="updated_data_aminoacid_scores.csv" compare="sim_size" delta="30"/>
-          <output name="gdsc_scores_histogram" file="gdsc_scores_histogram.png" compare="sim_size" delta="30"/>
-          <output name="gdsc_targene_classifier_scores" file="gdsc_targene_classifier_scores.tsv" compare="sim_size" delta="30"/>
-          <output name="gdsc_targene_WT_MUT_predictions" file="gdsc_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="30"/>
-          <output name="gdsc1_targene_pharmacology_predictions" file="gdsc1_targene_pharmacology_predictions.tsv" compare="sim_size" delta="30"/>
-          <output name="gdsc2_targene_pharmacology_predictions" file="gdsc2_targene_pharmacology_predictions.tsv" compare="sim_size" delta="30"/>
-          <output name="gdsc1_ccle_targene_pharmacology_predictions" file="gdsc1_ccle_targene_pharmacology_predictions.tsv" compare="sim_size" delta="30"/>
-          <output name="gdsc2_ccle_targene_pharmacology_predictions" file="gdsc2_ccle_targene_pharmacology_predictions.tsv" compare="sim_size" delta="30"/>
+          <output name="updated_data_nucleotide_scores" file="updated_data_nucleotide_scores.csv" />
+          <output name="updated_data_aminoacid_scores" file="updated_data_aminoacid_scores.csv" />
+          <output name="gdsc_scores_histogram" file="gdsc_scores_histogram.png" />
+          <output name="gdsc_targene_classifier_scores" file="gdsc_targene_classifier_scores.tsv" />
+          <output name="gdsc_targene_WT_MUT_predictions" file="gdsc_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="50"/>
+          <output name="gdsc1_targene_pharmacology_predictions" file="gdsc1_targene_pharmacology_predictions.tsv" />
+          <output name="gdsc2_targene_pharmacology_predictions" file="gdsc2_targene_pharmacology_predictions.tsv" />
+          <output name="gdsc1_ccle_targene_pharmacology_predictions" file="gdsc1_ccle_targene_pharmacology_predictions.tsv" />
+          <output name="gdsc2_ccle_targene_pharmacology_predictions" file="gdsc2_ccle_targene_pharmacology_predictions.tsv" />
         </test>
     </tests>
     <help><![CDATA[
