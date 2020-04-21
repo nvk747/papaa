@@ -37,9 +37,9 @@
       <test>
           <param name="classifier_decisions" value="classifier_decisions.tsv" ftype="tabular"/>
           <output_collection name="classifier_decisions_figures" type="list">
-                <element name="OV" file="OV_110.pdf" compare="sim_size" delta="30"/>
-                <element name="LUAD" file="LUAD_109.pdf" compare="sim_size" delta="30"/>
-                <element name="GBM" file="GBM_108.pdf" compare="sim_size" delta="30"/>
+                <element name="OV" file="OV.pdf" compare="sim_size" delta="50"/>
+                <element name="LUAD" file="LUAD.pdf" compare="sim_size" delta="50"/>
+                <element name="GBM" file="GBM.pdf" compare="sim_size" delta="50"/>
           </output_collection>    
           <output name="log" file="visualize_decisions_Log"/>
           <output name="total_decisions" file="total_decisions.pdf" compare="sim_size" delta="30"/>
