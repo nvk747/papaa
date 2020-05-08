@@ -12,17 +12,14 @@
 #     Rscript scripts/compare_within_models.R 
 #
 #     with the required flags:
-#         --pancan_summary      Directory of where classifier summary for pan and within models
+#         --pancan_model      Directory of where classifier summary for pan and within models
 #
 #     and optional flags:
-#         --alt_gene            Directory of classifier summary for alt gene
+#         --alt_model            Directory of classifier summary for alt gene
 #
 # Output:
 # Bar Plots for each comparison
-# script scripts/compare_within_models.R --pancan_summary $gene_dir \
-#        --within_dir $gene_dir'/within_disease' \
-#        --alt_gene 'classifiers/TP53_ALT'
-
+ 
 library(ggplot2)
 library(dplyr)
 
@@ -41,12 +38,12 @@ get_script_path <- function() {
 
 source(file.path(dirname(get_script_path()), '..', "papaa", "pancancer_util.R"))
 
-option_list <- list(optparse::make_option(c("-p", "--pancan_summary"),
+option_list <- list(optparse::make_option(c("-p", "--pancan_model"),
                                           type = "character",
-                                          help = "location of pancan summary"),
-                    optparse::make_option(c("-a", "--alt_gene"),
+                                          help = "location of pancan model"),
+                    optparse::make_option(c("-a", "--alt_model"),
                                           type = "character",
-                                          help = "location of alt gene summary",
+                                          help = "location of alt gene model",
                                           default = NULL),
                     make_papaa_version_option())
 
@@ -55,8 +52,8 @@ opt <- optparse::parse_args(opt_parser)
 
 do_papaa_version_option(opt)
 
-pan_summary_dir <- opt$pancan_summary
-alt_gene_dir <- opt$alt_gene
+pan_summary_dir <- opt$pancan_model
+alt_gene_dir <- opt$alt_model
 
 # Process PanCancer Classifier and summary files
 pan_summary <- file.path(pan_summary_dir, "classifier_summary.txt")
@@ -68,7 +65,7 @@ pancan_aupr_df <- process_classifier_summary(summary_list = pancan_list,
                                              model_type = "Pan",
                                              perf_type = "AUPR")
 # Process Within Cancer Results
-within_dir = file.path(opt$pancan_summary,"within_disease")
+within_dir = file.path(opt$pancan_model,"within_disease")
 within_disease_files <- list.files(within_dir,
                                    pattern = "classifier_summary.txt",
                                    full.names = TRUE, recursive = TRUE)

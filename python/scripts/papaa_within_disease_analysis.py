@@ -28,6 +28,7 @@ import sys
 import subprocess
 import argparse
 import pandas as pd
+import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'papaa'))
 from tcga_util import add_version_argument
@@ -42,14 +43,16 @@ parser.add_argument('-a', '--alphas', default='0.1,0.15,0.2,0.5,0.8,1',
                     help='the alphas for parameter sweep')
 parser.add_argument('-l', '--l1_ratios', default='0,0.1,0.15,0.18,0.2,0.3',
                     help='the l1 ratios for parameter sweep')
+parser.add_argument('-n', '--num_features', default=8000, type=int,
+                        help='Number of MAD genes to include in classifier')
+parser.add_argument( '-y','--seed', default=None, type=int,
+                        help='option to set seed')
 parser.add_argument('-v', '--remove_hyper', action='store_true',
                     help='Remove hypermutated samples')
-parser.add_argument('-f', '--alt_folder', default='Auto',
+parser.add_argument('-f', '--classifier_results', default='Auto',
                     help='location to save')
 parser.add_argument('-x', '--x_matrix', default=None,
                     help='Filename of features to use in model')
-parser.add_argument('--x_as_raw', action='store_true',
-                        help='Treat x_matrix as "raw"')
 parser.add_argument( '--filename_mut', default=None,
                     help='Filename of sample/gene mutations to use in model')
 parser.add_argument( '--filename_mut_burden', default=None,
@@ -65,20 +68,16 @@ parser.add_argument( '--filename_cancer_gene_classification', default=None,
 
 args = parser.parse_args()
 
+if args.seed is not None:
+    se = int(args.seed)
+    np.random.seed(se)
+
 # make it a little easier to pass forward filename args
 args_dict = vars(args)
 filename_arg_list = [ 'x_matrix' ]
 for k in args_dict.keys():
     if k.startswith('filename_'):
         filename_arg_list.append(k)
-x_matrix = args.x_matrix
-x_as_raw = args.x_as_raw
-
-if x_matrix == 'raw':
-    expr_file = os.path.join('data', 'pancan_rnaseq_freeze.tsv')
-    x_as_raw = True
-else:
-    expr_file = x_matrix
 
 # Load command arguments
 # if list of the genes provided by file or comma seperated values:
@@ -98,10 +97,12 @@ try:
 except:
     diseases = args.diseases.split(',')
 
-folder = args.alt_folder
+folder = args.classifier_results
 alphas = args.alphas
 l1_ratios = args.l1_ratios
 remove_hyper = args.remove_hyper
+num_features_kept = args.num_features
+expr_file = args.x_matrix 
 
 #base_folder = os.path.join('classifiers', 'within_disease',
 #                           genes.replace(',', '_'))
@@ -118,14 +119,15 @@ else:
 for acronym in disease_types:
     print(acronym)
     if folder == 'Auto':
-        alt_folder = os.path.join(base_folder, acronym)
+        result_folder = os.path.join(base_folder, acronym)
     else:
-        alt_folder = os.path.join(folder, acronym)
+        result_folder = os.path.join(folder, acronym)
    
     command = ['papaa_pancancer_classifier.py',
-                 '--genes', genes, '--diseases', acronym, '--drop',
+               '--genes', genes, '--diseases', acronym, '--drop',
+               '--seed', str(se) , '--num_features', str(num_features_kept),
                '--copy_number', '--alphas', alphas, '--l1_ratios', l1_ratios,
-               '--alt_folder', alt_folder, '--shuffled', '--keep_intermediate']
+               '--classifier_results', result_folder, '--shuffled', '--keep_intermediate']
     if remove_hyper:
         command += ['--remove_hyper']
 

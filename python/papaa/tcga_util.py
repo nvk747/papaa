@@ -30,10 +30,10 @@ def get_args():
     parser = argparse.ArgumentParser()
 
     add_version_argument(parser)
-    parser.add_argument('-g', '--genes', default= 'KRAS,NRAS,HRAS',
+    parser.add_argument('-g', '--genes', default= 'ERBB2,PIK3CA,KRAS,AKT1',
                         help='string of the genes to extract or genelist file')
-    
-    parser.add_argument('-t', '--diseases',default='BLCA,CESC,COAD,ESCA,HNSC,LUAD,LUSC,OV,PAAD,PCPG,READ,SKCM,STAD,TGCT,THCA,UCEC', 
+
+    parser.add_argument('-t', '--diseases',default='BLCA,BRCA,CESC,COAD,ESCA,LUAD,LUSC,OV,PRAD,READ,STAD,UCEC,UCS', 
                         help='Comma sep string of TCGA disease acronyms. '
                              'diseases_list_file'
                              'If no arguments are passed, filtering will '
@@ -63,24 +63,20 @@ def get_args():
                         help='Min number of mutations in disease to include')
     parser.add_argument('-r', '--alt_filter_prop', default=0.05, type=float,
                         help='Min proportion of positives to include disease')
-    parser.add_argument('-o', '--alt_folder', default='Auto',
-                        help='Provide an alternative folder to save results')
+    parser.add_argument('-o', '--classifier_results', default='Auto',
+                        help='Location to save classifier outputs')
     parser.add_argument('-v', '--remove_hyper', action='store_true',
                         help='Remove hypermutated samples')
     parser.add_argument('-k', '--keep_intermediate', action='store_true',
                         help='Keep intermediate ROC values for plotting')
     parser.add_argument('-x', '--x_matrix', default='raw',
                         help='Filename of features to use in model')
-    parser.add_argument('--x_as_raw', action='store_true',
-                        help='Treat x_matrix as "raw"')
     parser.add_argument('-e', '--shuffled', action='store_true',
                         help='Shuffle the input gene exprs matrix alongside')
     parser.add_argument('--shuffled_before_training', action='store_true',
                         help='Shuffle the gene exprs matrix before training')
     parser.add_argument('-m', '--no_mutation', action='store_false',
                         help='Remove mutation data from y matrix')
-    parser.add_argument('-z', '--drop_rasopathy', action='store_true',
-                        help='Decision to drop rasopathy genes from X matrix')
     parser.add_argument( '--drop_x_genes', default=None,
                         help='Comma separated list of genes to be dropped from X matrix, x_genelist file ')
     parser.add_argument('-q', '--drop_expression', action='store_true',
@@ -99,6 +95,8 @@ def get_args():
                         help='Filename of copy number gain')
     parser.add_argument( '--filename_cancer_gene_classification', default=None,
                         help='Filename of cancer gene classification table')
+    parser.add_argument( '-y','--seed', default=1234, type=int,
+                        help='option to set seed')
 
     args = parser.parse_args()
     return args

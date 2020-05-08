@@ -10,20 +10,24 @@
     mkdir 'classifier' &&
     mkdir -p 'classifier/figures' && 
     mkdir -p 'classifier/tables' &&
-        ln -s '${classifier_folder}' 'classifier/classifier_summary.txt' &&
+        ln -s '${classifier_summary}' 'classifier/classifier_summary.txt' &&
         ln -s '${pancan_classifier_coefficients}' 'classifier/classifier_coefficients.tsv' &&
         ln -s '${summary_counts}' 'classifier/summary_counts.csv' &&
         ln -s '${mutation_classification_scores}' 'classifier/tables/mutation_classification_scores.tsv' &&
         ln -s '${path_events_per_sample}' 'classifier/tables/path_events_per_sample.tsv' &&
         ln -s '${all_gene_metric_ranks}' 'classifier/tables/all_gene_metric_ranks.tsv' &&
     papaa_targene_summary_figures.R
-    --classifier_folder 'classifier'
+    --classifier_summary 'classifier'
+    #if $seed and $seed is not None:
+    --seed '$seed'
+    #end if
     > '${log}'
     ]]>
   </command>
   <inputs>
-    <param argument="--classifier_folder" label="Classifier data" name="classifier_folder" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+    <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
     <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
+    <param argument="--seed" label="option to set seed" name="seed" optional="true" type="integer" value="123"/>
     <param label="summary counts" name="summary_counts" optional="false" type="data" format="csv" help="summary_counts.csv"/>
     <param label="mutation classification scores" name="mutation_classification_scores" optional="false" type="data" format="tabular" help="mutation_classification_scores.tsv"/>
     <param label="path events per sample" name="path_events_per_sample" optional="false" type="data" format="tabular" help="path_events_per_sample.tsv"/>
@@ -43,11 +47,33 @@
     <data format="tabular" name="amino acid mutation scores" label="${tool.name} on ${on_string} (amino_acid_mutation_scores.tsv)" from_work_dir="classifier/tables/amino_acid_mutation_scores.tsv"/>
     <data format="tabular" name="nucleotide acid mutation scores" label="${tool.name} on ${on_string} (nucleotide_mutation_scores.tsv)" from_work_dir="classifier/tables/nucleotide_mutation_scores.tsv"/>
   </outputs>
+  <tests>
+        <test>
+          <param name="classifier_summary" value="classifier_summary.txt" ftype="txt"/>
+          <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
+          <param name="summary_counts" value="summary_counts.csv" ftype="csv"/>
+          <param name="all_gene_metric_ranks" value="all_gene_metric_ranks.tsv" ftype="tabular"/>
+          <param name="mutation_classification_scores" value="mutation_classification_scores.tsv" ftype="tabular"/>
+          <param name="path_events_per_sample" value="path_events_per_sample.tsv" ftype="tabular"/>
+          <param name="all_gene_metric_ranks" value="all_gene_metric_ranks.tsv" ftype="tabular"/>
+          <output name="log" file="summary_fig_Log"/>
+          <output name="targene_heatmap" file="targene_heatmap.pdf" compare="sim_size" delta="50"/>
+          <output name="all_targene_heatmap" file="all_targene_heatmap.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="50"/>
+          <output name="variant_gain_fill_map" file="variant_gain_fill_map.pdf" compare="sim_size" delta="50"/>
+          <output name="aupr_distribution" file="aupr_distribution.pdf" compare="sim_size" delta="50"/>
+          <output name="variant_loss_fill_map" file="variant_loss_fill_map.pdf" compare="sim_size" delta="50"/>
+          <output name="auroc_distribution" file="auroc_distribution.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_pathway_events_counts" file="targene_pathway_events_counts.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_pathway_variant_AUPR_ttest" file="targene_pathway_variant_AUPR_ttest.txt" compare="sim_size" delta="50"/>
+          <output name="amino_acid_mutation_scores" file="amino_acid_mutation_scores.tsv" compare="sim_size" delta="50"/>
+          <output name="nucleotide_mutation_scores" file="nucleotide_mutation_scores.tsv" compare="sim_size" delta="50"/>
+        </test>
+    </tests>
   <help><![CDATA[
-
     Pancancer_Aberrant_Pathway_Activity_Analysis scripts/viz/targene_pharmacology.R:
 
-      --classifier_folder   String of the location of classifier data
+      --classifier_summary   String of the location of classifier data
       
       Output:
       - Heatmaps of the distribution of aberrant events across tumors ("targene_heatmap.pdf" and "all_targene_heatmap.pdf")

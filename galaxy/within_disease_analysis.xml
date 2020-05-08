@@ -11,21 +11,30 @@
     @INPUTS_ALPHAS@
     @INPUTS_L1_RATIOS@
     @INPUT_REMOVE_HYPER@
-    @INPUTS_BASIC_RAW@
+    @INPUTS_BASIC@
     @INPUTS_GENES_DISEASES@
     @INPUTS_COPY_NUMBER_CLASS_FILE_PREFIX@
     @INPUTS_COPY_NUMBER_CLASS_FILE@
-    --alt_folder 'classifier'
+    --classifier_results 'classifier'
+    #if $seed and $seed is not None:
+    --seed '$seed'
+    #end if
+    #if $num_features and $num_features is not None:
+    --num_features '$num_features'
+    #end if
     > '${log}'
     && papaa_flatten_classifier_directory.py -i 'classifier' -o 'classifier_within'
-]]></command>
+   ]]>
+  </command>
   <inputs>
-    <expand macro="inputs_basic_raw" />
+    <expand macro="inputs_basic" />
     <expand macro="inputs_genes_diseases" />
     <expand macro="inputs_copy_number_class_file" />
     <expand macro="input_alphas" />
     <expand macro="input_l1_ratios" />
     <expand macro="input_remove_hyper" />
+    <param argument="--seed" label="option to set seed" name="seed" optional="true" type="integer" value="1234"/>
+    <param argument="--num_features" label="Number of MAD genes to include in classifier" name="num_features" optional="true" type="integer" value="8000"/>
   </inputs>
   <outputs>
     <data format="txt" name="log" label="${tool.name} on ${on_string} (Log)" />
@@ -48,6 +57,52 @@
       <discover_datasets pattern="classifier_(?P&lt;identifier_1&gt;.+)__pred_(?P&lt;identifier_0&gt;.+)\.pdf" format="pdf" directory="classifier_within/disease" visible="false" />
     </collection>
   </outputs>
+  <tests>
+        <test>
+              <param name="genes" value="ERBB2,KRAS,PIK3CA,AKT1"/>
+              <param name="diseases" value="GBM"/>
+              <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
+              <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
+              <param name="filename_mut_burden" value="mutation_burden_freeze.tsv" ftype="tabular"/>
+              <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
+              <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
+              <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
+              <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
+              <param name="alphas" value="0.1,0.13,0.15,0.18,0.2,0.3,0.4,0.6,0.7"/>
+              <param name="l1_ratios" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
+              <param name="seed" value="1234"/>
+              <param name="num_features" value="8000"/>
+              <param name="remove_hyper" value="true"/>
+              <output name="log" file="within_disease_Log" />
+              <output_collection name="classifier_coefficients" type="list">
+                 <element name="GBM" file="GBM_128.tabular" ftype="tabular" />
+              </output_collection>
+              <output_collection name="classifier_summary" type="list">
+                 <element name="GBM" file="GBM_129.txt" ftype="txt" />
+              </output_collection>
+              <output_collection name="pancan_roc_results" type="list">
+                 <element name="GBM" file="GBM_121.tabular" ftype="tabular" />
+              </output_collection>
+              <output_collection name="summary_counts" type="list">
+                 <element name="GBM" file="GBM_122.csv" ftype="csv" />
+              </output_collection>
+              <output_collection name="within_disease" type="list:list">
+                <element name="GBM" type="list">
+                  <element name="cv_heatmap" file="GBM_cv_heatmap_125.pdf" compare="sim_size" delta="50"/>
+                  <element name="all_disease_pr" file="GBM_all_disease_pr_123.pdf" compare="sim_size" delta="50" />
+                  <element name="all_disease_roc" file="GBM_all_disease_roc_124.pdf" compare="sim_size" delta="50"/>
+                  <element name="disease_aupr" file="GBM_disease_aupr_126.pdf" compare="sim_size" delta="50"/>
+                  <element name="disease_auroc" file="GBM_disease_auroc_127.pdf" compare="sim_size" delta="50"/>
+                </element>
+              </output_collection>
+              <output_collection name="disease_figures" type="list:list">
+                <element name="GBM" type="list">
+                  <element name="pr" file="GBM_pr_130.pdf" compare="sim_size" delta="50"/>
+                  <element name="roc" file="GBM_roc_131.pdf" compare="sim_size" delta="50"/>
+                </element>
+              </output_collection>
+        </test>
+    </tests>
   <help><![CDATA[
     Pancancer_Aberrant_Pathway_Activity_Analysis scripts/within_disease_analysis.py:
 
@@ -56,9 +111,8 @@
       --alphas                              The alphas for parameter sweep
       --l1_ratios                           The l1 ratios for parameter sweep
       --remove_hyper                        Remove hypermutated samples
-      --alt_folder                          String of location to classification folder extending to individual diseases  
+      --classifier_results                  String of location to classification folder extending to individual diseases  
       --x_matrix                            Filename of features to use in model
-      --x_as_raw                            Option to treat x_matrix as raw
       --filename_mut                        Filename of sample/gene mutations to use in model
       --filename_mut_burden                 Filename of sample mutation burden to use in model
       --filename_sample                     Filename of patient/samples to use in model

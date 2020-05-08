@@ -52,7 +52,7 @@ ROC curves, AUROC across diseases, and classifier coefficients
 import os
 import sys
 import warnings
-
+import numpy as np
 import pandas as pd
 import csv
 import argparse
@@ -62,21 +62,21 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.linear_model import SGDClassifier
-from sklearn.model_selection import train_test_split, cross_val_predict
-from dask_searchcv import GridSearchCV
+from sklearn.model_selection import train_test_split, cross_val_predict , GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from statsmodels.robust.scale import mad
+
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'papaa'))
 from tcga_util import get_args, get_threshold_metrics, integrate_copy_number
 from tcga_util import shuffle_columns
 
-RASOPATHY_GENES = set(['BRAF', 'CBL', 'HRAS', 'KRAS', 'MAP2K1', 'MAP2K2', 'NF1',
-                      'NRAS', 'PTPN11', 'RAF1', 'SHOC2', 'SOS1', 'SPRED1', 'RIT1'])
-
 # Load command arguments
 args = get_args()
+
+if args.seed is not None:
+  np.random.seed(int(args.seed))
 
 # if list of the genes provided by file or comma seperated values:
 try:
@@ -120,16 +120,15 @@ if drop_x_genes is not None:
 
 folds = int(args.folds)
 drop = args.drop
-drop_rasopathy = args.drop_rasopathy
 copy_number = args.copy_number
 filter_count = int(args.filter_count)
 filter_prop = float(args.filter_prop)
-num_features_kept = args.num_features
+num_features_kept = int(args.num_features)
 alphas = [float(x) for x in args.alphas.split(',')]
 l1_ratios = [float(x) for x in args.l1_ratios.split(',')]
 alt_filter_count = int(args.alt_filter_count)
 alt_filter_prop = float(args.alt_filter_prop)
-alt_folder = args.alt_folder
+classifier_results = args.classifier_results
 remove_hyper = args.remove_hyper
 keep_inter = args.keep_intermediate
 x_matrix = args.x_matrix
@@ -142,11 +141,14 @@ drop_covariates = args.drop_covariates
 warnings.filterwarnings('ignore',
                         message='Changing the shape of non-C contiguous array')
 
-genes_folder  = genes[0]+"_others"
+genes_folder = args.genes.replace(',', '_')
 base_folder = os.path.join('classifiers', genes_folder)
 
-if alt_folder != 'Auto':
-    base_folder = alt_folder
+#if alt_folder != 'Auto':
+#    base_folder = alt_folder
+
+if classifier_results != 'Auto':
+    base_folder = classifier_results
 
 if not os.path.exists(base_folder):
     os.makedirs(base_folder)
@@ -184,16 +186,10 @@ alt_gene_aupr_file = os.path.join(base_folder,
 alt_gene_summary_file = os.path.join(base_folder,
                                      '{}_summary.tsv'.format(alt_gene_base))
 # Load Datasets
-x_as_raw = args.x_as_raw
-if x_matrix == 'raw':
-    expr_file = os.path.join('data', 'pancan_rnaseq_freeze.tsv')
-    x_as_raw = True
-else:
-    expr_file = x_matrix
-
-mut_file = args.filename_mut or os.path.join('data', 'pancan_mutation_freeze.tsv')
-mut_burden_file = args.filename_mut_burden or os.path.join('data', 'mutation_burden_freeze.tsv')
-sample_freeze_file = args.filename_sample or os.path.join('data', 'sample_freeze.tsv')
+expr_file = args.x_matrix 
+mut_file = args.filename_mut 
+mut_burden_file = args.filename_mut_burden 
+sample_freeze_file = args.filename_sample 
 rnaseq_full_df = pd.read_table(expr_file, index_col=0)
 mutation_df = pd.read_table(mut_file, index_col=0)
 sample_freeze = pd.read_table(sample_freeze_file, index_col=0)
@@ -201,27 +197,16 @@ mut_burden = pd.read_table(mut_burden_file)
 
 # Construct data for classifier
 common_genes = set(mutation_df.columns).intersection(genes)
-if x_as_raw:
-    common_genes = list(common_genes.intersection(rnaseq_full_df.columns))
-else:
-    common_genes = list(common_genes)
-
+common_genes = list(common_genes.intersection(rnaseq_full_df.columns))
 y = mutation_df[common_genes]
 missing_genes = set(genes).difference(common_genes)
 
 if len(common_genes) != len(genes):
     warnings.warn('All input genes were not found in data. The missing genes '
                   'are {}'.format(missing_genes), category=Warning)
-
 if drop:
-    if x_as_raw:
-        rnaseq_full_df.drop(common_genes, axis=1, inplace=True)
+    rnaseq_full_df.drop(common_genes, axis=1, inplace=True)
 
-if drop_rasopathy:
-    # Drop rasopathy genes as defined by default
-    drop_x_genes = RASOPATHY_GENES
-else:
-    drop_x_genes = set()
 if args.drop_x_genes:
     drop_x_genes = drop_x_genes.union( set( map( lambda x: x.strip(), args.drop_x_genes.split(',') ) ) )
 if drop_x_genes:
@@ -231,14 +216,14 @@ if drop_x_genes:
 # Incorporate copy number for gene activation/inactivation
 if copy_number:
     # Load copy number matrices
-    copy_loss_file = args.filename_copy_loss or os.path.join('data', 'copy_number_loss_status.tsv.gz') 
+    copy_loss_file = args.filename_copy_loss  
     copy_loss_df = pd.read_table(copy_loss_file, index_col=0)
 
-    copy_gain_file = args.filename_copy_gain or os.path.join('data', 'copy_number_gain_status.tsv.gz')
+    copy_gain_file = args.filename_copy_gain 
     copy_gain_df = pd.read_table(copy_gain_file, index_col=0)
 
     # Load cancer gene classification table
-    vogel_file = args.filename_cancer_gene_classification or os.path.join('data', 'vogelstein_cancergenes.tsv')
+    vogel_file = args.filename_cancer_gene_classification 
     cancer_genes = pd.read_table(vogel_file)
 
     y = integrate_copy_number(y=y, cancer_genes_df=cancer_genes,
@@ -250,9 +235,9 @@ if copy_number:
 y = y.assign(total_status=y.max(axis=1))
 y = y.reset_index().merge(sample_freeze,
                           how='left').set_index('SAMPLE_BARCODE')
-count_df = y.groupby('DISEASE').sum()
-prop_df = count_df.divide(y['DISEASE'].value_counts(sort=False).sort_index(),
-                          axis=0)
+count_df = y.groupby('DISEASE').sum().sort_index(axis=1)
+prop_df = count_df.divide(y['DISEASE'].value_counts(sort=False),
+                          axis=0).sort_index(axis=1)
 
 count_table = count_df.merge(prop_df, left_index=True, right_index=True,
                              suffixes=('_count', '_proportion'))
@@ -292,11 +277,11 @@ strat = y_sub.str.cat(y_df.astype(str))
 x_df = rnaseq_df.loc[y_df.index, :]
 
 # Subset x matrix to MAD genes and scale
-if x_as_raw:
-    med_dev = pd.DataFrame(mad(x_df), index=x_df.columns)
-    mad_genes = med_dev.sort_values(by=0, ascending=False)\
-                       .iloc[0:num_features_kept].index.tolist()
-    x_df = x_df.loc[:, mad_genes]
+#if x_as_raw:
+med_dev = pd.DataFrame(mad(x_df), index=x_df.columns)
+mad_genes = med_dev.sort_values(by=0, ascending=False)\
+                     .iloc[0:num_features_kept].index.tolist()
+x_df = x_df.loc[:, mad_genes]
 
 fitted_scaler = StandardScaler().fit(x_df)
 x_df_update = pd.DataFrame(fitted_scaler.transform(x_df),
@@ -718,10 +703,9 @@ if alt_genes is not None:
     y_alt_df = y_alt_df.loc[y_alt_sub.index]
 
     # Process alternative x matrix
+    #if x_as_raw:
     x_alt_df = rnaseq_alt_df.loc[y_alt_df.index, :]
-    if x_as_raw:
-        x_alt_df = x_alt_df.loc[:, mad_genes]
-
+    x_alt_df = x_alt_df.loc[:, mad_genes]
     x_alt_df_update = pd.DataFrame(fitted_scaler.transform(x_alt_df),
                                    columns=x_alt_df.columns)
     x_alt_df_update.index = x_alt_df.index
