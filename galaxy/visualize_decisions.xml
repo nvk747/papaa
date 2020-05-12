@@ -41,7 +41,7 @@
                 <element name="LUAD" file="LUAD.pdf" compare="sim_size" delta="50"/>
                 <element name="GBM" file="GBM.pdf" compare="sim_size" delta="50"/>
           </output_collection>    
-          <output name="log" file="visualize_decisions_Log"/>
+          <output name="log" file="visualize_decisions_Log.txt"/>
           <output name="total_decisions" file="total_decisions.pdf" compare="sim_size" delta="30"/>
           <output name="hyper_mutated" file="hyper_mutated.pdf" compare="sim_size" delta="30"/>
       </test>

@@ -73,32 +73,32 @@
               <param name="seed" value="1234"/>
               <param name="num_features" value="8000"/>
               <param name="remove_hyper" value="true"/>
-              <output name="log" file="within_disease_Log" />
+              <output name="log" file="within_disease_Log.txt" />
               <output_collection name="classifier_coefficients" type="list">
-                 <element name="GBM" file="GBM_128.tabular" ftype="tabular" />
+                 <element name="GBM" file="GBM_102_coef.tabular" ftype="tabular" />
               </output_collection>
               <output_collection name="classifier_summary" type="list">
-                 <element name="GBM" file="GBM_129.txt" ftype="txt" />
+                 <element name="GBM" file="GBM_101_summary.txt" ftype="txt" />
               </output_collection>
               <output_collection name="pancan_roc_results" type="list">
-                 <element name="GBM" file="GBM_121.tabular" ftype="tabular" />
+                 <element name="GBM" file="GBM_102_roc.tabular" ftype="tabular" />
               </output_collection>
               <output_collection name="summary_counts" type="list">
-                 <element name="GBM" file="GBM_122.csv" ftype="csv" />
+                 <element name="GBM" file="GBM_93_summary_counts.csv" ftype="csv" />
               </output_collection>
               <output_collection name="within_disease" type="list:list">
                 <element name="GBM" type="list">
-                  <element name="cv_heatmap" file="GBM_cv_heatmap_125.pdf" compare="sim_size" delta="50"/>
-                  <element name="all_disease_pr" file="GBM_all_disease_pr_123.pdf" compare="sim_size" delta="50" />
-                  <element name="all_disease_roc" file="GBM_all_disease_roc_124.pdf" compare="sim_size" delta="50"/>
-                  <element name="disease_aupr" file="GBM_disease_aupr_126.pdf" compare="sim_size" delta="50"/>
-                  <element name="disease_auroc" file="GBM_disease_auroc_127.pdf" compare="sim_size" delta="50"/>
+                  <element name="cv_heatmap" file="GBM_cv_heatmap_96.pdf" compare="sim_size" delta="50"/>
+                  <element name="all_disease_pr" file="GBM_all_disease_pr_94.pdf" compare="sim_size" delta="50" />
+                  <element name="all_disease_roc" file="GBM_all_disease_roc_95.pdf" compare="sim_size" delta="50"/>
+                  <element name="disease_aupr" file="GBM_disease_aupr_97.pdf" compare="sim_size" delta="50"/>
+                  <element name="disease_auroc" file="GBM_disease_auroc_98.pdf" compare="sim_size" delta="50"/>
                 </element>
               </output_collection>
               <output_collection name="disease_figures" type="list:list">
                 <element name="GBM" type="list">
-                  <element name="pr" file="GBM_pr_130.pdf" compare="sim_size" delta="50"/>
-                  <element name="roc" file="GBM_roc_131.pdf" compare="sim_size" delta="50"/>
+                  <element name="pr" file="GBM_pr_99.pdf" compare="sim_size" delta="50"/>
+                  <element name="roc" file="GBM_roc_100.pdf" compare="sim_size" delta="50"/>
                 </element>
               </output_collection>
         </test>

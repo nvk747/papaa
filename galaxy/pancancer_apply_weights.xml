@@ -38,7 +38,7 @@
             <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
             <param name="pancan_classifier_summary" value="classifier_summary.txt" ftype="txt"/>
             <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
-            <output name="log" file="apply_weights_Log"/>
+            <output name="log" file="apply_weights_Log.txt"/>
             <output name="classifier_decisions" file="classifier_decisions.tsv" />
         </test>
     </tests>

@@ -132,7 +132,7 @@
             <param name="no_mutation" value="false"/>
             <param name="drop_expression" value="false"/>
             <param name="drop_covariates" value="false"/>
-            <output name="log" file="Log"/>
+            <output name="log" file="Log.txt"/>
             <output name="alt_gene_alt_disease_summary" file="alt_gene_alt_disease_summary.tsv"/>
             <output name="alt_summary_counts" file="alt_summary_counts.csv"/>
             <output name="classifier_coefficients" file="classifier_coefficients.tsv"/>
