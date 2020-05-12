@@ -73,7 +73,7 @@
               <param name="seed" value="1234"/>
               <param name="num_features" value="8000"/>
               <param name="remove_hyper" value="true"/>
-              <output name="log" file="within_disease_Log.txt" />
+              <output name="log" file="within_disease_Log.txt" compare="sim_size" delta="50" />
               <output_collection name="classifier_coefficients" type="list">
                  <element name="GBM" file="GBM_102_coef.tabular" ftype="tabular" />
               </output_collection>
