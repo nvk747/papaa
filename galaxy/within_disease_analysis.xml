@@ -81,7 +81,7 @@
                  <element name="GBM" file="GBM_101_summary.txt" ftype="txt" />
               </output_collection>
               <output_collection name="pancan_roc_results" type="list">
-                 <element name="GBM" file="GBM_102_roc.tabular" ftype="tabular" />
+                 <element name="GBM" file="GBM_92_roc.tabular" ftype="tabular" />
               </output_collection>
               <output_collection name="summary_counts" type="list">
                  <element name="GBM" file="GBM_93_summary_counts.csv" ftype="csv" />
