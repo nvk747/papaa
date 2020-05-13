@@ -112,7 +112,7 @@ if copy_number:
                                           gain_df=copy_gain_df)
 
 # Add covariate info to y_matrix
-mut_subset_df = mut_subset_df.assign(total_status=mut_subset_df.max(axis=1))
+mut_subset_df = mut_subset_df.assign(total_status=mut_subset_df.max(axis=1)).sort_index(axis=1)
 mut_subset_df = mut_subset_df.reset_index().merge(sample_freeze_df,
                                                   left_on='SAMPLE_BARCODE',
                                                   right_on='SAMPLE_BARCODE')\

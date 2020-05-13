@@ -68,7 +68,7 @@
           <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular" />
           <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular" />
           <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular" />
-          <output name="log" file="count_heatmaps_Log"/>
+          <output name="log" file="count_heatmaps_Log.txt"/>
           <output name="cancer_type_mutation_heatmap" file="cancer_type_mutation_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="cancer_type_copy_number_heatmap" file="cancer_type_copy_number_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="cancer_type_combined_total_heatmap" file="cancer_type_combined_total_heatmap.pdf" compare="sim_size" delta="50"/>

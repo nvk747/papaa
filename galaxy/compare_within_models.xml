@@ -96,7 +96,7 @@
                 <param name="alt_pan_within_classifier_coefficients" value="alt_pan_within_classifier_coefficients.tsv" ftype="tabular"/> 
             </conditional>
             -->
-            <output name="log" file="compare_within_Log"/>
+            <output name="log" file="compare_within_Log.txt"/>
             <output name="aupr_comparison" file="aupr_comparison.pdf" compare="sim_size" delta="50"/>
             <output name="auroc_comparison" file="auroc_comparison.pdf" compare="sim_size" delta="50"/>
 
