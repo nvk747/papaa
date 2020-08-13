@@ -73,7 +73,13 @@
               <param name="seed" value="1234"/>
               <param name="num_features" value="8000"/>
               <param name="remove_hyper" value="true"/>
-              <output name="log" file="within_disease_Log.txt" compare="sim_size" delta="50" />
+              <output name="log">
+                <assert_contents>
+                  <has_line line="[&apos;ERBB2&apos;, &apos;KRAS&apos;, &apos;PIK3CA&apos;, &apos;AKT1&apos;]" />
+                  <has_line line="GBM" />
+                  <has_n_lines n="3" />
+                </assert_contents>
+              </output>
               <output_collection name="classifier_coefficients" type="list">
                  <element name="GBM" file="GBM_102_coef.tabular" ftype="tabular" />
               </output_collection>
@@ -81,7 +87,13 @@
                  <element name="GBM" file="GBM_101_summary.txt" ftype="txt" />
               </output_collection>
               <output_collection name="pancan_roc_results" type="list">
-                 <element name="GBM" file="GBM_92_roc.tabular" ftype="tabular" />
+                 <element name="GBM" ftype="tabular">
+                    <assert_contents>
+                        <has_line line="&#009;fpr&#009;tpr&#009;threshold&#009;train_type&#009;disease" />
+                        <has_n_columns n="6" />
+                        <has_n_lines n="249" />
+                    </assert_contents>
+                  </element>
               </output_collection>
               <output_collection name="summary_counts" type="list">
                  <element name="GBM" file="GBM_93_summary_counts.csv" ftype="csv" />
