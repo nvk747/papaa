@@ -1,12 +1,12 @@
 {% set version = "0.1.5" %}
-#{% set sha256 = "b3872aea31facdbbba1048325447a98b1b61ac51451e3f9b866f29eed06aef40" %}
+#{% set sha256 = "d08b2a33fde3987e0aee58f10e5f111e74946f323d906f2f48eaf744dc5a21f0" %}
 
 package:
     name: papaa
     version: '{{version}}'
 source:
-    path: ../../papaa-private/
-    #url: https://github.com/BlankenbergLab/papaa/archive/papaa-0.1.5.tar.gz
+    #url: https://github.com/nvk747/papaa/archive/papaa-0.1.5.tar.gz
+    url: https://github.com/nvk747/papaa/archive/master.tar.gz
     #sha256: '{{sha256}}'
 requirements:
     host:

@@ -39,7 +39,13 @@
             <param name="pancan_classifier_summary" value="classifier_summary.txt" ftype="txt"/>
             <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
             <output name="log" file="apply_weights_Log.txt"/>
-            <output name="classifier_decisions" file="classifier_decisions.tsv" />
+            <output name="classifier_decisions">
+              <assert_contents>
+                  <has_line line="SAMPLE_BARCODE&#009;log10_mut&#009;total_status&#009;weight&#009;AKT1&#009;AKT1_gain&#009;ERBB2&#009;ERBB2_gain&#009;KRAS&#009;KRAS_gain&#009;PIK3CA&#009;PIK3CA_gain&#009;PATIENT_BARCODE&#009;DISEASE&#009;SUBTYPE&#009;hypermutated&#009;include" />
+                  <has_n_columns n="17" />
+                  <has_n_lines n="90" />
+              </assert_contents>
+          </output>
         </test>
     </tests>
   <help><![CDATA[
