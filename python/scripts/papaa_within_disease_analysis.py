@@ -88,7 +88,6 @@ try:
 except:
     genes = args.genes
 
-#diseases = args.diseases.split(',')
 # if list of the diseases provided by file or comma seperated values:
 try:
     diseases = args.diseases
@@ -102,14 +101,14 @@ alphas = args.alphas
 l1_ratios = args.l1_ratios
 remove_hyper = args.remove_hyper
 num_features_kept = args.num_features
-expr_file = args.x_matrix 
+expr_file = args.x_matrix
+sample_freeze_file = args.filename_sample 
 
 #base_folder = os.path.join('classifiers', 'within_disease',
 #                           genes.replace(',', '_'))
 base_folder = os.path.join('classifiers', 'within_disease',
                            genes[0])
 if diseases == 'Auto':
-    sample_freeze_file = os.path.join('data', 'sample_freeze.tsv')
     sample_freeze = pd.read_table(sample_freeze_file, index_col=0)
     disease_types = sample_freeze['DISEASE'].unique().tolist()
 else:
@@ -121,7 +120,7 @@ for acronym in disease_types:
     if folder == 'Auto':
         result_folder = os.path.join(base_folder, acronym)
     else:
-        result_folder = os.path.join(folder, acronym)
+        result_folder = os.path.join(folder, 'within_disease', acronym)
    
     command = ['papaa_pancancer_classifier.py',
                '--genes', genes, '--diseases', acronym, '--drop',
@@ -136,5 +135,4 @@ for acronym in disease_types:
         val = args_dict.get(fname_arg, None)   
         if val:
             command += ['--%s' % (fname_arg), val]
-    print(command)
     subprocess.call(command)
