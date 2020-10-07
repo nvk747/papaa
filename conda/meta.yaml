@@ -1,13 +1,12 @@
 {% set version = "0.1.5" %}
-#{% set sha256 = "b3872aea31facdbbba1048325447a98b1b61ac51451e3f9b866f29eed06aef40" %}
+{% set sha256 = "2796e934ff2215d5cd8e8b4d2e7dd39047e7b1cbb04080b9c79bf3b3e84154ad" %}
 
 package:
     name: papaa
     version: '{{version}}'
 source:
-    path: ../../papaa-private/
-    #url: https://github.com/BlankenbergLab/papaa/archive/papaa-0.1.5.tar.gz
-    #sha256: '{{sha256}}'
+    url: https://github.com/nvk747/papaa/archive/papaa-0.1.5.tar.gz
+    sha256: '{{sha256}}'
 requirements:
     host:
     - pip
@@ -46,3 +45,10 @@ test:
     - papaa_compare_within_models.R --version
     - papaa_targene_pharmacology.R --version
     - papaa_targene_summary_figures.R --version
+
+about:
+  home: https://github.com/nvk747/papaa
+  license: BSD-3-Clause License
+  license_family: BSD
+  license_file: "LICENSE"
+  summary: 'PAPAA:Pan-cancer Aberrant Pathway Activity Analysis tools to measure mutation specific pathway acitvity in TCGA pancancer dataset'
