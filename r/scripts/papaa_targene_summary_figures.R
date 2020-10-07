@@ -191,8 +191,8 @@ ggplot(coef_df, aes(x = 1:nrow(coef_df), y = weight)) +
 ggplot2::ggsave(coef_plot_file, dpi = 600, width = 1.7, height = 1.6)
 
  # 3) Plot distributions of predictions according to variant classification
-var_gain_plot_file <- file.path(results_folder, "figures", "variant_gain_fill_map.pdf")
-var_loss_plot_file <- file.path(results_folder, "figures", "variant_loss_fill_map.pdf")
+var_gain_plot_file <- file.path(results_folder, "figures", "variant_OG_fill_map.pdf")
+var_loss_plot_file <- file.path(results_folder, "figures", "variant_TSG_fill_map.pdf")
 mut_df <- readr::read_tsv(file.path(results_folder, "tables",
                                     "mutation_classification_scores.tsv"))
 

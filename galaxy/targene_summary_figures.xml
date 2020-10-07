@@ -38,8 +38,8 @@
     <data format="pdf" name="targene_heatmap" label="${tool.name} on ${on_string} (targene_heatmap.pdf)" from_work_dir="classifier/figures/targene_heatmap.pdf"/>
     <data format="pdf" name="all_targene_heatmap" label="${tool.name} on ${on_string} (all_targene_heatmap.pdf)" from_work_dir="classifier/figures/all_targene_heatmap.pdf"/>
     <data format="pdf" name="targene_coef_plot" label="${tool.name} on ${on_string} (targene_coef_plot.pdf)" from_work_dir="classifier/figures/targene_coef_plot.pdf"/>
-    <data format="pdf" name="variant_gain_fill_map" label="${tool.name} on ${on_string} (variant_gain_fill_map.pdf)" from_work_dir="classifier/figures/variant_gain_fill_map.pdf"/>
-    <data format="pdf" name="variant_loss_fill_map" label="${tool.name} on ${on_string} (variant_loss_fill_map.pdf)" from_work_dir="classifier/figures/variant_loss_fill_map.pdf"/>
+    <data format="pdf" name="variant_OG_fill_map" label="${tool.name} on ${on_string} (variant_OG_fill_map.pdf)" from_work_dir="classifier/figures/variant_OG_fill_map.pdf"/>
+    <data format="pdf" name="variant_TSG_fill_map" label="${tool.name} on ${on_string} (variant_TSG_fill_map.pdf)" from_work_dir="classifier/figures/variant_TSG_fill_map.pdf"/>
     <data format="pdf" name="aupr_distribution" label="${tool.name} on ${on_string} (aupr_distribution.pdf)" from_work_dir="classifier/figures/aupr_distribution.pdf"/>
     <data format="pdf" name="auroc_distribution" label="${tool.name} on ${on_string} (auroc_distribution.pdf)" from_work_dir="classifier/figures/auroc_distribution.pdf"/>
     <data format="pdf" name="targene_pathway_events_counts" label="${tool.name} on ${on_string} (targene_pathway_events_counts.pdf)" from_work_dir="classifier/figures/targene_pathway_events_counts.pdf"/>
@@ -60,9 +60,9 @@
           <output name="targene_heatmap" file="targene_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="all_targene_heatmap" file="all_targene_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="50"/>
-          <output name="variant_gain_fill_map" file="variant_gain_fill_map.pdf" compare="sim_size" delta="50"/>
+          <output name="variant_OG_fill_map" file="variant_OG_fill_map.pdf" compare="sim_size" delta="50"/>
           <output name="aupr_distribution" file="aupr_distribution.pdf" compare="sim_size" delta="50"/>
-          <output name="variant_loss_fill_map" file="variant_loss_fill_map.pdf" compare="sim_size" delta="50"/>
+          <output name="variant_TSG_fill_map" file="variant_TSG_fill_map.pdf" compare="sim_size" delta="50"/>
           <output name="auroc_distribution" file="auroc_distribution.pdf" compare="sim_size" delta="50"/>
           <output name="targene_pathway_events_counts" file="targene_pathway_events_counts.pdf" compare="sim_size" delta="50"/>
           <output name="targene_pathway_variant_AUPR_ttest" file="targene_pathway_variant_AUPR_ttest.txt" compare="sim_size" delta="50"/>
@@ -78,7 +78,7 @@
       Output:
       - Heatmaps of the distribution of aberrant events across tumors ("targene_heatmap.pdf" and "all_targene_heatmap.pdf")
       - Gene weights/Coefficients contributing to the model (targene_coef_plot.pdf)
-      - Plot distributions of predictions according to variant classification for OG and TSG ("variant_gain_fill_map.pdf" and "variant_loss_fill_map.pdf")
+      - Plot distributions of predictions according to variant classification for OG and TSG ("variant_OG_fill_map.pdf" and "variant_TSG_fill_map.pdf")
       - Targene pathway events counts ("targene_pathway_events_counts.pdf")
       - Performance Metrics Distribution across pathway members ("aupr_distribution.pdf" and "auroc_distribution.pdf")
       - T-Test for AUPR between targene pathway genes and Other genes ("targene_pathway_variant_AUPR_ttest.txt")
