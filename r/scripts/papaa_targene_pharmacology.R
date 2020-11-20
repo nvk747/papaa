@@ -76,7 +76,7 @@ plot_drug <- function(pharm_df, compound, tissues = NULL, include_braf = FALSE,
    else {
     legend_label <- "Targene Status"
   }
- 
+   
 formula <- y ~ x
      p <- ggplot(pharm_subset_df, aes(x = weight, y = LN_IC50,
                                    color = as.factor(targene_status),
@@ -85,8 +85,8 @@ formula <- y ~ x
     scale_x_continuous(breaks = c(0, 0.5, 1),
                        limits = c(-0.1, 1.1)) +
     geom_smooth(method = "lm", se = se) +
-    geom_segment(aes(x = 0.5, y = -0.1, xend = 0.5, yend = 6),
-                 linetype = "dashed", color = "grey") +
+    #geom_segment(aes(x = 0.5, y = ln_min, xend = 0.5, yend = ln_max),
+    #             linetype = "dashed", color = "grey") +
     scale_fill_manual(values = c("#377eb8", "#ff7f00"),
                       name = legend_label,
                       breaks = c(0, 1),
@@ -96,19 +96,20 @@ formula <- y ~ x
                        breaks = c(0, 1),
                        labels = c("Wild-Type", "Mutant")) +
     stat_poly_eq(aes(label = NA),
-                 label.x.npc = 0.17, label.y.npc = 0.92,
-                 formula = formula,
-                 parse = TRUE, size = 4, na.rm = TRUE,
-                 rr.digits = 1) +
-    stat_fit_glance(method = "lm", geom = "text",
+                    label.x.npc = 0.17, label.y.npc = 0.92,
+                    formula = formula,
+                    parse = TRUE, size = 4, na.rm = TRUE,
+                    rr.digits = 1) +
+    stat_fit_glance(method = "lm", 
                     label.x.npc = 0.8, label.y.npc = 0.97,
                     method.args = list(formula = formula), size = 4,
-                    aes(label = paste("P = ",
-                                      signif(..p.value.., digits = 1),
-                                      sep = ""))) +
+                    label.x = "left",
+                    label.y = "top",
+                    aes(label = paste("P = ",signif(stat(p.value),digits = 1),
+                      sep = ""),size= 12)) +
     xlab("Targene Classifier Score") +
     ylab("LN_IC50") +
-    ggtitle(compound, subtitle = "GDSC Response") + 
+    ggtitle(compound, subtitle = " Pharmacological Response") + 
     theme_bw() +
     theme(axis.text = element_text(size = 12),
           axis.title = element_text(size = 14),
@@ -126,10 +127,7 @@ formula <- y ~ x
 focus_tissues <- c("CENTRAL NERVOUS SYSTEM", "SKIN", "BREAST", "HAEMATOPOIETIC AND LYMPHOID TISSUE", "LARGE INTESTINE",
                    "LUNG", "OVARY", "PANCREAS", "LIVER")
 
-pdf("./GDSC1_targene_all_drug_response.pdf")
-
-#comp_list <- as.matrix(read.csv("/data/vijay/git/pancancer/sanger_GDSC_data/final_data_for_testing/gdsc_ccle_common/compounds.csv", sep = ',',header = F))
-#comp_list
+pdf("./GDSC1_targene_all_drug_response.pdf",height = 5, width = 6)
 
 for (i in comp_list)
 {
@@ -143,7 +141,7 @@ dev.off()
 focus_tissues <- c("CENTRAL NERVOUS SYSTEM", "SKIN", "BREAST", "HAEMATOPOIETIC AND LYMPHOID TISSUE", "LARGE INTESTINE",
                    "LUNG", "OVARY", "PANCREAS", "LIVER")
 
-pdf("./GDSC2_targene_all_drug_response.pdf")
+pdf("./GDSC2_targene_all_drug_response.pdf",height = 5, width = 6)
 
 for (i in comp_list)
 {
@@ -157,7 +155,7 @@ dev.off()
 focus_tissues <- c("CENTRAL NERVOUS SYSTEM", "SKIN", "BREAST", "HAEMATOPOIETIC AND LYMPHOID TISSUE", "LARGE INTESTINE",
                    "LUNG", "OVARY", "PANCREAS", "LIVER")
 
-pdf("./GDSC1_ccle_targene_all_drug_response.pdf")
+pdf("./GDSC1_ccle_targene_all_drug_response.pdf",height = 5, width = 6)
 
 for (i in comp_list)
 {
@@ -171,7 +169,7 @@ dev.off()
 focus_tissues <- c("CENTRAL NERVOUS SYSTEM", "SKIN", "BREAST", "HAEMATOPOIETIC AND LYMPHOID TISSUE", "LARGE INTESTINE",
                    "LUNG", "OVARY", "PANCREAS", "LIVER")
 
-pdf("./GDSC2_ccle_targene_all_drug_response.pdf")
+pdf("./GDSC2_ccle_targene_all_drug_response.pdf", height = 5, width = 6)
 
 for (i in comp_list)
 {

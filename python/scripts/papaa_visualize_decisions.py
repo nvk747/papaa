@@ -50,8 +50,10 @@ def plot_decision_function(subset_df, filename, title):
     ax.set_xlim(0, 1.1)
     ax.set_title(title)
     sns.despine()
+
     plt.axvline(x=0.5, color='k', ls='dashed', linewidth=0.7)
     plt.tight_layout()
+    plt.legend(loc='upper left',fontsize='x-small', handleheight= 0.01,handlelength=1, frameon=False)
     plt.savefig(filename, format='pdf', bbox_inches='tight')
     plt.close()
 
