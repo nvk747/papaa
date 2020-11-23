@@ -1,11 +1,11 @@
 {% set version = "0.1.6" %}
-{% set sha256 = "eeb1190359a1511a294579581dd155b925a5d5488c121dd4613cf92c63531f28" %}
+{% set sha256 = "09605817aa2cc87166ed7f086e6d28fe24d952718a44f738edceb10cb91d6205" %}
 
 package:
     name: papaa
     version: '{{version}}'
 source:
-    url: https://github.com/nvk747/papaa/archive/papaa-0.1.6.tar.gz
+    url: https://github.com/nvk747/papaa/archive/v0.1.6.tar.gz
     sha256: '{{sha256}}'
 requirements:
     host:

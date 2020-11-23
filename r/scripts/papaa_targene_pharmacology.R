@@ -100,7 +100,7 @@ formula <- y ~ x
                     formula = formula,
                     parse = TRUE, size = 4, na.rm = TRUE,
                     rr.digits = 1) +
-    stat_fit_glance(method = "lm", 
+    stat_fit_glance(method = "lm",
                     label.x.npc = 0.8, label.y.npc = 0.97,
                     method.args = list(formula = formula), size = 4,
                     label.x = "left",
