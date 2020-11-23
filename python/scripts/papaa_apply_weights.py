@@ -131,7 +131,7 @@ y_df = covar_df.total_status
 covar_df = covar_df.drop('total_status', axis=1)
 
 # Subset x matrix to MAD genes, scale expression, and add covariate info
-x_df = rnaseq_df.ix[y_df.index, :]
+x_df = rnaseq_df.loc[y_df.index, :]
 scaled_fit = StandardScaler().fit(x_df)
 x_df_update = pd.DataFrame(scaled_fit.transform(x_df),
                            columns=x_df.columns)

@@ -1,5 +1,4 @@
 """
-Gregory Way 2017
 PanCancer Classifier
 tcga_util.py
 

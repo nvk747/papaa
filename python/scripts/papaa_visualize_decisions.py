@@ -39,19 +39,21 @@ def plot_decision_function(subset_df, filename, title):
     """
     sns.set(font_scale=1)
     sns.set_style("white")
-    plt.figure(figsize=(3.1, 2.5))
+    plt.figure(figsize=(3.2, 2.5))
     if subset_df[subset_df.total_status == 1].shape[0] > 0:
-        ax = sns.kdeplot(subset_df.ix[subset_df.total_status == 1, :].weight,
+        ax = sns.kdeplot(subset_df.loc[subset_df.total_status == 1, :].weight,
                          color='red', label='Deficient', shade=True)
     if subset_df[subset_df.total_status == 0].shape[0] > 0:
-        ax = sns.kdeplot(subset_df.ix[subset_df.total_status == 0, :].weight,
+        ax = sns.kdeplot(subset_df.loc[subset_df.total_status == 0, :].weight,
                          color='blue', label='Wild-Type', shade=True)
     ax.set(xlabel='Probability', ylabel='Density')
     ax.set_xlim(0, 1.1)
     ax.set_title(title)
     sns.despine()
+
     plt.axvline(x=0.5, color='k', ls='dashed', linewidth=0.7)
     plt.tight_layout()
+    plt.legend(loc='upper left',fontsize='x-small', handleheight= 0.01,handlelength=1, frameon=False)
     plt.savefig(filename, format='pdf', bbox_inches='tight')
     plt.close()
 
@@ -83,7 +85,7 @@ plot_decision_function(subset_df=pred_df[pred_df.include == 1],
 
 # Plot disease type specific decision functions
 for disease_type in diseases:
-    sub_df = pred_df.ix[pred_df.DISEASE == disease_type]
+    sub_df = pred_df.loc[pred_df.DISEASE == disease_type]
     d_file = os.path.join(out_dir, 'decision_plot_{}.pdf'.format(disease_type))
     d_title = 'Classifier Decision Function\n{}'.format(disease_type)
     plot_decision_function(subset_df=sub_df, filename=d_file, title=d_title)

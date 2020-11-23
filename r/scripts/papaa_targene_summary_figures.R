@@ -361,13 +361,13 @@ if (length(colnames(a))== 1) {
   labs(list(x = "Probability", y = "Proportion")) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 1)) +
   scale_y_continuous(expand = c(0, 0)) + base_theme +
-  theme(legend.position = c(1.0, 0.65),
+  theme(legend.position = c(0.9,0.85),
         legend.background = element_rect(fill = alpha("white", 0)),
-        legend.text = element_text(size = 5),
+        legend.text = element_text(size = 7),
         plot.margin = unit(c(0.2, 1.5, 0, 0.1),"cm"),
-        axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8),
-        axis.title = element_text(size = 8))
+        axis.text.x = element_text(size = 9),
+        axis.text.y = element_text(size = 9),
+        axis.title = element_text(size = 10))
   ggsave(var_gain_plot_file, width = 4.5, height = 4, dpi = 600)
   dev.off()
 } else {
@@ -385,13 +385,13 @@ ggplot(final_loss_df, aes(Weight, ..count.., fill = Class)) +
   labs(list(x = "Probability", y = "Proportion")) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 1)) +
   scale_y_continuous(expand = c(0, 0)) + base_theme +
-  theme(legend.position = c(1.0, 0.65),
+  theme(legend.position = c(0.9, 0.85),
         legend.background = element_rect(fill = alpha("white", 0)),
-        legend.text = element_text(size = 5),
+        legend.text = element_text(size = 7),
         plot.margin = unit(c(0.2, 1.5, 0, 0.1),"cm"),
-        axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8),
-        axis.title = element_text(size = 8))
+        axis.text.x = element_text(size = 9),
+        axis.text.y = element_text(size = 9),
+        axis.title = element_text(size = 10))
 ggsave(var_loss_plot_file, width = 4.5, height = 4, dpi = 600)
 dev.off() 
 } else {
