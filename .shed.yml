@@ -6,7 +6,7 @@ remote_repository_url: http://github.com/nvk747/papaa
 type: unrestricted
 auto_tool_repositories:
   name_template: "{{ tool_id }}"
-  description_template: "Wrapper for the pdaug tool suite: {{ tool_name }}"
+  description_template: "Wrapper for the papaa tool suite: {{ tool_name }}"
 suite:
   name: "papaa_suite"
   description: "PAPAA toolset for measuring aberrant pathway activity in TCGA."

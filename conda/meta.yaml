@@ -1,6 +1,6 @@
 
 {% set version = "0.1.7" %}
-{% set sha256 = "7c912510992df513a5be531746a1d1de57e53783f8e18386c7659b9ec72a1170" %}
+{% set sha256 = "66534215818eda7a326f8a746adc2b399b8c63fffafd2d58c10f138ea087d517" %}
 
 package:
     name: papaa
