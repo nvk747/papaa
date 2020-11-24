@@ -1,4 +1,4 @@
-<tool id="pancancer_classifier" name="PAPAA: PanCancer classifier" version="0.1.5" python_template_version="3.6">
+<tool id="pancancer_classifier" name="PAPAA: PanCancer classifier" version="@VERSION@" python_template_version="3.6">
     <description>classifier for pathway aberrant activity</description>
     <macros>
         <import>macros.xml</import>
@@ -137,7 +137,13 @@
             <output name="alt_summary_counts" file="alt_summary_counts.csv"/>
             <output name="classifier_coefficients" file="classifier_coefficients.tsv"/>
             <output name="classifier_summary" file="classifier_summary.txt"/>
-            <output name="pancan_roc_results" file="pancan_roc_results.tsv"/>
+            <output name="pancan_roc_results">
+              <assert_contents>
+                  <has_line line="&#009;fpr&#009;tpr&#009;threshold&#009;train_type&#009;disease" />
+                  <has_n_columns n="6" />
+                  <has_n_lines n="249" />
+              </assert_contents>
+            </output>
             <output name="summary_counts" file="summary_counts.csv"/>
             <output name="cv_heatmap" file="cv_heatmap.pdf" compare="sim_size" delta="50"/>
             <output name="all_disease_pr" file="all_disease_pr.pdf" compare="sim_size" delta="50" />

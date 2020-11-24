@@ -168,15 +168,15 @@ y = targene_geo_wt['weight']
 
 plt.title('Mutant vs WT')
 
-sns.distplot(x, hist = False, kde = True,  rug=True, rug_kws={"color": "darkblue"},
-                 kde_kws = {'shade': True, 'linewidth': 2, 'clip': (0.0, 1.0) }, 
+sns.distplot(x, hist = False, kde = True,  rug=True, rug_kws={"color": "darkblue", "height":0.075},
+                 kde_kws = {'shade': True, 'linewidth': 2.5, 'clip': (0.0, 1.0)}, 
                   label = 'Mutant', color = 'blue')
-sns.distplot(y, hist = False, kde = True, rug=True, rug_kws={"color": "darkorange"},
-                 kde_kws = {'shade': True, 'linewidth': 2, 'clip': (0.0, 1.0)},
+sns.distplot(y, hist = False, kde = True, rug=True, rug_kws={"color": "darkorange","height":0.075},
+                 kde_kws = {'shade': True, 'linewidth': 2.5, 'clip': (0.0, 1.0)},
                   label = 'WT', axlabel = 'Classifier Score', color = 'orange')
 
-plt.xlim(left = -0.1)
-plt.xlim(right = 1.1)
+plt.xlim(left = 0)
+plt.xlim(right = 1)
 locs_x, labels_x = plt.xticks(np.arange(0,1.25,0.25))
 plt.axvline(0.5, color='black', linestyle='dashed', linewidth=1)
 if args.figure2:
@@ -202,7 +202,7 @@ y_per = yscore/l_y * 100
 
 print('Stated as Tumor:',l_x)
 print('Stated as control:',l_y)
-print('no of tumor predicted as Mutant:',xscore)
-print('no of controls predicted as WT:',yscore)
+print('No of tumors predicted as Mutant:',xscore)
+print('No of controls predicted as WT:',yscore)
 print('Accuracy for tumor samples:',x_per)
 print('Accuracy for control samples:',y_per)

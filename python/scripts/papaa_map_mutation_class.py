@@ -114,6 +114,7 @@ if copy_number:
                                    right_on='index', how='outer')
 
     # Merge with mapped dataframe
+    map_df = map_df.rename_axis(None)
     map_df = map_df.merge(copy_df, left_on='ID', right_on='index', how='outer')
 
 map_df.to_csv(out_file, sep='\t')

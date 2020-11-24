@@ -191,8 +191,8 @@ ggplot(coef_df, aes(x = 1:nrow(coef_df), y = weight)) +
 ggplot2::ggsave(coef_plot_file, dpi = 600, width = 1.7, height = 1.6)
 
  # 3) Plot distributions of predictions according to variant classification
-var_gain_plot_file <- file.path(results_folder, "figures", "variant_gain_fill_map.pdf")
-var_loss_plot_file <- file.path(results_folder, "figures", "variant_loss_fill_map.pdf")
+var_gain_plot_file <- file.path(results_folder, "figures", "variant_OG_fill_map.pdf")
+var_loss_plot_file <- file.path(results_folder, "figures", "variant_TSG_fill_map.pdf")
 mut_df <- readr::read_tsv(file.path(results_folder, "tables",
                                     "mutation_classification_scores.tsv"))
 
@@ -361,13 +361,13 @@ if (length(colnames(a))== 1) {
   labs(list(x = "Probability", y = "Proportion")) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 1)) +
   scale_y_continuous(expand = c(0, 0)) + base_theme +
-  theme(legend.position = c(1.0, 0.65),
+  theme(legend.position = c(0.9,0.85),
         legend.background = element_rect(fill = alpha("white", 0)),
-        legend.text = element_text(size = 5),
+        legend.text = element_text(size = 7),
         plot.margin = unit(c(0.2, 1.5, 0, 0.1),"cm"),
-        axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8),
-        axis.title = element_text(size = 8))
+        axis.text.x = element_text(size = 9),
+        axis.text.y = element_text(size = 9),
+        axis.title = element_text(size = 10))
   ggsave(var_gain_plot_file, width = 4.5, height = 4, dpi = 600)
   dev.off()
 } else {
@@ -385,13 +385,13 @@ ggplot(final_loss_df, aes(Weight, ..count.., fill = Class)) +
   labs(list(x = "Probability", y = "Proportion")) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 1)) +
   scale_y_continuous(expand = c(0, 0)) + base_theme +
-  theme(legend.position = c(1.0, 0.65),
+  theme(legend.position = c(0.9, 0.85),
         legend.background = element_rect(fill = alpha("white", 0)),
-        legend.text = element_text(size = 5),
+        legend.text = element_text(size = 7),
         plot.margin = unit(c(0.2, 1.5, 0, 0.1),"cm"),
-        axis.text.x = element_text(size = 8),
-        axis.text.y = element_text(size = 8),
-        axis.title = element_text(size = 8))
+        axis.text.x = element_text(size = 9),
+        axis.text.y = element_text(size = 9),
+        axis.title = element_text(size = 10))
 ggsave(var_loss_plot_file, width = 4.5, height = 4, dpi = 600)
 dev.off() 
 } else {

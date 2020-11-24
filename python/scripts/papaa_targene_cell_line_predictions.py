@@ -130,7 +130,7 @@ ccle_maf_df = pd.read_table(ccle_maf_file, index_col=15)
 targenes = args.targenes.split(',')
 targene_status = ccle_all_mut_df.loc[targenes, :].T.apply(max, axis=1)
 
-# BRAF mutations do not contribute to targene status in this case
+# Identify all cell lines with mutations in given targenes
 ccle_mut_df = (
     ccle_all_mut_df.loc[targenes, :].T
     .assign(targene_status=targene_status).drop(['Description'])
