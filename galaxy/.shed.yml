@@ -10,3 +10,6 @@ auto_tool_repositories:
 suite:
   name: "papaa_suite"
   description: "PAPAA toolset for measuring aberrant pathway activity in TCGA."
+categories:
+- machine learning
+- graphical
