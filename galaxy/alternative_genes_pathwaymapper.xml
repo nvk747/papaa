@@ -58,22 +58,24 @@
     </tests>
     <help><![CDATA[
 
-      Pancancer_Aberrant_Pathway_Activity_Analysis scripts/alternative_genes_pathwaymapper.py:
+      **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_alternative_genes_pathwaymapper.py:**
 
-      --genes                  Comma separated string of HUGO symbols for target genes or targenes_list.csv file
-      --path_genes             Comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
-      --classifier_decisions   String of the location of classifier decisions with predictions or scores
-      --filename_mut           Filename of sample/gene mutations to use in model
-      --filename_mut_burden    Filename of sample mutation burden to use in model
-      --filename_sample        Filename of patient/samples to use in model
-      --filename_copy_loss     Filename of copy number loss
-      --filename_copy_gain     Filename of copy number gain
+        **Inputs:**
+          --gene  Comma separated string of HUGO symbols for target genes or targenes_list.csv file
+          --path_genes  Comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
+          --classifier_decisions  String of the location of classifier decisions with predictions or scores
+          --filename_mut  Filename of sample/gene mutations to use in model
+          --filename_mut_burden   Filename of sample mutation burden to use in model
+          --filename_sample   Filename of patient/samples to use in model
+          --filename_copy_loss  Filename of copy number loss
+          --filename_copy_gain  Filename of copy number gain
 
-      Output:
-      - calculate and display metrics for targen classification
-      - calulate and display pathway metrics ("pathway_metrics_pathwaymapper.txt")
-      - Visualize Distribution of AUROC and AUPRC for all genes and Get Metrics for All Genes ("all_gene_metric_ranks.tsv")
+        **Outputs:**
+          Calculate and display metrics for targene classification  
 
+          Calulate and display pathway metrics ("pathway_metrics_pathwaymapper.txt")  
 
-        ]]></help>
+          Visualize Distribution of AUROC and AUPRC for all genes and Get Metrics for All Genes ("all_gene_metric_ranks.tsv)  ]]>
+        
+      </help>
 </tool>

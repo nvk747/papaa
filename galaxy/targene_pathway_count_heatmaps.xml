@@ -44,7 +44,7 @@
         <param argument="--filename_sample" label="Filename of sample" name="filename_sample" optional="true" type="data" format="tabular" help="data/sample_freeze.tsv"/>
         <param argument="--filename_copy_loss" label="File with Copy number loss" name="filename_copy_loss" optional="false" type="data" format="tabular" help="data/copy_number_loss_status.tsv"/>
         <param argument="--filename_copy_gain" label="File with Copy number gain" name="filename_copy_gain" optional="false" type="data" format="tabular" help="data/copy_number_gain_status.tsv"/>
-        <param argument="--filename_cancer_gene_classification" label="File with cancer gene classification table" name="filename_cancer_gene_classification" optional="false" type="data" format="tabular" help="data/vogelstein_cancergenes.tsv"/>
+        <param argument="--filename_cancer_gene_classification" label="File with cancer gene classification table" name="filename_cancer_gene_classification" optional="false" type="data" format="tabular" help="data/cosmic_cancer_classification.tsv"/>
     </inputs>
     <outputs>
         <data format="txt" name="log" label="${tool.name} on ${on_string} (Log)"/>
@@ -67,7 +67,7 @@
           <param name="copy_number" value="yes"/>
           <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular" />
           <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular" />
-          <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular" />
+          <param name="filename_cancer_gene_classification" value="cosmic_cancer_classification.tsv" ftype="tabular" />
           <output name="log" file="count_heatmaps_Log.txt"/>
           <output name="cancer_type_mutation_heatmap" file="cancer_type_mutation_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="cancer_type_copy_number_heatmap" file="cancer_type_copy_number_heatmap.pdf" compare="sim_size" delta="50"/>
@@ -78,23 +78,26 @@
     </tests>
     <help><![CDATA[
 
-     Pancancer_Aberrant_Pathway_Activity_Analysis scripts/targene_pathway_count_heatmaps.py:
+      **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_targene_pathway_count_heatmaps.py:**
 
-      --genes                               comma separated string of HUGO symbols for target genes or targenes_list.csv file
-      --path_genes                          comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
-      --classifier_decisions                String of the location of classifier scores/alt_folder
-      --x_matrix                            Filename of features to use in model
-      --filename_mut                        Filename of sample/gene mutations to use in model
-      --filename_mut_burden                 Filename of sample mutation burden to use in model
-      --filename_sample                     Filename of patient/samples to use in model
-      --filename_copy_loss                  Filename of copy number loss
-      --filename_copy_gain                  Filename of copy number gain
-      --filename_cancer_gene_classification Filename of cancer gene classification table
+        **Inputs:**
+          --genes   comma separated string of HUGO symbols for target genes or targenes_list.csv file
+          --path_genes  comma separated string of HUGO symbols for all genes in the target pathway or path_genes.txt file
+          --classifier_decisions  String of the location of classifier scores/alt_folder
+          --x_matrix  Filename of features to use in model
+          --filename_mut  Filename of sample/gene mutations to use in model
+          --filename_mut_burden   Filename of sample mutation burden to use in model
+          --filename_sample   Filename of patient/samples to use in model
+          --filename_copy_loss  Filename of copy number loss
+          --filename_copy_gain  Filename of copy number gain
+          --filename_cancer_gene_classification   Filename of cancer gene classification table
 
-      Output:
-      - Mutation, Copy Number, and Total Heatmaps (Gene by Cancer-type).
-      - Calculates Mutations and copy number percentages of the genes in the pathway and generates "pathway_mapper_percentages.txt" file. 
-      - Summarizes mutation, copy, and total counts per sample by targene pathway and generates "path_events_per_sample.tsv" file
+        **Outputs:**
+          Mutation, Copy Number, and Total Heatmaps (Gene by Cancer-types)  
+
+          Calculates Mutations and copy number percentages of the genes in the pathway and generates "pathway_mapper_percentages.txt" file  
+
+          Summarizes mutation, copy, and total counts per sample by targene pathway and generates "path_events_per_sample.tsv" file  
 
       ]]></help>
 </tool>

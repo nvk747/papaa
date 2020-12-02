@@ -106,7 +106,7 @@
 
     <xml name="inputs_copy_number_class_file">
         <expand macro="inputs_copy_number_file" />
-        <param argument="--filename_cancer_gene_classification" label="File with cancer gene classification table" name="filename_cancer_gene_classification" optional="true" type="data" format="tabular" help="data/vogelstein_cancergenes.tsv"/>
+        <param argument="--filename_cancer_gene_classification" label="File with cancer gene classification table" name="filename_cancer_gene_classification" optional="true" type="data" format="tabular" help="data/cosmic_cancer_classification.tsv"/>
     </xml>
 
     <xml name="inputs_copy_number_file_conditional">

@@ -35,7 +35,7 @@
             <param name="copy_number" value="yes"/>
             <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
             <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
-            <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
+            <param name="filename_cancer_gene_classification" value="cosmic_cancer_classification.tsv" ftype="tabular"/>
             <param name="pancan_classifier_summary" value="classifier_summary.txt" ftype="txt"/>
             <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
             <output name="log" file="apply_weights_Log.txt"/>
@@ -49,20 +49,22 @@
         </test>
     </tests>
   <help><![CDATA[
-    Pancancer_Aberrant_Pathway_Activity_Analysis scripts/apply_weights.py:
+    
+    **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_apply_weights.py:**
 
-      --classifier                          String of the location of classifier file
-      --copy_number                         Supplement Y matrix with copy number events
-      --x_matrix                            Filename of features to use in model
-      --filename_mut                        Filename of sample/gene mutations to use in model
-      --filename_mut_burden                 Filename of sample mutation burden to use in model
-      --filename_sample                     Filename of patient/samples to use in model
-      --filename_copy_loss                  Filename of copy number loss
-      --filename_copy_gain                  Filename of copy number gain
-      --filename_cancer_gene_classification Filename of cancer gene classification table
+      **Inputs:**
+        --classifier  String of the location of classifier file
+        --copy_number   Supplement Y matrix with copy number events
+        --x_matrix  Filename of features to use in model
+        --filename_mut_burden   Filename of sample/gene mutations to use in model
+        --filename_mut_burden   Filename of sample mutation burden to use in model
+        --filename_sample   Filename of patient/samples to use in model
+        --filename_copy_loss  Filename of copy number loss
+        --filename_copy_gain  Filename of copy number gain
+        --filename_cancer_gene_classification   Filename of cancer gene classification table
 
-      Output:
-      - Generates .tsv file of classifier scores and other covariate info for plotting creates " classifier_decisions.tsv" file and Apply a logit transform [y = 1/(1+e^(-wX))] to output probabilities
+      **Outputs:**
+      Generates .tsv file of classifier scores and other covariate info for plotting creates " classifier_decisions.tsv" file and Apply a logit transform [y = 1/(1+e^(-wX))] to output probabilities  
 
       ]]></help>
 </tool>

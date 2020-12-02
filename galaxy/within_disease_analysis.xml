@@ -23,7 +23,7 @@
     --num_features '$num_features'
     #end if
     > '${log}'
-    && papaa_flatten_classifier_directory.py -i 'classifier' -o 'classifier_within'
+    && papaa_flatten_classifier_directory.py -i 'classifier/within_disease' -o 'classifier_within'
    ]]>
   </command>
   <inputs>
@@ -67,7 +67,7 @@
               <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>
               <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
               <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
-              <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
+              <param name="filename_cancer_gene_classification" value="cosmic_cancer_classification.tsv" ftype="tabular"/>
               <param name="alphas" value="0.1,0.13,0.15,0.18,0.2,0.3,0.4,0.6,0.7"/>
               <param name="l1_ratios" value="0.1,0.125,0.15,0.2,0.25,0.3,0.35"/>
               <param name="seed" value="1234"/>
@@ -116,25 +116,25 @@
         </test>
     </tests>
   <help><![CDATA[
-    Pancancer_Aberrant_Pathway_Activity_Analysis scripts/within_disease_analysis.py:
+    **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_within_disease_analysis.py:**
 
-      --genes                               comma separated string of HUGO symbols for target genes or targenes_list.csv file
-      --diseases                            Comma seperated diseases list in a file
-      --alphas                              The alphas for parameter sweep
-      --l1_ratios                           The l1 ratios for parameter sweep
-      --remove_hyper                        Remove hypermutated samples
-      --classifier_results                  String of location to classification folder extending to individual diseases  
-      --x_matrix                            Filename of features to use in model
-      --filename_mut                        Filename of sample/gene mutations to use in model
-      --filename_mut_burden                 Filename of sample mutation burden to use in model
-      --filename_sample                     Filename of patient/samples to use in model
-      --filename_copy_loss                  Filename of copy number loss
-      --filename_copy_gain                  Filename of copy number gain
-      --filename_cancer_gene_classification Filename of cancer gene classification table
+      **Inputs:**
+        --genes   comma separated string of HUGO symbols for target genes or targenes_list.csv file
+        --diseases  Comma seperated diseases list in a file
+        --alphas  The alphas for parameter sweep
+        --l1_ratios   The l1 ratios for parameter sweep
+        --remove_hyper  Remove hypermutated samples
+        --classifier_results  String of location to classification folder extending to individual diseases
+        --x_matrix  Filename of features to use in model
+        --filename_mut  Filename of sample/gene mutations to use in model
+        --filename_mut_burden   Filename of sample mutation burden to use in model
+        --filename_sample   Filename of patient/samples to use in model
+        --filename_copy_loss  Filename of copy number loss
+        --filename_copy_gain  Filename of copy number gain
+        --filename_cancer_gene_classification   Filename of cancer gene classification table
 
-      Output:
-      - ROC curves, AUROC across diseases, and classifier coefficients for individual diseases
+      **Outputs:**
+        ROC curves, AUROC across diseases, and classifier coefficients for individual diseases  
 
   ]]></help>
 </tool>
-

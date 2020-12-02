@@ -43,16 +43,17 @@
   </tests>
   <help><![CDATA[
 
-    Pancancer_Aberrant_Pathway_Activity_Analysis scripts/map_mutation_class.py:
-
-      --classifer_decisions   String of the location of folder containing classifier_decisions.tsv
-      --path_genes            comma separated string of HUGO symbols for all genes in the pathway or Pathway genes list file
-      --filename_copy_loss    Filename of copy number loss
-      --filename_copy_gain    Filename of copy number gain
-      --filename_raw_mut      Filename of raw mut MAF
+    **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_map_mutation_class.py:**
+      
+      **Inputs:**
+        --classifer_decisions   String of the location of folder containing classifier_decisions.tsv
+        --path_genes  comma separated string of HUGO symbols for all genes in the pathway or Pathway genes list file
+        --filename_copy_loss  Filename of copy number loss
+        --filename_copy_gain  Filename of copy number gain
+        --filename_raw_mut  Filename of raw mut MAF
         
-      Output:
-      - Merge per sample classifier scores with mutation types present in each sample and generate "mutation_classification_scores.tsv" file
+      **Outputs:**
+      Merge per sample classifier scores with mutation types present in each sample and generate "mutation_classification_scores.tsv" file  
 
       ]]></help>
 </tool>

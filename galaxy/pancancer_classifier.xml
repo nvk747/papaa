@@ -115,7 +115,7 @@
             <param name="copy_number" value="true"/>
             <param name="filename_copy_loss" value="copy_number_loss_status_t10p.tsv.gz" ftype="tabular"/>
             <param name="filename_copy_gain" value="copy_number_gain_status_t10p.tsv.gz" ftype="tabular"/>
-            <param name="filename_cancer_gene_classification" value="vogelstein_cancergenes.tsv" ftype="tabular"/>
+            <param name="filename_cancer_gene_classification" value="cosmic_cancer_classification.tsv" ftype="tabular"/>
             <param name="filter_count" value="15"/>
             <param name="filter_prop" value="0.05"/>
             <param name="num_features" value="8000"/>
@@ -155,51 +155,52 @@
         </test>
     </tests>
     <help><![CDATA[
-        Pancancer_Aberrant_Pathway_Activity_Analysis scripts/pancancer_classifier.py:
-
-        --genes                 comma separated string of HUGO symbols for target genes or targenes_list.csv file
-        --diseases              comma separated string of disease types/TCGA acronyms for classifier
-                                default: Auto (will pick diseases from filter args)
-        --folds                 number of cross validation folds
-                                default: 5
-        --drop                  drop the input genes from the X matrix
-                                default: False if flag omitted
-        --copy_number           optional flag to supplement copy number to define Y
-                                default: False if flag omitted
-        --filter_count          int of low count of mutation to include disease
-                                default: 15
-        --filter_prop           float of low proportion of mutated samples per disease
-                                default: 0.05
-        --num_features          int of number of genes to include in classifier
-                                default: 8000
-        --alphas                comma separated string of alphas to test in pipeline
-                                default: '0.1,0.15,0.2,0.5,0.8,1'
-        --l1_ratios             comma separated string of l1 parameters to test
-                                default: '0,0.1,0.15,0.18,0.2,0.3'
-        --alt_genes             comma separated string of alternative genes to test
-                                default: None
-        --alt_diseases          comma separated string of alternative diseases to test
-                                default: Auto 
-        --alt_filter_count      int of low count of mutations to include alt_diseases
-                                default: 15
-        -alt_filter_prop        float of low proportion of mutated samples alt_disease
-                                default: 0.05
-        --classifier_results    string of where to save the classifier figures
-                                default: Auto
-        --remove_hyper          store_true: remove hypermutated samples
-                                default: False if flag omitted
-        --keep_intermediate     store_true: keep intermediate roc curve items
-                                default: False if flag omitted
-        --x_matrix              string of which feature matrix to use
-                                default: raw
-        --classifier_folder     String of the location of classifier data
-                                default: Auto
-        --remove_hyper          store_true: remove hypermutated samples
-                                default: False if flag omitted
-        --keep_intermediate     store_true: keep intermediate roc curve items
-                                default: False if flag omitted
         
-        Output:
-        ROC curves, AUROC across diseases, and classifier coefficients]]>
+        **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_pancancer_classifier.py:**
+
+            **Inputs:**
+                --genes     comma separated string of HUGO symbols for target genes or targenes_list.csv file
+                --diseases  comma separated string of disease types/TCGA acronyms for classifier
+                            default: Auto (will pick diseases from filter args)
+                --folds     number of cross validation folds
+                            default: 5
+                --seed  value specifies the initial value of the random number seed
+                        default: 1234
+                --drop  drop the input genes from the X matrix
+                        default: False if flag omitted
+                --copy_number   optional flag to supplement copy number to define Y
+                                default: False if flag omitted
+                --filter_count  int of low count of mutation to include disease
+                                default: 15
+                --filter_prop   float of low proportion of mutated samples per disease
+                                default: 0.05
+                --num_features  int of number of genes to include in classifier
+                                default: 8000
+                --alphas    comma separated string of alphas to test in pipeline default: '0.1,0.15,0.2,0.5,0.8,1'
+                --l1_ratios     comma separated string of l1 parameters to test
+                                default: '0,0.1,0.15,0.18,0.2,0.3'
+                --alt_genes     comma separated string of alternative genes to test
+                                default: None
+                --alt_diseases  comma separated string of alternative diseases to test
+                                default: Auto
+                --alt_filter_count  int of low count of mutations to include alt_diseases
+                                    default: 15
+                --alt_filter_prop   float of low proportion of mutated samples alt_disease
+                                    default: 0.05
+                --classifier_results    string of the location to save the classifier results/figures
+                                        default: Auto
+                --remove_hyper  store_true: remove hypermutated samples
+                                default: False if flag omitted
+                --keep_intermediate     store_true: keep intermediate roc curve items
+                                        default: False if flag omitted
+                --x_matrix  string of which feature matrix to use
+                            default: raw
+                --remove_hyper  store_true: remove hypermutated samples
+                                default: False if flag omitted
+                --keep_intermediate     store_true: keep intermediate roc curve items
+                                        default: False if flag omitted
+        
+            **Outputs:**
+            ROC curves, AUROC across diseases, and classifier coefficients  ]]>
     </help>
 </tool>

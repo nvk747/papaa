@@ -71,17 +71,23 @@
         </test>
     </tests>
   <help><![CDATA[
-    Pancancer_Aberrant_Pathway_Activity_Analysis scripts/viz/targene_pharmacology.R:
+    **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_targene_summary_figures.R:**
 
-      --classifier_summary   String of the location of classifier data
+      **Inputs:**
+          --classifier_summary   String of the location of classifier data
+          --seed  value specifies the initial value of the random number seed default: 1234
       
-      Output:
-      - Heatmaps of the distribution of aberrant events across tumors ("targene_heatmap.pdf" and "all_targene_heatmap.pdf")
-      - Gene weights/Coefficients contributing to the model (targene_coef_plot.pdf)
-      - Plot distributions of predictions according to variant classification for OG and TSG ("variant_OG_fill_map.pdf" and "variant_TSG_fill_map.pdf")
-      - Targene pathway events counts ("targene_pathway_events_counts.pdf")
-      - Performance Metrics Distribution across pathway members ("aupr_distribution.pdf" and "auroc_distribution.pdf")
-      - T-Test for AUPR between targene pathway genes and Other genes ("targene_pathway_variant_AUPR_ttest.txt")
+      **Outputs:**
+          Heatmaps of the distribution of aberrant events across tumors ("targene_heatmap.pdf" and "all_targene_heatmap.pdf")  
+
+          Gene weights/Coefficients contributing to the model (targene_coef_plot.pdf)  
+
+          Plot distributions of predictions according to variant classification for OG and TSG ("variant_OG_fill_map.pdf" and "variant_TSG_fill_map.pdf")  
+
+          Targene pathway events counts ("targene_pathway_events_counts.pdf")  
+
+          Performance Metrics Distribution across pathway members ("aupr_distribution.pdf" and "auroc_distribution.pdf")
+          T-Test for AUPR between targene pathway genes and Other genes ("targene_pathway_variant_AUPR_ttest.txt")  
 
     ]]></help>
 </tool>

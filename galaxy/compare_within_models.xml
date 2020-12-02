@@ -104,14 +104,16 @@
     </tests>
     <help><![CDATA[
 
-      Pancancer_Aberrant_Pathway_Activity_Analysis scripts/compare_within_models.R:
+        **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_compare_within_models.R:**
+            
+            **Inputs:**
+                --pancan_model      String of the Directory: location of Pan classifier summary file
+                --alt_model         String of the Directory: location of Alt gene classifier summary file
+            
+            **Outputs:**
+                Comparision plots for Pan and Pan_within models ("auroc_comparison.pdf" and "aupr_comparison.pdf")  
 
-        --pancan_model    String of the Directory location of where pan classifier summary is
-        --alt_model          String of the Directory location of classifier summary for alt gene
-
-      Output:
-      - Process PanCancer Classifier and within disease/cancertypes summary files and generate AUROC and AUPR comparion files ("auroc_comparison.pdf" and "aupr_comparison.pdf")
-      - Process Altgene Classifier summary and altgene within disease/cancertypes summary files and process PanCancer Classifier _altgene_summary file to determine alternative classifier prediction performance on alternative gene generate AUROC and AUPR comparion files ("alt_gene_auroc_comparison.pdf" and "alt_gene_aupr_comparison.pdf") 
-
-        ]]></help>
+                Comparision plots for altgene, alt_within, Pan_alt models ("alt_gene_auroc_comparison.pdf" and "alt_gene_aupr_comparison.pdf")  ]]>
+            
+    </help>
 </tool>

@@ -47,16 +47,18 @@
       </test>
   </tests>
   <help><![CDATA[
-    Pancancer_Aberrant_Pathway_Activity_Analysis scripts/visualize_decisions.py:
+    **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_visualize_decisions.py:**
 
-        --classifier_decisions  String of the folder location of classifier_decisions.tsv
-        --custom  comma separated list of columns to plot
-                  (optional: True)
+      **Inputs:**
+          --classifier_decisions  String of the folder location of classifier_decisions.tsv
+          --custom  comma separated list of columns to plot (optional: True)
       
-      Output:
-      - Visualize decision function for all samples ("total_decisions.pdf") 
-      - Plot disease type specific decision functions ("decision_plot_{}.pdf")
-      - Visualize decision function for hyper mutated tumors ("hyper_mutated.pdf")
+      **Outputs:**
+          Visualize decision function for all samples ("total_decisions.pdf")  
+
+          Plot disease type specific decision functions ("decision_plot_{}.pdf")  
+
+          Visualize decision function for hyper mutated tumors ("hyper_mutated.pdf")  
 
     ]]></help>
 </tool>
