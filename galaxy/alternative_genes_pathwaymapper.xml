@@ -43,7 +43,7 @@
     <tests>
         <test>
           <param name="classifier_decisions" value="classifier_decisions.tsv" ftype="tabular"/>
-          <param name="genes" value="ERBB2,KRAS,PIK3CA,AKT1"/>
+          <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
           <param name="path_genes" value="path_genes.txt" ftype="txt"/>
           <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
           <param name="filename_sample" value="sample_freeze.tsv" ftype="tabular"/>

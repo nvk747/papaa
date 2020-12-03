@@ -59,7 +59,7 @@
   </outputs>
   <tests>
         <test>
-              <param name="genes" value="ERBB2,KRAS,PIK3CA,AKT1"/>
+              <param name="genes" value="ERBB2,PIK3CA,KRAS,AKT1"/>
               <param name="diseases" value="GBM"/>
               <param name="x_matrix" value="pancan_rnaseq_freeze_t1p.tsv.gz" ftype="tabular"/>
               <param name="filename_mut" value="pancan_mutation_freeze_t1p.tsv.gz" ftype="tabular"/>
@@ -75,16 +75,16 @@
               <param name="remove_hyper" value="true"/>
               <output name="log">
                 <assert_contents>
-                  <has_line line="[&apos;ERBB2&apos;, &apos;KRAS&apos;, &apos;PIK3CA&apos;, &apos;AKT1&apos;]" />
+                  <has_line line="[&apos;ERBB2&apos;, &apos;PIK3CA&apos;, &apos;KRAS&apos;, &apos;AKT1&apos;]" />
                   <has_line line="GBM" />
                   <has_n_lines n="3" />
                 </assert_contents>
               </output>
               <output_collection name="classifier_coefficients" type="list">
-                 <element name="GBM" file="GBM_102_coef.tabular" ftype="tabular" />
+                 <element name="GBM" file="GBM_108_coef.tabular" ftype="tabular" />
               </output_collection>
               <output_collection name="classifier_summary" type="list">
-                 <element name="GBM" file="GBM_101_summary.txt" ftype="txt" />
+                 <element name="GBM" file="GBM_111_summary.txt" ftype="txt" />
               </output_collection>
               <output_collection name="pancan_roc_results" type="list">
                  <element name="GBM" ftype="tabular">
@@ -96,15 +96,15 @@
                   </element>
               </output_collection>
               <output_collection name="summary_counts" type="list">
-                 <element name="GBM" file="GBM_93_summary_counts.csv" ftype="csv" />
+                 <element name="GBM" file="GBM_106_summary_counts.csv" ftype="csv" />
               </output_collection>
               <output_collection name="within_disease" type="list:list">
                 <element name="GBM" type="list">
-                  <element name="cv_heatmap" file="GBM_cv_heatmap_96.pdf" compare="sim_size" delta="50"/>
-                  <element name="all_disease_pr" file="GBM_all_disease_pr_94.pdf" compare="sim_size" delta="50" />
-                  <element name="all_disease_roc" file="GBM_all_disease_roc_95.pdf" compare="sim_size" delta="50"/>
-                  <element name="disease_aupr" file="GBM_disease_aupr_97.pdf" compare="sim_size" delta="50"/>
-                  <element name="disease_auroc" file="GBM_disease_auroc_98.pdf" compare="sim_size" delta="50"/>
+                  <element name="cv_heatmap" file="GBM_cv_heatmap_103.pdf" compare="sim_size" delta="50"/>
+                  <element name="all_disease_pr" file="GBM_all_disease_pr_101.pdf" compare="sim_size" delta="50" />
+                  <element name="all_disease_roc" file="GBM_all_disease_roc_102.pdf" compare="sim_size" delta="50"/>
+                  <element name="disease_aupr" file="GBM_disease_aupr_104.pdf" compare="sim_size" delta="50"/>
+                  <element name="disease_auroc" file="GBM_disease_auroc_105.pdf" compare="sim_size" delta="50"/>
                 </element>
               </output_collection>
               <output_collection name="disease_figures" type="list:list">
