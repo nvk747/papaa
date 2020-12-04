@@ -39,12 +39,12 @@
     </outputs>
     <tests>
         <test>
-          <param name="compound" value="pi3k_compounds.txt" ftype="txt"/>
+          <param name="compound" value="compounds_of_interest.txt" ftype="txt"/>
           <param name="gdsc1_targene_pharmacology_predictions" value="gdsc1_targene_pharmacology_predictions.tsv" ftype="tabular"/>
           <param name="gdsc2_targene_pharmacology_predictions" value="gdsc2_targene_pharmacology_predictions.tsv" ftype="tabular"/>
           <param name="gdsc1_ccle_targene_pharmacology_predictions" value="gdsc1_ccle_targene_pharmacology_predictions.tsv" ftype="tabular"/>
           <param name="gdsc2_ccle_targene_pharmacology_predictions" value="gdsc2_ccle_targene_pharmacology_predictions.tsv" ftype="tabular"/>
-          <output name="log" file="pharmacology_Log.txt"/>
+          <output name="log" file="targene_pharmacology_Log.txt"/>
           <output name="GDSC1_targene_all_drug_response" file="GDSC1_targene_all_drug_response.pdf" compare="sim_size" delta="50"/>
           <output name="GDSC2_targene_all_drug_response" file="GDSC2_targene_all_drug_response.pdf" compare="sim_size" delta="50"/>
           <output name="GDSC1_ccle_targene_all_drug_response" file="GDSC1_ccle_targene_all_drug_response.pdf" compare="sim_size" delta="50"/>

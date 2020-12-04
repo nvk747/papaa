@@ -84,7 +84,7 @@
           <param name="pancan_classifier_coefficients" value="classifier_coefficients.tsv" ftype="tabular"/>
           <param name="nucleotide_mutation_scores" value="nucleotide_mutation_scores.tsv" ftype="tabular"/>
           <param name="amino_acid_mutation_scores" value="amino_acid_mutation_scores.tsv" ftype="tabular"/>
-          <param name="targenes" value="ERBB2_MUT,KRAS_MUT,PIK3CA_MUT,AKT1_MUT"/>
+          <param name="targenes" value="ERBB2_MUT,PIK3CA_MUT,KRAS_MUT,AKT1_MUT"/>
           <param name="path_genes" value="path_genes.txt" ftype="txt"/>
           <param name="ccle_rnaseq" value="ccle_rnaseq_genes_rpkm_20180929_mod_t5p.tsv.gz" ftype="tabular"/>
           <param name="ccle_mut" value="CCLE_MUT_CNA_AMP_DEL_binary_Revealer.gct.gz" ftype="tabular"/>
@@ -93,7 +93,7 @@
           <param name="gdsc_mut" value="GDSC_CCLE_common_mut_cnv_binary.tsv.gz" ftype="tabular"/>
           <param name="gdsc1_phar" value="gdsc1_ccle_pharm_fitted_dose_data_t10p.txt.gz" ftype="txt"/>
           <param name="gdsc2_phar" value="gdsc2_ccle_pharm_fitted_dose_data_t10p.txt.gz" ftype="txt"/>
-          <output name="log" file="cell_line_pred_Log.txt" lines_diff="2"/>
+          <output name="log" file="targene_cell_line_predictions_Log.txt" lines_diff="2"/>
           <output name="ccle_histogram" file="ccle_histogram.png" compare="sim_size" delta="50"/>
           <output name="ccle_targene_classifier_scores" file="ccle_targene_classifier_scores.tsv" />
           <output name="ccle_targene_WT_MUT_predictions" file="ccle_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="100"/>
@@ -104,14 +104,14 @@
           <output name="gdsc_targene_WT_MUT_predictions" file="gdsc_targene_WT_MUT_predictions.pdf" compare="sim_size" delta="50"/>
           <output name="gdsc1_targene_pharmacology_predictions">
             <assert_contents>
-                <has_line line="&#009;GDSC1_cell_line&#009;NLME_CURVE_ID&#009;COSMIC_ID&#009;SANGER_MODEL_ID&#009;TCGA_DESC&#009;DRUG_ID&#009;Compound&#009;PUTATIVE_TARGET&#009;PATHWAY_NAME&#009;MIN_CONC&#009;MAX_CONC&#009;LN_IC50&#009;AUC&#009;RMSE&#009;Z_SCORE&#009;tissue&#009;ERBB2_MUT&#009;KRAS_MUT&#009;PIK3CA_MUT&#009;AKT1_MUT&#009;targene_status&#009;weight&#009;sample_name&#009;predictions" />
+                <has_line line="&#009;GDSC1_cell_line&#009;NLME_CURVE_ID&#009;COSMIC_ID&#009;SANGER_MODEL_ID&#009;TCGA_DESC&#009;DRUG_ID&#009;Compound&#009;PUTATIVE_TARGET&#009;PATHWAY_NAME&#009;MIN_CONC&#009;MAX_CONC&#009;LN_IC50&#009;AUC&#009;RMSE&#009;Z_SCORE&#009;tissue&#009;ERBB2_MUT&#009;PIK3CA_MUT&#009;KRAS_MUT&#009;AKT1_MUT&#009;targene_status&#009;weight&#009;sample_name&#009;predictions" />
                 <has_n_columns n="25" />
                 <has_n_lines n="10281" />
             </assert_contents>
           </output>
           <output name="gdsc2_targene_pharmacology_predictions">
             <assert_contents>
-                <has_line line="&#009;GDSC1_cell_line&#009;NLME_CURVE_ID&#009;COSMIC_ID&#009;SANGER_MODEL_ID&#009;TCGA_DESC&#009;DRUG_ID&#009;Compound&#009;PUTATIVE_TARGET&#009;PATHWAY_NAME&#009;MIN_CONC&#009;MAX_CONC&#009;LN_IC50&#009;AUC&#009;RMSE&#009;Z_SCORE&#009;tissue&#009;ERBB2_MUT&#009;KRAS_MUT&#009;PIK3CA_MUT&#009;AKT1_MUT&#009;targene_status&#009;weight&#009;sample_name&#009;predictions" />
+                <has_line line="&#009;GDSC1_cell_line&#009;NLME_CURVE_ID&#009;COSMIC_ID&#009;SANGER_MODEL_ID&#009;TCGA_DESC&#009;DRUG_ID&#009;Compound&#009;PUTATIVE_TARGET&#009;PATHWAY_NAME&#009;MIN_CONC&#009;MAX_CONC&#009;LN_IC50&#009;AUC&#009;RMSE&#009;Z_SCORE&#009;tissue&#009;ERBB2_MUT&#009;PIK3CA_MUT&#009;KRAS_MUT&#009;AKT1_MUT&#009;targene_status&#009;weight&#009;sample_name&#009;predictions" />
                 <has_n_columns n="25" />
                 <has_n_lines n="10281" />
             </assert_contents>

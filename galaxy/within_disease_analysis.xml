@@ -77,7 +77,7 @@
                 <assert_contents>
                   <has_line line="[&apos;ERBB2&apos;, &apos;PIK3CA&apos;, &apos;KRAS&apos;, &apos;AKT1&apos;]" />
                   <has_line line="GBM" />
-                  <has_n_lines n="3" />
+                  <has_n_lines n="2" />
                 </assert_contents>
               </output>
               <output_collection name="classifier_coefficients" type="list">
@@ -91,7 +91,7 @@
                     <assert_contents>
                         <has_line line="&#009;fpr&#009;tpr&#009;threshold&#009;train_type&#009;disease" />
                         <has_n_columns n="6" />
-                        <has_n_lines n="249" />
+                        <has_n_lines n="253" />
                     </assert_contents>
                   </element>
               </output_collection>

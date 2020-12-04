@@ -56,7 +56,7 @@
           <param name="mutation_classification_scores" value="mutation_classification_scores.tsv" ftype="tabular"/>
           <param name="path_events_per_sample" value="path_events_per_sample.tsv" ftype="tabular"/>
           <param name="all_gene_metric_ranks" value="all_gene_metric_ranks.tsv" ftype="tabular"/>
-          <output name="log" file="summary_fig_Log.txt"/>
+          <output name="log" file="targene_summary_figures_Log.txt"/>
           <output name="targene_heatmap" file="targene_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="all_targene_heatmap" file="all_targene_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="50"/>
