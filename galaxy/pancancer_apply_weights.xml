@@ -53,7 +53,7 @@
     **Pancancer_Aberrant_Pathway_Activity_Analysis scripts/papaa_apply_weights.py:**
 
       **Inputs:**
-        --classifier  String of the location of classifier file
+        --classifier_summary  String of the location of classifier_summary.txt file
         --copy_number   Supplement Y matrix with copy number events
         --x_matrix  Filename of features to use in model
         --filename_mut_burden   Filename of sample/gene mutations to use in model
@@ -64,7 +64,7 @@
         --filename_cancer_gene_classification   Filename of cancer gene classification table
 
       **Outputs:**
-      Generates .tsv file of classifier scores and other covariate info for plotting creates " classifier_decisions.tsv" file and Apply a logit transform [y = 1/(1+e^(-wX))] to output probabilities  
+      Apply a logit transform on expression values (y = 1/(1+e^(-wX))) to output mutational probabilities. Generates "classifier_decisions.tsv" file which has scores/probabilities and other covariate information.  The scores/probabilities will be used for gene ranking and variant specifific classificaition.  
 
       ]]></help>
 </tool>

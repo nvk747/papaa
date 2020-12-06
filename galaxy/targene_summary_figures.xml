@@ -87,7 +87,11 @@
           Targene pathway events counts ("targene_pathway_events_counts.pdf")  
 
           Performance Metrics Distribution across pathway members ("aupr_distribution.pdf" and "auroc_distribution.pdf")
-          T-Test for AUPR between targene pathway genes and Other genes ("targene_pathway_variant_AUPR_ttest.txt")  
+          T-Test for AUPR between targene pathway genes and Other genes ("targene_pathway_variant_AUPR_ttest.txt") 
+
+          Extracting sample classifier scores for nucleotide level alterations in each sample and generate "nucleotide_mutation_scores.tsv" file
+
+          Extracting sample classifier scores for amino-acid level alterations in each sample and generate "amino_acid_mutation_scores.tsv" file 
 
     ]]></help>
 </tool>
