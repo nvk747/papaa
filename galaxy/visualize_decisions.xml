@@ -58,7 +58,7 @@
 
           Plot disease type specific decision functions ("decision_plot_{}.pdf")  
 
-          Visualize decision function for hyper mutated tumors ("hyper_mutated.pdf")  
-
-    ]]></help>
+          Visualize decision function for hyper mutated tumors ("hyper_mutated.pdf") ]]>
+  </help>
+  <expand macro="citations" />
 </tool>

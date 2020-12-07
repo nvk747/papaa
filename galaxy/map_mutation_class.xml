@@ -21,7 +21,7 @@
   </command>
   <inputs>
     <param argument="--classifier_decisions" label="pancancer decisions" name="classifier_decisions" optional="false" type="data" format="tabular" help="classifier_decisions.tsv"/>
-    <param argument="--path_genes" label="string of the genes to extract or genelist file" name="path_genes" optional="true" type= "data" />
+    <param argument="--path_genes" label="string of the genes to extract or genelist file" name="path_genes" optional="true" type= "data" format="txt"/>
     <expand macro="inputs_copy_number_file_conditional" />
     <expand macro="input_filename_raw_mut" />
   </inputs>
@@ -53,7 +53,8 @@
         --filename_raw_mut  Filename of raw mut MAF
         
       **Outputs:**
-      Merge per sample classifier scores with mutation types present in each sample and generate "mutation_classification_scores.tsv" file  
-
-      ]]></help>
+      Merge per sample classifier scores with mutation types present in each sample and generate "mutation_classification_scores.tsv" file ]]>
+        
+    </help>
+    <expand macro="citations" />
 </tool>

@@ -116,4 +116,5 @@
                 Comparision plots for altgene, alt_within, Pan_alt models ("alt_gene_auroc_comparison.pdf" and "alt_gene_aupr_comparison.pdf")  ]]>
             
     </help>
+    <expand macro="citations" />
 </tool>

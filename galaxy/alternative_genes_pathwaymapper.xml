@@ -76,6 +76,6 @@
           Calulate and display pathway metrics ("pathway_metrics_pathwaymapper.txt")  
 
           Visualize Distribution of AUROC and AUPRC for all genes and Get Metrics for All Genes ("all_gene_metric_ranks.tsv)  ]]>
-        
       </help>
+      <expand macro="citations" />
 </tool>

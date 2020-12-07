@@ -101,7 +101,7 @@
 
           Calculates Mutations and copy number percentages of the genes in the pathway and generates "pathway_mapper_percentages.txt" file  
 
-          Summarizes mutation, copy, and total counts per sample by targene pathway and generates "path_events_per_sample.tsv" file  
-
-      ]]></help>
+          Summarizes mutation, copy, and total counts per sample by targene pathway and generates "path_events_per_sample.tsv" file ]]>
+      </help>
+      <expand macro="citations" />
 </tool>

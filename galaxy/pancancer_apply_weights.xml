@@ -64,7 +64,7 @@
         --filename_cancer_gene_classification   Filename of cancer gene classification table
 
       **Outputs:**
-      Apply a logit transform on expression values (y = 1/(1+e^(-wX))) to output mutational probabilities. Generates "classifier_decisions.tsv" file which has scores/probabilities and other covariate information.  The scores/probabilities will be used for gene ranking and variant specifific classificaition.  
-
-      ]]></help>
+      Apply a logit transform on expression values (y = 1/(1+e^(-wX))) to output mutational probabilities. Generates "classifier_decisions.tsv" file which has scores/probabilities and other covariate information.  The scores/probabilities will be used for gene ranking and variant specifific classificaition. ]]>  
+  </help>
+  <expand macro="citations" />
 </tool>

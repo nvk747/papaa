@@ -43,9 +43,9 @@
     <data format="pdf" name="aupr_distribution" label="${tool.name} on ${on_string} (aupr_distribution.pdf)" from_work_dir="classifier/figures/aupr_distribution.pdf"/>
     <data format="pdf" name="auroc_distribution" label="${tool.name} on ${on_string} (auroc_distribution.pdf)" from_work_dir="classifier/figures/auroc_distribution.pdf"/>
     <data format="pdf" name="targene_pathway_events_counts" label="${tool.name} on ${on_string} (targene_pathway_events_counts.pdf)" from_work_dir="classifier/figures/targene_pathway_events_counts.pdf"/>
-    <data format="txt" name="targene pathway variant AUPR ttest" label="${tool.name} on ${on_string} (targene_pathway_variant_AUPR_ttest.txt)" from_work_dir="classifier/tables/targene_pathway_variant_AUPR_ttest.txt"/>
-    <data format="tabular" name="amino acid mutation scores" label="${tool.name} on ${on_string} (amino_acid_mutation_scores.tsv)" from_work_dir="classifier/tables/amino_acid_mutation_scores.tsv"/>
-    <data format="tabular" name="nucleotide acid mutation scores" label="${tool.name} on ${on_string} (nucleotide_mutation_scores.tsv)" from_work_dir="classifier/tables/nucleotide_mutation_scores.tsv"/>
+    <data format="txt" name="targene_pathway_variant_AUPR_ttest" label="${tool.name} on ${on_string} (targene_pathway_variant_AUPR_ttest.txt)" from_work_dir="classifier/tables/targene_pathway_variant_AUPR_ttest.txt"/>
+    <data format="tabular" name="amino_acid_mutation_scores" label="${tool.name} on ${on_string} (amino_acid_mutation_scores.tsv)" from_work_dir="classifier/tables/amino_acid_mutation_scores.tsv"/>
+    <data format="tabular" name="nucleotide_mutation_scores" label="${tool.name} on ${on_string} (nucleotide_mutation_scores.tsv)" from_work_dir="classifier/tables/nucleotide_mutation_scores.tsv"/>
   </outputs>
   <tests>
         <test>
@@ -78,7 +78,9 @@
           --seed  value specifies the initial value of the random number seed default: 1234
       
       **Outputs:**
-          Heatmaps of the distribution of aberrant events across tumors ("targene_heatmap.pdf" and "all_targene_heatmap.pdf")  
+          Heatmap for mutation and gain propotions for the genes used in model across all the TCGA cancer types (all_targene_heatmap.pdf)
+
+          Heatmap for total mutation and total gain propotions for the genes used in model across all the TCGA cancer types (targene_heatmap.pdf")
 
           Gene weights/Coefficients contributing to the model (targene_coef_plot.pdf)  
 
@@ -91,7 +93,7 @@
 
           Extracting sample classifier scores for nucleotide level alterations in each sample and generate "nucleotide_mutation_scores.tsv" file
 
-          Extracting sample classifier scores for amino-acid level alterations in each sample and generate "amino_acid_mutation_scores.tsv" file 
-
-    ]]></help>
+          Extracting sample classifier scores for amino-acid level alterations in each sample and generate "amino_acid_mutation_scores.tsv" file ]]>
+    </help>
+    <expand macro="citations" />
 </tool>

@@ -115,6 +115,7 @@
           <when value="--copy_number">
             <expand macro="inputs_copy_number_file" />
           </when>
+          <when value=""/>
         </conditional>
     </xml>
 
@@ -124,6 +125,7 @@
           <when value="--copy_number">
             <expand macro="inputs_copy_number_class_file" />
           </when>
+          <when value=""/>
         </conditional>
     </xml>
 
@@ -218,5 +220,10 @@
         #end if
         ]]>
     </token>
+    <xml name="citations">
+        <citations>
+            <yield />
+        </citations>
+    </xml>
 </macros>
 
