@@ -120,7 +120,7 @@
 
       **Inputs:**
         --genes   comma separated string of HUGO symbols for target genes or targenes_list.csv file
-        --diseases  Comma seperated diseases list in a file
+        --diseases  Comma separated diseases list in a file
         --alphas  The alphas for parameter sweep
         --l1_ratios   The l1 ratios for parameter sweep
         --remove_hyper  Remove hypermutated samples

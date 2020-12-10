@@ -111,9 +111,9 @@
                 --alt_model         String of the Directory: location of Alt gene classifier summary file
             
             **Outputs:**
-                Comparision plots for Pan and Pan_within models ("auroc_comparison.pdf" and "aupr_comparison.pdf")  
+                Comparison plots for Pan and Pan_within models ("auroc_comparison.pdf" and "aupr_comparison.pdf")  
 
-                Comparision plots for altgene, alt_within, Pan_alt models ("alt_gene_auroc_comparison.pdf" and "alt_gene_aupr_comparison.pdf")  ]]>
+                Comparison plots for altgene, alt_within, Pan_alt models ("alt_gene_auroc_comparison.pdf" and "alt_gene_aupr_comparison.pdf")  ]]>
             
     </help>
     <expand macro="citations" />

@@ -78,9 +78,9 @@
           --seed  value specifies the initial value of the random number seed default: 1234
       
       **Outputs:**
-          Heatmap for mutation and gain propotions for the genes used in model across all the TCGA cancer types (all_targene_heatmap.pdf)
+          Heatmap for mutation and gain proportions for the genes used in model across all the TCGA cancer types (all_targene_heatmap.pdf)
 
-          Heatmap for total mutation and total gain propotions for the genes used in model across all the TCGA cancer types (targene_heatmap.pdf")
+          Heatmap for total mutation and total gain proportions for the genes used in model across all the TCGA cancer types (targene_heatmap.pdf")
 
           Gene weights/Coefficients contributing to the model (targene_coef_plot.pdf)  
 

@@ -141,7 +141,7 @@
 
           Generate classifier scores for CCLE cell lines and combines CCLE mutational data and variant data with classifier scores (ccle_targene_classifier_scores.tsv)  
 
-          Performes t-test on classifier weights across targene mutant vs targene wildtype cell-line groups(ccle_targene_WT_MUT_predictions.pdf)  
+          Performs t-test on classifier weights across targene mutant vs targene wildtype cell-line groups(ccle_targene_WT_MUT_predictions.pdf)  
 
           Add CCLE nucleotide scores at variant level and update nucleotide_mutation_scores.tsv (updated_data_nucleotide_scores.csv)  
 
@@ -151,7 +151,7 @@
 
           Generate classifier scores for GDSC cell lines and combines CCLE mutational data and variant data with classifier scores (gdsc_targene_classifier_scores.tsv)  
 
-          Performes t-test on classifier weights across targene mutant vs targene wildtype cell-line groups(gdsc_targene_WT_MUT_predictions.pdf)  
+          Performs t-test on classifier weights across targene mutant vs targene wildtype cell-line groups(gdsc_targene_WT_MUT_predictions.pdf)  
 
           Apply GDSC classifier scores to evaluate GDSC1 pharmacologial data response(gdsc1_targene_pharmacology_predictions.tsv)  
 

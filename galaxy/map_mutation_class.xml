@@ -53,8 +53,7 @@
         --filename_raw_mut  Filename of raw mut MAF
         
       **Outputs:**
-      Merge per sample classifier scores with mutation types present in each sample and generate "mutation_classification_scores.tsv" file ]]>
-        
+      Merge per sample classifier scores with mutation types present in each sample and generate "mutation_classification_scores.tsv" file  ]]>
     </help>
     <expand macro="citations" />
 </tool>
