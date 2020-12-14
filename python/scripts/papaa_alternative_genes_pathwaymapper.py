@@ -48,7 +48,7 @@ scores = args.classifier_decisions
 path_genes = args.path_genes
 copy_number = args.copy_number
 
-# if list of the genes provided by file or comma seperated values:
+# if list of the genes provided by file or comma separated values:
 try:
     genes = args.genes
     genes_df = pd.read_table(genes)
