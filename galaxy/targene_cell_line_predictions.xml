@@ -133,8 +133,8 @@
           --ccle_maf  Filename of CCLE mutational variant level data file
           --gdsc_rnaseq   Filename of GDSC gene expression data file
           --gdsc_mut  Filename of GDSC cell lines/gene mutations data file
-          --gdsc1_phar  Filename of GDSC1 pharmocological response data
-          --gdsc2_phar  Filename of GDSC2 pharmocological response data
+          --gdsc1_phar  Filename of GDSC1 pharmacological response data
+          --gdsc2_phar  Filename of GDSC2 pharmacological response data
 
         **Outputs:**
           Generate predictions for CCLE data using targene classifier(ccle_histogram.png)  
@@ -153,13 +153,13 @@
 
           Performs t-test on classifier weights across targene mutant vs targene wildtype cell-line groups(gdsc_targene_WT_MUT_predictions.pdf)  
 
-          Apply GDSC classifier scores to evaluate GDSC1 pharmacologial data response(gdsc1_targene_pharmacology_predictions.tsv)  
+          Apply GDSC classifier scores to evaluate GDSC1 pharmacological data response(gdsc1_targene_pharmacology_predictions.tsv)  
 
-          Apply GDSC classifier scores to evaluate GDSC2 pharmacologial data response(gdsc2_targene_pharmacology_predictions.tsv)  
+          Apply GDSC classifier scores to evaluate GDSC2 pharmacological data response(gdsc2_targene_pharmacology_predictions.tsv)  
 
-          Apply CCLE classifier scores to evaluate GDSC1 pharmacologial data response(gdsc1_ccle_targene_pharmacology_predictions.tsv)  
+          Apply CCLE classifier scores to evaluate GDSC1 pharmacological data response(gdsc1_ccle_targene_pharmacology_predictions.tsv)  
 
-          Apply CCLE classifier scores to evaluate GDSC2 pharmacologial data response(gdsc2_ccle_targene_pharmacology_predictions.tsv) ]]>
+          Apply CCLE classifier scores to evaluate GDSC2 pharmacological data response(gdsc2_ccle_targene_pharmacology_predictions.tsv) ]]>
     </help>
     <expand macro="citations" />
 </tool>

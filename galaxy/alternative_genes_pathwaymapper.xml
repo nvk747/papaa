@@ -73,7 +73,7 @@
         **Outputs:**
           Calculate and display metrics for targene classification  
 
-          Calulate and display pathway metrics ("pathway_metrics_pathwaymapper.txt")  
+          Calculate and display pathway metrics ("pathway_metrics_pathwaymapper.txt")  
 
           Visualize Distribution of AUROC and AUPRC for all genes and Get Metrics for All Genes ("all_gene_metric_ranks.tsv)  ]]>
       </help>

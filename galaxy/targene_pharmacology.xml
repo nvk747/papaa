@@ -56,7 +56,7 @@
 
         **Inputs:**
           --classifier_results  String of the location of classifier results folder
-          --compound  Filename of list of GDSC pharmocological compounds for evaluation
+          --compound  Filename of list of GDSC pharmacological compounds for evaluation
 
         **Outputs:**
           Scatter plots with visualizing drug response compared to GDSC targene classifier scores for GDSC1 pharmacological   dataset (GDSC1_targene_all_drug_response.pdf)  
