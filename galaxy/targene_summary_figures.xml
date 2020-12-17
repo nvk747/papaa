@@ -59,7 +59,7 @@
           <output name="log" file="targene_summary_figures_Log.txt"/>
           <output name="targene_heatmap" file="targene_heatmap.pdf" compare="sim_size" delta="50"/>
           <output name="all_targene_heatmap" file="all_targene_heatmap.pdf" compare="sim_size" delta="50"/>
-          <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="50"/>
+          <output name="targene_coef_plot" file="targene_coef_plot.pdf" compare="sim_size" delta="1000"/>
           <output name="variant_OG_fill_map" file="variant_OG_fill_map.pdf" compare="sim_size" delta="50"/>
           <output name="aupr_distribution" file="aupr_distribution.pdf" compare="sim_size" delta="50"/>
           <output name="variant_TSG_fill_map" file="variant_TSG_fill_map.pdf" compare="sim_size" delta="50"/>
