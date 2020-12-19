@@ -25,7 +25,7 @@
         ]]>
     </command>
     <inputs>
-        <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+        <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifier_summary.txt"/>
         <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
         <param argument="--expression_file" label="external sample gene expression data" name="ex_vlog" optional="false" type="data" format="csv" help="data/vlog_trans.csv" />
         <param argument="--status_sign" label="given mutational status" name="sign" optional="false" type="data" format="txt" help="data/sign.txt" />

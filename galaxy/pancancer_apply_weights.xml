@@ -19,7 +19,7 @@
   <inputs>
     <expand macro="inputs_basic"/>
     <expand macro="inputs_copy_number_class_file_conditional"/>
-    <param argument="--classifier_summary" label="pancancer classifier summary" name="pancan_classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+    <param argument="--classifier_summary" label="pancancer classifier summary" name="pancan_classifier_summary" optional="false" type="data" format="txt" help="classifier_summary.txt"/>
     <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
   </inputs>
   <outputs>

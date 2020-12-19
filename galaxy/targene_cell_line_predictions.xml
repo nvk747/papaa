@@ -49,7 +49,7 @@
         ]]>
     </command>
     <inputs>
-        <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+        <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifier_summary.txt"/>
         <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
         <param label="nucleotide mutation scores" name="nucleotide_mutation_scores" optional="false" type="data" format="tabular" help="nucleotide_mutation_scores.tsv"/>
         <param label="amino acid mutation scores" name="amino_acid_mutation_scores" optional="false" type="data" format="tabular" help="amino_acid_mutation_scores.tsv"/>

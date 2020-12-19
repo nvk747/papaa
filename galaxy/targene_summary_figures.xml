@@ -25,7 +25,7 @@
     ]]>
   </command>
   <inputs>
-    <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifer_summary.txt"/>
+    <param argument="--classifier_summary" label="Classifier data" name="classifier_summary" optional="false" type="data" format="txt" help="classifier_summary.txt"/>
     <param label="pancancer classifier coefficients" name="pancan_classifier_coefficients" optional="false" type="data" format="tabular" help="classifier_coefficients.tsv"/>
     <param argument="--seed" label="option to set seed" name="seed" optional="true" type="integer" value="123"/>
     <param label="summary counts" name="summary_counts" optional="false" type="data" format="csv" help="summary_counts.csv"/>
